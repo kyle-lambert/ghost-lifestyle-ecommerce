@@ -22,8 +22,12 @@ function Cart({ handleClose }) {
         <Topbar title={CART_TITLE} handleClose={handleClose} />
         <PromoBanner cartPromo />
         <ul className="Cart-list">
-          {cartItems.map((item) => (
-            <CartItem key={item.id} item={item} handleRemove={handleRemove} />
+          {cartItems.map((product) => (
+            <CartItem
+              key={product.id}
+              product={product}
+              handleRemove={handleRemove}
+            />
           ))}
         </ul>
       </div>

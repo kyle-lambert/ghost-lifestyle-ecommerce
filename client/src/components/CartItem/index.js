@@ -2,21 +2,25 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./CartItem.scss";
 
-function CartItem({ item, handleRemove }) {
+function CartItem({ product, handleRemove }) {
   const removeCartItem = () => {
-    handleRemove(item.id);
+    handleRemove(product.id);
   };
 
   return (
     <li className="CartItem">
       <div className="CartItem-left">
         <Link to="/">
-          <img src={item.image} alt={item.name} className="CartItem-img" />
+          <img
+            src={product.image}
+            alt={product.name}
+            className="CartItem-img"
+          />
         </Link>
       </div>
       <div className="CartItem-middle">
-        <span className="CartItem-name">{item.name}</span>
-        <span className="CartItem-flavour">{item.flavour}</span>
+        <span className="CartItem-name">{product.name}</span>
+        <span className="CartItem-flavour">{product.flavour}</span>
         <button
           type="button"
           onClick={removeCartItem}
@@ -25,8 +29,8 @@ function CartItem({ item, handleRemove }) {
         </button>
       </div>
       <div className="CartItem-right">
-        <span className="CartItem-price">${item.price}</span>
-        <span className="CartItem-qty">{item.qty}</span>
+        <span className="CartItem-price">${product.price}</span>
+        <span className="CartItem-qty">{product.qty}</span>
       </div>
     </li>
   );

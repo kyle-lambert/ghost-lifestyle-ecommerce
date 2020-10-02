@@ -1,15 +1,15 @@
 import React from "react";
-import "./CartButton.scss";
+import "./CartMenuOpen.scss";
 
 import { ReactComponent as ShoppingCart } from "../../assets/icons/shopping_cart.svg";
 
-function CartButton({ handleCart, cartItems }) {
+function CartMenuOpen({ handleOpen, cartItems }) {
   return (
-    <button type="button" onClick={handleCart} className="CartButton">
+    <button type="button" onClick={handleOpen} className="CartMenuOpen">
       <ShoppingCart />
       {cartItems > 0 && <span>{cartItems}</span>}
     </button>
   );
 }
 
-export default CartButton;
+export default CartMenuOpen;

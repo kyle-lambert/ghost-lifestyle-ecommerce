@@ -3,21 +3,30 @@ import { Link } from "react-router-dom";
 import "./Header.scss";
 
 import { ReactComponent as Logo } from "../../assets/icons/brand_logo.svg";
-import FavoritesButton from "../FavoritesButton";
-import CartButton from "../CartButton";
-import Cart from "../Cart";
+
 import Favorites from "../Favorites";
+import FavoritesMenuOpen from "../FavoritesMenuOpen";
+import Cart from "../Cart";
+import CartMenuOpen from "../CartMenuOpen";
 
 function Header(props) {
-  const [cart, setCart] = useState(false);
-  const [favorites, setFavorites] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
+  const [favoritesOpen, setFavoritesOpen] = useState(false);
 
-  const handleCart = () => {
-    setCart((prev) => !prev);
+  const openCartMenu = () => {
+    setCartOpen(true);
   };
 
-  const handleFavorites = () => {
-    setFavorites((prev) => !prev);
+  const closeCartMenu = () => {
+    setCartOpen(false);
+  };
+
+  const openFavoritesMenu = () => {
+    setFavoritesOpen(true);
+  };
+
+  const closeFavoritesMenu = () => {
+    setFavoritesOpen(false);
   };
 
   return (
@@ -37,14 +46,14 @@ function Header(props) {
           </button>
         </li>
         <li className="Header-item">
-          <FavoritesButton handleFavorites={handleFavorites} hasFavorites />
+          <FavoritesMenuOpen handleOpen={openFavoritesMenu} />
         </li>
         <li className="Header-item">
-          <CartButton handleCart={handleCart} cartItems={6} />
+          <CartMenuOpen handleOpen={openCartMenu} cartItems={5} />
         </li>
       </ul>
-      {cart && <Cart handleClose={() => setCart(false)} />}
-      {favorites && <Favorites handleClose={() => setFavorites(false)} />}
+      {cartOpen && <Cart handleClose={closeCartMenu} />}
+      {favoritesOpen && <Favorites handleClose={closeFavoritesMenu} />}
     </header>
   );
 }

@@ -4,21 +4,25 @@ import "./FavoritesItem.scss";
 
 import { ReactComponent as FavoriteSolid } from "../../assets/icons/favorite_solid.svg";
 
-function FavoritesItem({ item, handleRemove }) {
+function FavoritesItem({ product, handleRemove }) {
   const removeFavorite = () => {
-    handleRemove(item.id);
+    handleRemove(product.id);
   };
 
   return (
     <li className="FavoritesItem">
       <div className="FavoritesItem-left">
         <Link to="/">
-          <img src={item.image} alt={item.name} className="FavoritesItem-img" />
+          <img
+            src={product.image}
+            alt={product.name}
+            className="FavoritesItem-img"
+          />
         </Link>
       </div>
       <div className="FavoritesItem-middle">
-        <span className="FavoritesItem-name">{item.name}</span>
-        <span className="FavoritesItem-flavour">{item.flavour}</span>
+        <span className="FavoritesItem-name">{product.name}</span>
+        <span className="FavoritesItem-flavour">{product.flavour}</span>
       </div>
       <div className="FavoritesItem-right">
         <button

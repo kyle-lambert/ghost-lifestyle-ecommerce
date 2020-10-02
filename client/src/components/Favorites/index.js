@@ -3,13 +3,20 @@ import "./Favorites.scss";
 
 import Topbar from "../Topbar";
 import FavoritesItem from "../FavoritesItem";
-import ProteinImage from "../../assets/chips-ahoy.png";
+
+import {
+  useFavoritesDispatch,
+  useFavoritesState,
+} from "../../contexts/FavoritesContext";
 
 const FAVORITES_TITLE = "Your Favorites";
 
 function Favorites({ handleClose }) {
+  const favorites = useFavoritesState();
+  const dispatch = useFavoritesDispatch();
+
   const handleRemove = (id) => {
-    console.log(`Removed favorite with ID: ${id}`);
+    dispatch({ type: "REMOVE_FAVORITE", payload: id });
   };
 
   return (
@@ -18,10 +25,10 @@ function Favorites({ handleClose }) {
       <div className="Favorites-sidebar">
         <Topbar title={FAVORITES_TITLE} handleClose={handleClose} />
         <ul className="Favorites-list">
-          {favoritesItems.map((item) => (
+          {favorites.map((product) => (
             <FavoritesItem
-              key={item.id}
-              item={item}
+              key={product.id}
+              product={product}
               handleRemove={handleRemove}
             />
           ))}
@@ -32,30 +39,3 @@ function Favorites({ handleClose }) {
 }
 
 export default Favorites;
-
-const favoritesItems = [
-  {
-    id: 1,
-    name: "Whey X Chips Ahoy!",
-    image: ProteinImage,
-    flavour: "Marshmallow Cereal Milk®",
-    price: 59.99,
-    qty: 3,
-  },
-  {
-    id: 2,
-    name: "Whey X Chips Ahoy!",
-    image: ProteinImage,
-    flavour: "Marshmallow Cereal Milk®",
-    price: 59.99,
-    qty: 3,
-  },
-  {
-    id: 3,
-    name: "Whey X Chips Ahoy!",
-    image: ProteinImage,
-    flavour: "Marshmallow Cereal Milk®",
-    price: 59.99,
-    qty: 3,
-  },
-];
