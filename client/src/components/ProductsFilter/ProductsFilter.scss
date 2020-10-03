@@ -1,0 +1,40 @@
+@import "../../styles/partials/variables";
+
+.ProductsFilter {
+  &-title {
+    font-size: 2.4rem;
+    line-height: 1.2;
+    text-transform: uppercase;
+    margin-bottom: 1.8rem;
+  }
+
+  &-item {
+    margin-bottom: 0.5rem;
+
+    &:last-child {
+      margin-bottom: unset;
+    }
+  }
+
+  &-btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 0.7rem;
+    border-radius: 5px;
+    font-weight: 300;
+
+    &:disabled {
+      cursor: auto;
+    }
+
+    &[data-selected="true"] {
+      background-color: $medium-grey;
+      font-weight: 500;
+    }
+
+    &:hover:not([data-selected="true"]) {
+      background-color: $medium-grey;
+    }
+  }
+}

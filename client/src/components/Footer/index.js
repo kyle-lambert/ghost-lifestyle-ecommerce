@@ -39,10 +39,12 @@ function Footer(props) {
             </li>
           ))}
         </ul>
+        <div className="Footer-right">
+          <Link to="/" className="Footer-logo">
+            <Logo />
+          </Link>
+        </div>
       </nav>
-      <Link to="/" className="Footer-logo">
-        <Logo />
-      </Link>
     </footer>
   );
 }

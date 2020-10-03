@@ -1,0 +1,57 @@
+@import "../../styles/partials/variables";
+
+.Footer {
+  background-color: $black;
+  padding: 4.6rem 3.6rem;
+
+  &-nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 0.5rem;
+  }
+
+  &-list {
+    margin-right: 10%;
+  }
+
+  &-title {
+    color: $white;
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 2.6rem;
+  }
+
+  &-item {
+    margin-bottom: 1.2rem;
+
+    &:last-child {
+      margin-bottom: unset;
+    }
+  }
+
+  &-link {
+    color: $white;
+    text-decoration: none;
+    font-weight: 300;
+    padding: 0.5rem 0;
+    opacity: 0.6;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &-right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &-logo {
+    padding: 0.5rem 0;
+    align-self: flex-end;
+  }
+  svg {
+    fill: $white;
+  }
+}
