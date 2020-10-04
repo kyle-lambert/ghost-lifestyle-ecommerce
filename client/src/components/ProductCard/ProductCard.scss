@@ -1,33 +1,56 @@
 @import "../../styles/partials/variables";
 
 .ProductCard {
+  position: relative;
   background-color: $medium-grey;
   border-radius: 3px;
+  transition: transform 250ms ease;
+
+  &-favorite {
+    position: absolute;
+    top: 2.2rem;
+    right: 2.2rem;
+    opacity: 0;
+    transition: opacity 150ms ease;
+  }
+
+  &:hover &-favorite {
+    opacity: 1;
+    transition: opacity 150ms ease;
+  }
+
+  &:hover {
+    transform: scale(1.025);
+    transition: transform 250ms ease;
+  }
+
+  &-link {
+    display: inline-flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    padding: 2.4rem;
+  }
 
   &-top {
-    flex: 1;
-    // width: 50%;
-    margin: 0 auto;
+    position: relative;
+    height: 0;
+    padding-top: 80%;
+  }
+
+  &-img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 100%;
+    height: 90%;
   }
 
   &-bottom {
     flex: 1;
     display: flex;
     flex-direction: column;
-  }
-
-  &-link {
-    display: block;
-    width: 100%;
-    height: 100%;
-    padding: 2.4rem;
-    display: flex;
-    flex-direction: column;
-  }
-
-  &-img {
-    display: inline-block;
-    max-width: 100%;
   }
 
   &-name {
@@ -38,11 +61,13 @@
 
   &-summary {
     font-weight: 300;
-    margin-bottom: 2.8rem;
+    margin-bottom: 3.8rem;
   }
 
   &-info {
     margin-top: auto;
+    display: flex;
+    justify-content: space-between;
   }
 
   &-price {

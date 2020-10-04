@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./ProductCard.scss";
 
+import FavoriteProductToggle from "../FavoriteProductToggle";
+
 function ProductCard({ product }) {
   return (
     <div className="ProductCard">
@@ -18,10 +20,13 @@ function ProductCard({ product }) {
           <p className="ProductCard-summary">{product.summary}</p>
           <div className="ProductCard-info">
             <span className="ProductCard-flavours">3 Flavours</span>
-            <span className="ProductCard-price">{product.price}</span>
+            <span className="ProductCard-price">${product.price}</span>
           </div>
         </div>
       </Link>
+      <div className="ProductCard-favorite">
+        <FavoriteProductToggle />
+      </div>
     </div>
   );
 }

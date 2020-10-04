@@ -1,0 +1,12 @@
+.SelectGroup {
+  display: flex;
+
+  &-flavour {
+    margin-right: 1.8rem;
+    flex: 4;
+  }
+
+  &-qty {
+    flex: 1;
+  }
+}

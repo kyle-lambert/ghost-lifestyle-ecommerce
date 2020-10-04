@@ -1,11 +1,17 @@
 @import "../../styles/partials/variables";
 
-.FavoritesButton {
+.FavoriteProductToggle {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0.5rem;
+  transition: transform 100ms ease;
+
+  &:hover {
+    transform: scale(1.3);
+    transition: transform 100ms ease;
+  }
 
   svg {
     fill: $black;

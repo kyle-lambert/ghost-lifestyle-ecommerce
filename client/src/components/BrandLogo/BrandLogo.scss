@@ -1,0 +1,16 @@
+@import "../../styles/partials/variables";
+
+.BrandLogo {
+  display: inline-block;
+  padding: 0.5rem 0;
+
+  &[data-light="true"] {
+    svg {
+      fill: $white;
+    }
+  }
+
+  svg {
+    fill: $black;
+  }
+}
