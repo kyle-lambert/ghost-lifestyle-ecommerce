@@ -1,18 +1,30 @@
 import React from "react";
+import { v4 as uuidv4 } from "uuid";
 import "./SelectChoice.scss";
 
 import { ReactComponent as ExpandMore } from "../../assets/icons/expand_more.svg";
 
-function SelectChoice({ name, id, options }) {
+function SelectChoice({
+  label,
+  options,
+  handleSelectChange,
+  selectValue,
+  selectName,
+}) {
   return (
     <div className="SelectChoice">
-      <label htmlFor={id} className="SelectChoice-label">
-        {name}:
-      </label>
+      <label className="SelectChoice-label">{label}</label>
       <div className="SelectChoice-bar">
-        <select name={name} id={id} className="SelectChoice-select">
+        <select
+          onChange={handleSelectChange}
+          name={selectName}
+          value={selectValue}
+          className="SelectChoice-select">
           {options.map((opt) => (
-            <option value={opt.value} className="SelectChoice-option">
+            <option
+              key={uuidv4()}
+              value={opt.name}
+              className="SelectChoice-option">
               {opt.name}
             </option>
           ))}

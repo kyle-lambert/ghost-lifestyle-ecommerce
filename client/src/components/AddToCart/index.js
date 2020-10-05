@@ -1,7 +1,7 @@
 import React from "react";
 import "./AddToCart.scss";
 
-function AddToCart({ product }) {
+function AddToCart(props) {
   return (
     <button type="button" className="AddToCart">
       Add To Cart

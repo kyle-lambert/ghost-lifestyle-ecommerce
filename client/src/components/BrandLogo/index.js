@@ -3,9 +3,9 @@ import "./BrandLogo.scss";
 
 import { ReactComponent as Logo } from "../../assets/icons/brand_logo.svg";
 
-function BrandLogo({ light }) {
+function BrandLogo({ light, width }) {
   return (
-    <div data-light={light} className="BrandLogo">
+    <div data-light={light} className="BrandLogo" style={{ width: width }}>
       <Logo />
     </div>
   );
