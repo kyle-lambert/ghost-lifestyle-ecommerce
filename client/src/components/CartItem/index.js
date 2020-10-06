@@ -1,38 +1,28 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import "./CartItem.scss";
+import * as S from "./StyledCartItem.js";
 
-function CartItem({ product, handleRemove }) {
-  const removeCartItem = () => {
-    handleRemove(product.id);
-  };
+import ImageSpacer from "../ImageSpacer";
 
+function CartItem({ product }) {
   return (
-    <li className="CartItem">
-      <div className="CartItem-left">
-        <Link to="/">
-          <img
-            src={product.image}
-            alt={product.name}
-            className="CartItem-img"
-          />
-        </Link>
-      </div>
-      <div className="CartItem-middle">
-        <span className="CartItem-name">{product.name}</span>
-        <span className="CartItem-flavour">{product.flavour}</span>
-        <button
-          type="button"
-          onClick={removeCartItem}
-          className="CartItem-remove">
+    <>
+      <S.ImageWrapper>
+        <ImageSpacer src={product.image} alt={product.name} />
+      </S.ImageWrapper>
+      <S.ContentWrapper>
+        <div className="product">
+          <S.Name>{product.name}</S.Name>
+          <S.Text>{product.flavour}</S.Text>
+        </div>
+        <button type="button" className="button">
           Remove
         </button>
-      </div>
-      <div className="CartItem-right">
-        <span className="CartItem-price">${product.price}</span>
-        <span className="CartItem-qty">{product.qty}</span>
-      </div>
-    </li>
+      </S.ContentWrapper>
+      <S.InfoWrapper>
+        <S.Price>${product.price}</S.Price>
+        <S.Qty>{product.qty}</S.Qty>
+      </S.InfoWrapper>
+    </>
   );
 }
 

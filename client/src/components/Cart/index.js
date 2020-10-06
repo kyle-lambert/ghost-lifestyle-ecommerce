@@ -1,43 +1,35 @@
 import React from "react";
-import "./Cart.scss";
+import * as S from "./StyledCart.js";
 
 import Topbar from "../Topbar";
-import PromoBanner from "../PromoBanner";
+import Banner from "../Banner";
 import CartItem from "../CartItem";
 
 import ProteinImage from "../../assets/chips-ahoy.png";
 import AminoImage from "../../assets/kiwi-strawberry.png";
 
-const CART_TITLE = "Your Cart";
-
-function Cart({ handleClose }) {
-  const handleRemove = (id) => {
-    console.log(`Removed cart item with ID: ${id}`);
-  };
-
+function Cart({ closeMenu }) {
   return (
-    <div className="Cart">
-      <span className="Cart-backdrop"></span>
-      <div className="Cart-sidebar">
-        <Topbar title={CART_TITLE} handleClose={handleClose} />
-        <PromoBanner cartPromo />
-        <ul className="Cart-list">
-          {cartItems.map((product) => (
-            <CartItem
-              key={product.id}
-              product={product}
-              handleRemove={handleRemove}
-            />
+    <S.Wrapper>
+      <span className="backdrop"></span>
+      <S.Cart>
+        <Topbar closeMenu={closeMenu} cart />
+        <Banner cart />
+        <S.List>
+          {products.map((product) => (
+            <li key={product.id} className="item">
+              <CartItem product={product} />
+            </li>
           ))}
-        </ul>
-      </div>
-    </div>
+        </S.List>
+      </S.Cart>
+    </S.Wrapper>
   );
 }
 
 export default Cart;
 
-const cartItems = [
+const products = [
   {
     id: 1,
     name: "Whey X Chips Ahoy!",

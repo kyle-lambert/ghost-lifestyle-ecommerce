@@ -1,16 +1,17 @@
 import React from "react";
-import "./Topbar.scss";
+import * as S from "./StyledTopbar.js";
 
-import { ReactComponent as Close } from "../../assets/icons/close.svg";
+import Icon from "../Icon";
 
-function Topbar({ title, handleClose }) {
+function Topbar({ cart, favorites, closeMenu }) {
   return (
-    <div className="Topbar">
-      <span className="Topbar-title">{title}</span>
-      <button type="button" onClick={handleClose} className="Topbar-close">
-        <Close />
-      </button>
-    </div>
+    <S.Topbar>
+      {cart && <span className="title">Your Cart</span>}
+      {favorites && <span className="title">Your Favorites</span>}
+      <S.Button onClick={closeMenu}>
+        <Icon close />
+      </S.Button>
+    </S.Topbar>
   );
 }
 

@@ -1,38 +1,29 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import "./FavoritesItem.scss";
+import * as S from "./StyledFavoritesItem.js";
 
-import { ReactComponent as FavoriteSolid } from "../../assets/icons/favorite_solid.svg";
+import ImageSpacer from "../ImageSpacer";
+import Icon from "../Icon";
 
-function FavoritesItem({ product, handleRemove }) {
-  const removeFavorite = () => {
-    handleRemove(product.id);
+function FavoritesItem({ product, removeFavoriteById }) {
+  const handleClick = (e) => {
+    removeFavoriteById(product.id);
   };
 
   return (
-    <li className="FavoritesItem">
-      <div className="FavoritesItem-left">
-        <Link to="/">
-          <img
-            src={product.image}
-            alt={product.name}
-            className="FavoritesItem-img"
-          />
-        </Link>
-      </div>
-      <div className="FavoritesItem-middle">
-        <span className="FavoritesItem-name">{product.name}</span>
-        <span className="FavoritesItem-flavour">{product.flavour}</span>
-      </div>
-      <div className="FavoritesItem-right">
-        <button
-          type="button"
-          onClick={removeFavorite}
-          className="FavoritesItem-remove">
-          <FavoriteSolid />
+    <>
+      <S.ImageWrapper>
+        <ImageSpacer src={product.image} alt={product.name} />
+      </S.ImageWrapper>
+      <S.ContentWrapper>
+        <S.Name>{product.name}</S.Name>
+        <S.Text>{product.flavour}</S.Text>
+      </S.ContentWrapper>
+      <S.InfoWrapper>
+        <button onClick={handleClick} type="button" className="button">
+          <Icon favoriteSolid />
         </button>
-      </div>
-    </li>
+      </S.InfoWrapper>
+    </>
   );
 }
 

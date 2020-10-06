@@ -1,13 +1,13 @@
 import React from "react";
-import "./BrandLogo.scss";
+import * as S from "./StyledBrandLogo.js";
 
 import { ReactComponent as Logo } from "../../assets/icons/brand_logo.svg";
 
-function BrandLogo({ light, width }) {
+function BrandLogo({ light }) {
   return (
-    <div data-light={light} className="BrandLogo" style={{ width: width }}>
+    <S.Wrapper light={light}>
       <Logo />
-    </div>
+    </S.Wrapper>
   );
 }
 

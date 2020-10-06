@@ -1,41 +1,64 @@
 import React from "react";
-import "./Favorites.scss";
+import * as S from "./StyledFavorites.js";
 
 import Topbar from "../Topbar";
 import FavoritesItem from "../FavoritesItem";
+import Banner from "../Banner";
 
-import {
-  useFavoritesDispatch,
-  useFavoritesState,
-} from "../../contexts/FavoritesContext";
+import ProteinImage from "../../assets/chips-ahoy.png";
+import AminoImage from "../../assets/kiwi-strawberry.png";
 
-const FAVORITES_TITLE = "Your Favorites";
-
-function Favorites({ handleClose }) {
-  const favorites = useFavoritesState();
-  const dispatch = useFavoritesDispatch();
-
-  const handleRemove = (id) => {
-    dispatch({ type: "REMOVE_FAVORITE", payload: id });
+function Favorites({ closeMenu }) {
+  const removeFavoriteById = (productId) => {
+    console.log("Removed favorite " + productId);
   };
 
   return (
-    <div className="Favorites">
-      <span className="Favorites-backdrop"></span>
-      <div className="Favorites-sidebar">
-        <Topbar title={FAVORITES_TITLE} handleClose={handleClose} />
-        <ul className="Favorites-list">
-          {favorites.map((product) => (
-            <FavoritesItem
-              key={product.id}
-              product={product}
-              handleRemove={handleRemove}
-            />
+    <S.Wrapper>
+      <span className="backdrop"></span>
+      <S.Favorites>
+        <Topbar closeMenu={closeMenu} favorites />
+        <Banner cart />
+        <S.List>
+          {products.map((product) => (
+            <li key={product.id} className="item">
+              <FavoritesItem
+                product={product}
+                removeFavoriteById={removeFavoriteById}
+              />
+            </li>
           ))}
-        </ul>
-      </div>
-    </div>
+        </S.List>
+      </S.Favorites>
+    </S.Wrapper>
   );
 }
 
 export default Favorites;
+
+const products = [
+  {
+    id: 1,
+    name: "Whey X Chips Ahoy!",
+    image: ProteinImage,
+    flavour: "Marshmallow Cereal Milk®",
+    price: 59.99,
+    qty: 3,
+  },
+  {
+    id: 2,
+    name: "BCAA",
+    image: AminoImage,
+    flavour: "Kiwi Strawberry",
+    price: 29.99,
+    qty: 1,
+  },
+  {
+    id: 3,
+    name: "Whey X Chips Ahoy!",
+    image: ProteinImage,
+    flavour: "Marshmallow Cereal Milk®",
+    price: 59.99,
+    qty: 3,
+  },
+];

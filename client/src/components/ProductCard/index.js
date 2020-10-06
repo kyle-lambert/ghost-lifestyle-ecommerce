@@ -1,33 +1,28 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import "./ProductCard.scss";
+import * as S from "./StyledProductCard.js";
 
-import FavoriteProductToggle from "../FavoriteProductToggle";
+import ImageSpacer from "../ImageSpacer";
+import Heading from "../Heading";
+import FavoriteToggle from "../FavoriteToggle";
 
 function ProductCard({ product }) {
   return (
-    <div className="ProductCard">
-      <Link to={`/products/${product.id}`} className="ProductCard-link">
-        <div className="ProductCard-top">
-          <img
-            src={product.image}
-            alt={product.name}
-            className="ProductCard-img"
-          />
-        </div>
-        <div className="ProductCard-bottom">
-          <h2 className="ProductCard-name">{product.name}</h2>
-          <p className="ProductCard-summary">{product.summary}</p>
-          <div className="ProductCard-info">
-            <span className="ProductCard-flavours">3 Flavours</span>
-            <span className="ProductCard-price">${product.price}</span>
-          </div>
-        </div>
-      </Link>
-      <div className="ProductCard-favorite">
-        <FavoriteProductToggle />
-      </div>
-    </div>
+    <>
+      <S.Card to={`/products/${product.id}`}>
+        <ImageSpacer src={product.image} alt={product.name} />
+        <S.Content>
+          <Heading h4>{product.name}</Heading>
+          <S.Text>{product.summary}</S.Text>
+          <S.Info>
+            <span className="flavour">flavour</span>
+            <span className="price">{`$${product.price}`}</span>
+          </S.Info>
+        </S.Content>
+        <span className="toggle">
+          <FavoriteToggle />
+        </span>
+      </S.Card>
+    </>
   );
 }
 

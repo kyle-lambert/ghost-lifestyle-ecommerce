@@ -1,8 +1,13 @@
 import React from "react";
-import "./Home.scss";
+
+import PageContainer from "../../layout/PageContainer";
 
 function Home(props) {
-  return <main className="Home">home</main>;
+  return (
+    <>
+      <PageContainer>home page</PageContainer>
+    </>
+  );
 }
 
 export default Home;
