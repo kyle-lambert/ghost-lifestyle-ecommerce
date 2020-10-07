@@ -5,8 +5,9 @@ import Banner from "../Banner";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 
-import Home from "../../pages/Home";
-import Products from "../../pages/Products";
+import HomePage from "../../pages/HomePage";
+import ProductsPage from "../../pages/ProductsPage";
+import DetailsPage from "../../pages/DetailsPage";
 
 function App(props) {
   return (
@@ -15,8 +16,9 @@ function App(props) {
       <Navbar />
       <main>
         <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/products" component={Products} />
+          <Route exact path="/" component={HomePage} />
+          <Route exact path="/products" component={ProductsPage} />
+          <Route exact path="/products/:id" component={DetailsPage} />
         </Switch>
       </main>
       <Footer />

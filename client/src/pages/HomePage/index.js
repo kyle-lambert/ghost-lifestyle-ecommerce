@@ -1,8 +1,9 @@
 import React from "react";
+import * as S from "./StyledHomePage.js";
 
 import PageContainer from "../../layout/PageContainer";
 
-function Home(props) {
+function HomePage(props) {
   return (
     <>
       <PageContainer>home page</PageContainer>
@@ -10,4 +11,4 @@ function Home(props) {
   );
 }
 
-export default Home;
+export default HomePage;
