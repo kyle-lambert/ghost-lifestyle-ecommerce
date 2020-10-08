@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_supplements_detail_with_descriptions",
+  "info": {
+    "name": "detail_with_description",
+    "icon": "address-book"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

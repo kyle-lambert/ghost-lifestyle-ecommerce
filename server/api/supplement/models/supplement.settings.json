@@ -1,0 +1,53 @@
+{
+  "kind": "collectionType",
+  "collectionName": "supplements",
+  "info": {
+    "name": "Supplement",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "price": {
+      "type": "decimal",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
+      "required": true
+    },
+    "category": {
+      "model": "category"
+    },
+    "flavours": {
+      "type": "component",
+      "repeatable": true,
+      "component": "supplements.flavour-with-image",
+      "required": true,
+      "min": 1
+    },
+    "details": {
+      "type": "component",
+      "repeatable": true,
+      "component": "supplements.detail-with-description",
+      "required": true,
+      "min": 1
+    },
+    "categories": {
+      "via": "supplements",
+      "collection": "category"
+    }
+  }
+}
