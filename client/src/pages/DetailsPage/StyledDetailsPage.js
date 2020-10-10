@@ -7,6 +7,7 @@ export const PageWrapper = styled.div`
   padding-right: 10%;
   padding-top: 5.8rem;
   padding-bottom: 5.8rem;
+  min-height: 100vh;
 
   &:after {
     content: "";

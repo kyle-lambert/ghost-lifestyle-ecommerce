@@ -18,7 +18,10 @@ function App(props) {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/products" component={ProductsPage} />
-          <Route exact path="/products/:id" component={DetailsPage} />
+          <Route exact path="/products/:slug" component={DetailsPage} />
+          <Route exact path="/404">
+            <div>404 page</div>
+          </Route>
         </Switch>
       </main>
       <Footer />
