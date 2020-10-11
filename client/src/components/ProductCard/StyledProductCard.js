@@ -6,7 +6,7 @@ export const Card = styled(Link)`
   display: flex;
   position: relative;
   flex-direction: column;
-  padding: 2.4rem;
+  padding: 4.4rem 2.4rem 2.4rem 2.4rem;
   width: 100%;
   height: 100%;
   background-color: ${colors.mediumGrey};
@@ -17,19 +17,18 @@ export const Card = styled(Link)`
     position: absolute;
     top: 1.8rem;
     right: 1.8rem;
-    opacity: 0;
-    transition: opacity 150ms ease;
   }
 
   &:hover {
     transform: scale(1.025);
     transition: transform 250ms ease;
   }
+`;
 
-  &:hover .toggle {
-    opacity: 1;
-    transition: opacity 150ms ease;
-  }
+export const ImageWrapper = styled.div`
+  width: 80%;
+  padding: 1.2rem 0;
+  margin: 0 auto;
 `;
 
 export const Content = styled.div`
@@ -39,18 +38,15 @@ export const Content = styled.div`
 `;
 
 export const Text = styled.p`
-  margin-bottom: 2.8rem;
+  margin-bottom: 1.6rem;
 `;
 
-export const Info = styled.div`
+export const Price = styled.span`
+  font-family: "Montserrat";
+  font-weight: 700;
+  font-size: inherit;
+  line-height: 1.4;
+  color: inherit;
   margin-top: auto;
-  display: flex;
-  justify-content: space-between;
-
-  .price {
-    font-family: "Montserrat";
-    font-weight: 700;
-    font-size: inherit;
-    color: inherit;
-  }
+  text-align: right;
 `;
