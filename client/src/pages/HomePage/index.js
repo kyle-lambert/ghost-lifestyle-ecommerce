@@ -1,5 +1,5 @@
 import React from "react";
-import * as S from "./StyledHomePage.js";
+// import * as S from "./StyledHomePage.js";
 
 import PageContainer from "../../layout/PageContainer";
 

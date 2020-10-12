@@ -2,6 +2,24 @@ import styled from "styled-components";
 import colors from "../../styles/colors";
 import { Link } from "react-router-dom";
 
+export const Wrapper = styled.div`
+  position: relative;
+  background-color: ${colors.mediumGrey};
+  border-radius: 3px;
+  transition: transform 250ms ease;
+
+  &:hover {
+    transform: scale(1.025);
+    transition: transform 250ms ease;
+  }
+
+  .toggle {
+    position: absolute;
+    top: 1.8rem;
+    right: 1.8rem;
+  }
+`;
+
 export const Card = styled(Link)`
   display: flex;
   position: relative;
@@ -9,20 +27,6 @@ export const Card = styled(Link)`
   padding: 4.4rem 2.4rem 2.4rem 2.4rem;
   width: 100%;
   height: 100%;
-  background-color: ${colors.mediumGrey};
-  border-radius: 3px;
-  transition: transform 250ms ease;
-
-  .toggle {
-    position: absolute;
-    top: 1.8rem;
-    right: 1.8rem;
-  }
-
-  &:hover {
-    transform: scale(1.025);
-    transition: transform 250ms ease;
-  }
 `;
 
 export const ImageWrapper = styled.div`

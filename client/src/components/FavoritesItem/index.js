@@ -4,15 +4,19 @@ import * as S from "./StyledFavoritesItem.js";
 import ImageSpacer from "../ImageSpacer";
 import Icon from "../Icon";
 
-function FavoritesItem({ product, removeFavoriteById }) {
-  const handleClick = (e) => {
-    removeFavoriteById(product.id);
+import { generateURL } from '../../utils'; 
+
+function FavoritesItem({ product, removeFavorite }) {
+  const imageURL = generateURL(product);
+
+  const handleClick = () => {
+    removeFavorite(product.id)
   };
 
   return (
     <>
       <S.ImageWrapper>
-        <ImageSpacer src={product.image} alt={product.name} />
+        <ImageSpacer src={imageURL} alt={product.name} />
       </S.ImageWrapper>
       <S.ContentWrapper>
         <S.Name>{product.name}</S.Name>

@@ -44,10 +44,6 @@
       "component": "supplements.detail-with-description",
       "required": true,
       "min": 1
-    },
-    "categories": {
-      "via": "supplements",
-      "collection": "category"
     }
   }
 }

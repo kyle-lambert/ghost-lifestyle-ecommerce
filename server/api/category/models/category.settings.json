@@ -16,9 +16,7 @@
       "required": true
     },
     "supplements": {
-      "collection": "supplement",
-      "via": "categories",
-      "dominant": true
+      "collection": "supplement"
     }
   }
 }

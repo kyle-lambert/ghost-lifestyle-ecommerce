@@ -6,9 +6,12 @@ import BrandLogo from "../BrandLogo";
 import Cart from "../Cart";
 import Favorites from "../Favorites";
 
+import { useStore } from '../../contexts/StoreContext';
+
 function Navbar(props) {
   const [showFavorites, setShowFavorites] = useState(false);
   const [showCart, setShowCart] = useState(false);
+  const [state] = useStore();
 
   return (
     <S.Header>
@@ -24,7 +27,11 @@ function Navbar(props) {
         </li>
         <li className="item">
           <S.Button onClick={() => setShowFavorites(true)}>
-            <Icon favoriteOutline />
+            {state.favorites.length > 0 ? (
+              <Icon favoriteSolid />
+            ) : (
+              <Icon favoriteOutline />
+            )}
           </S.Button>
         </li>
         <li className="item">

@@ -5,13 +5,17 @@ import Topbar from "../Topbar";
 import FavoritesItem from "../FavoritesItem";
 import Banner from "../Banner";
 
-import ProteinImage from "../../assets/chips-ahoy.png";
-import AminoImage from "../../assets/kiwi-strawberry.png";
+import { useStore } from "../../contexts/StoreContext";
 
 function Favorites({ closeMenu }) {
-  const removeFavoriteById = (productId) => {
-    console.log("Removed favorite " + productId);
-  };
+  const [state, dispatch] = useStore();
+
+  const removeFavorite = (id) => {
+    const index = state.favorites.findIndex(cur => cur.id === id)
+    if (index !== -1) {
+      dispatch({type: useStore.types.REMOVE_FAVORITE, payload: index})
+    }
+  }
 
   return (
     <S.Wrapper>
@@ -20,12 +24,9 @@ function Favorites({ closeMenu }) {
         <Topbar closeMenu={closeMenu} favorites />
         <Banner cart />
         <S.List>
-          {products.map((product) => (
-            <li key={product.id} className="item">
-              <FavoritesItem
-                product={product}
-                removeFavoriteById={removeFavoriteById}
-              />
+          {state.favorites.map((favorite) => (
+            <li key={favorite.id} className="item">
+              <FavoritesItem product={favorite} removeFavorite={removeFavorite} />
             </li>
           ))}
         </S.List>
@@ -35,30 +36,3 @@ function Favorites({ closeMenu }) {
 }
 
 export default Favorites;
-
-const products = [
-  {
-    id: 1,
-    name: "Whey X Chips Ahoy!",
-    image: ProteinImage,
-    flavour: "Marshmallow Cereal Milk®",
-    price: 59.99,
-    qty: 3,
-  },
-  {
-    id: 2,
-    name: "BCAA",
-    image: AminoImage,
-    flavour: "Kiwi Strawberry",
-    price: 29.99,
-    qty: 1,
-  },
-  {
-    id: 3,
-    name: "Whey X Chips Ahoy!",
-    image: ProteinImage,
-    flavour: "Marshmallow Cereal Milk®",
-    price: 59.99,
-    qty: 3,
-  },
-];

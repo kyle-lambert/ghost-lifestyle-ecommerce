@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 import * as S from "./StyledDetailsPage.js";
 
@@ -7,72 +7,20 @@ import BrandLogo from "../../components/BrandLogo";
 import FormSelect from "../../components/FormSelect";
 import FavoriteToggle from "../../components/FavoriteToggle";
 
-const BASE_URL = "http://localhost:1337";
-const types = {
-  GET_PRODUCT_SUCCESS: "GET_PRODUCT_SUCCESS",
-  GET_PRODUCT_FAILURE: "GET_PRODUCT_FAILURE",
-  GET_PRODUCT_LOADING: "GET_PRODUCT_LOADING",
-  SET_FORM_FLAVOUR: "SET_FORM_FLAVOUR",
-  SET_FORM_QTY: "SET_FORM_QTY",
-  SET_IMAGE_FLAVOUR_INDEX: "SET_IMAGE_FLAVOUR_INDEX",
-};
+import { useProductDetails } from '../../contexts/ProductDetailsContext';
 
-const initState = {
-  product: null,
-  loading: false,
-  error: null,
-  formFlavour: "",
-  formQty: 1,
-  imageFlavourIndex: 0,
-};
+const BASE_URL = 'http://localhost:1337';
 
-const reducer = (state, action) => {
-  switch (action.type) {
-    case types.GET_PRODUCT_SUCCESS:
-      return {
-        ...state,
-        product: action.payload,
-      };
-    case types.GET_PRODUCT_FAILURE:
-      return {
-        ...state,
-        error: action.payload,
-      };
-    case types.GET_PRODUCT_loading:
-      return {
-        ...state,
-        loading: action.payload,
-      };
-    case types.SET_FORM_FLAVOUR:
-      return {
-        ...state,
-        formFlavour: action.payload,
-      };
-    case types.SET_FORM_QTY:
-      return {
-        ...state,
-        formQty: action.payload,
-      };
-    case types.SET_IMAGE_FLAVOUR_INDEX:
-      return {
-        ...state,
-        imageFlavourIndex: action.payload,
-      };
-    default:
-      return state;
-  }
-};
-
-function DetailsPage({ history, location, match }) {
-  const [state, dispatch] = useReducer(reducer, initState);
+function DetailsPage({ match }) {
+  const [state, dispatch] = useProductDetails()
   const slug = match.params.slug || null;
 
   useEffect(() => {
-    if (slug) {
-      dispatch({ type: types.GET_PRODUCT_LOADING, payload: true });
+    const fetchProduct = () => {
+      dispatch({ type: useProductDetails.types.GET_PRODUCT_LOADING, payload: true });
       axios
         .get("/supplements", {
-          baseURL: BASE_URL,
+          baseURL: 'http://localhost:1337',
           params: {
             slug: slug,
           },
@@ -80,27 +28,35 @@ function DetailsPage({ history, location, match }) {
         .then((data) => {
           if (Array.isArray(data.data) && data.data.length === 1) {
             dispatch({
-              type: types.GET_PRODUCT_SUCCESS,
+              type: useProductDetails.types.GET_PRODUCT_SUCCESS,
               payload: data.data[0],
             });
           }
-          dispatch({ type: types.GET_PRODUCT_LOADING, payload: false });
+          dispatch({ type: useProductDetails.types.GET_PRODUCT_LOADING, payload: false });
         })
         .catch((error) => {
-          dispatch({ type: types.GET_PRODUCT_FAILURE, payload: error });
-          dispatch({ type: types.GET_PRODUCT_LOADING, payload: false });
+          dispatch({ type: useProductDetails.types.GET_PRODUCT_FAILURE, payload: error });
+          dispatch({ type: useProductDetails.types.GET_PRODUCT_LOADING, payload: false });
         });
     }
-  }, [slug]);
+
+    if (slug) {
+      fetchProduct()
+    }
+
+    return () => {
+      dispatch({type: useProductDetails.types.RESET_STATE});
+    }
+  }, [slug, dispatch]);
 
   useEffect(() => {
     if (state.product) {
       dispatch({
-        type: types.SET_FORM_FLAVOUR,
+        type: useProductDetails.types.SET_FORM_FLAVOUR,
         payload: state.product.flavours[0].name.trim(),
       });
     }
-  }, [state.product]);
+  }, [state.product, dispatch]);
 
   useEffect(() => {
     if (state.product) {
@@ -110,21 +66,22 @@ function DetailsPage({ history, location, match }) {
       );
       if (currentFlavourIndex !== -1) {
         dispatch({
-          type: types.SET_IMAGE_FLAVOUR_INDEX,
+          type: useProductDetails.types.SET_IMAGE_FLAVOUR_INDEX,
           payload: currentFlavourIndex,
         });
       }
     }
-  }, [state.formFlavour]);
+  }, [state.product, state.formFlavour, dispatch]);
 
   const handleQtyChange = (e) => {
     const qty = Number.parseInt(e.target.value);
-    dispatch({ type: types.SET_FORM_QTY, payload: qty });
+    dispatch({ type: useProductDetails.types.SET_FORM_QTY, payload: qty });
   };
 
   const handleFlavourChange = (e) => {
     const flavour = e.target.value.trim();
-    dispatch({ type: types.SET_FORM_FLAVOUR, payload: flavour });
+    console.log(flavour);
+    dispatch({ type: useProductDetails.types.SET_FORM_FLAVOUR, payload: flavour });
   };
 
   const handleFormSubmit = (e) => {
@@ -133,7 +90,7 @@ function DetailsPage({ history, location, match }) {
   };
 
   if (state.product) {
-    const { flavours, details, name, description, price } = state.product;
+    const { flavours, name, description, price } = state.product;
     return (
       <S.PageWrapper>
         <S.HeroContainer>
@@ -144,13 +101,13 @@ function DetailsPage({ history, location, match }) {
             <S.Form onSubmit={handleFormSubmit}>
               <S.SelectGroup>
                 <div className="flavour">
-                  <FormSelect>
+                  <FormSelect label='Flavour'>
                     <select
                       value={state.formFlavour}
                       onChange={handleFlavourChange}
                       className="select">
                       {flavours.map((flavour) => (
-                        <option key={flavour.id} value={flavour.name}>
+                        <option key={flavour.id} value={flavour.name.trim()}>
                           {flavour.name}
                         </option>
                       ))}
@@ -158,7 +115,7 @@ function DetailsPage({ history, location, match }) {
                   </FormSelect>
                 </div>
                 <div className="qty">
-                  <FormSelect>
+                  <FormSelect label="Quantity">
                     <select
                       value={state.formQty}
                       onChange={handleQtyChange}
@@ -177,7 +134,7 @@ function DetailsPage({ history, location, match }) {
                   <S.ATCButton type="submit">Add To Cart</S.ATCButton>
                 </li>
                 <li className="item">
-                  <FavoriteToggle />
+                  <FavoriteToggle product={state.product} />
                 </li>
                 <li className="item">
                   <S.Price>${price}</S.Price>

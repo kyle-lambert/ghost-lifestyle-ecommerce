@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import colors from "../FavoriteToggle";
 
 export const Button = styled.button.attrs((props) => ({
   type: "button",

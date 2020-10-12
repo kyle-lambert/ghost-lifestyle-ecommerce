@@ -10,6 +10,9 @@ import HomePage from "../../pages/HomePage";
 import ProductsPage from "../../pages/ProductsPage";
 import DetailsPage from "../../pages/DetailsPage";
 
+import { StoreProvider } from "../../contexts/StoreContext";
+import { ProductDetailsProvider } from "../../contexts/ProductDetailsContext";
+
 const Main = styled.main`
   min-height: 100vh;
 `;
@@ -17,20 +20,24 @@ const Main = styled.main`
 function App(props) {
   return (
     <>
-      <Banner />
-      <Navbar />
-      <Main>
-        <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route exact path="/products" component={ProductsPage} />
-          <Route exact path="/products/:slug" component={DetailsPage} />
-          <Route exact path="/404">
-            <div>404 page</div>
-          </Route>
-        </Switch>
-      </Main>
-      <Footer />
-      <Banner copyright />
+      <StoreProvider>
+        <ProductDetailsProvider>
+          <Banner />
+          <Navbar />
+          <Main>
+            <Switch>
+              <Route exact path="/" component={HomePage} />
+              <Route exact path="/products" component={ProductsPage} />
+              <Route exact path="/products/:slug" component={DetailsPage} />
+              <Route exact path="/404">
+                <div>404 page</div>
+              </Route>
+            </Switch>
+          </Main>
+          <Footer />
+          <Banner copyright />
+        </ProductDetailsProvider>
+      </StoreProvider>
     </>
   );
 }

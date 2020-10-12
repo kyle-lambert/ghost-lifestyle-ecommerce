@@ -36,7 +36,7 @@ function ProductsPage(props) {
           <S.Category>
             <S.CategoryList>
               <Heading h4>
-                Product <br /> Categories
+                Filter<br />Products
               </Heading>
               {categories.map((category) => {
                 return (
