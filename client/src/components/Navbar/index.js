@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import * as S from "./StyledNavbar.js";
 
+import useCartContext from "../../hooks/useCartContext";
+import useFavoritesContext from "../../hooks/useFavoritesContext";
+
 import Icon from "../Icon";
 import BrandLogo from "../BrandLogo";
 import Cart from "../Cart";
 import Favorites from "../Favorites";
 
-import { useStore } from '../../contexts/StoreContext';
-
 function Navbar(props) {
   const [showFavorites, setShowFavorites] = useState(false);
   const [showCart, setShowCart] = useState(false);
-  const [state] = useStore();
+  const { cart } = useCartContext();
+  const { favorites } = useFavoritesContext();
 
   return (
     <S.Header>
@@ -27,17 +29,13 @@ function Navbar(props) {
         </li>
         <li className="item">
           <S.Button onClick={() => setShowFavorites(true)}>
-            {state.favorites.length > 0 ? (
-              <Icon favoriteSolid />
-            ) : (
-              <Icon favoriteOutline />
-            )}
+            {favorites.length > 0 ? <Icon favoriteSolid /> : <Icon favoriteOutline />}
           </S.Button>
         </li>
         <li className="item">
           <S.Button onClick={() => setShowCart(true)}>
             <Icon cart />
-            <span className="span">{5}</span>
+            {cart.length > 0 && <span className="span">{cart.length}</span>}
           </S.Button>
         </li>
       </S.List>

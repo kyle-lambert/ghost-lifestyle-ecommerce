@@ -11,7 +11,7 @@ import ProductsPage from "../../pages/ProductsPage";
 import DetailsPage from "../../pages/DetailsPage";
 
 import { StoreProvider } from "../../contexts/StoreContext";
-import { ProductDetailsProvider } from "../../contexts/ProductDetailsContext";
+import { ProductProvider } from "../../contexts/ProductContext";
 
 const Main = styled.main`
   min-height: 100vh;
@@ -21,7 +21,7 @@ function App(props) {
   return (
     <>
       <StoreProvider>
-        <ProductDetailsProvider>
+        <ProductProvider>
           <Banner />
           <Navbar />
           <Main>
@@ -36,7 +36,7 @@ function App(props) {
           </Main>
           <Footer />
           <Banner copyright />
-        </ProductDetailsProvider>
+        </ProductProvider>
       </StoreProvider>
     </>
   );

@@ -1,73 +1,30 @@
-import React, { useContext, useReducer } from "react";
+import React from 'react';
+import useLocalStorage from '../hooks/useLocalStorage'
 
+const StoreContext = React.createContext()
 
-const StoreStateContext = React.createContext();
-const StoreDispatchContext = React.createContext();
+function StoreProvider({children}) {
+  const [favorites, setFavorites] = React.useState([]);
+  const [favoritesStored, setFavoritesStored] = useLocalStorage('favorites', []);
+  const [cart, setCart] = React.useState([]);
+  const [cartStored, setCartStored] = useLocalStorage('cart', []);
 
-function reducer(state, action) {
-  switch (action.type) {
-    case useStore.types.ADD_FAVORITE: {
-      return {
-        ...state,
-        favorites: [...state.favorites, action.payload],
-      };
-    }
-    case useStore.types.REMOVE_FAVORITE: {
-      return {
-        ...state,
-        favorites: [
-          ...state.favorites.slice(0, action.payload),
-          ...state.favorites.slice(action.payload + 1),
-        ],
-      };
-    }
-    case useStore.types.ADD_TO_CART: {
-      return {
-        ...state,
-        cart: [...state.cart, action.payload],
-      };
-    }
-    case useStore.types.REMOVE_FROM_CART: {
-      return {
-        ...state,
-        cart: [
-          ...state.cart.slice(0, action.payload),
-          ...state.cart.slice(action.payload + 1),
-        ],
-      };
-    }
-    default: return state;
+  const state = {
+    favorites,
+    setFavorites,
+    favoritesStored,
+    setFavoritesStored,
+    cart,
+    setCart,
+    cartStored,
+    setCartStored
   }
-}
-
-function StoreProvider({ children }) {
-  const [state, dispatch] = useReducer(reducer, {
-    cart: [],
-    favorites: []
-  });
 
   return (
-    <StoreStateContext.Provider value={state}>
-      <StoreDispatchContext.Provider value={dispatch}>
-        {children}
-      </StoreDispatchContext.Provider>
-    </StoreStateContext.Provider>
+    <StoreContext.Provider value={state}>
+      {children}
+    </StoreContext.Provider>
   );
 }
 
-function useStore() {
-  const state = useContext(StoreStateContext);
-  const dispatch = useContext(StoreDispatchContext);
-
-
-  return [state, dispatch];
-};
-
-useStore.types = {
-  ADD_FAVORITE: 'add-favorite',
-  REMOVE_FAVORITE: 'remove-favorite',
-  ADD_TO_CART: 'add-to-cart',
-  REMOVE_FROM_CART: 'remove-from-cart',
-}
-
-export { StoreProvider, useStore };
+export { StoreContext, StoreProvider };

@@ -6,11 +6,11 @@ import Icon from "../Icon";
 
 import { generateURL } from '../../utils'; 
 
-function FavoritesItem({ product, removeFavorite }) {
+function FavoritesItem({ product, handleRemoveFavorite }) {
   const imageURL = generateURL(product);
 
   const handleClick = () => {
-    removeFavorite(product.id)
+    handleRemoveFavorite(product.id)
   };
 
   return (

@@ -1,24 +1,22 @@
-import React, {useMemo} from "react";
+import React from "react";
 import * as S from "./StyledFavoriteToggle.js";
 
-import { useStore } from "../../contexts/StoreContext";
-import useLocalStorage from '../../hooks/useLocalStorage';
+import useFavoritesContext from '../../hooks/useFavoritesContext';
+
 import Icon from "../Icon";
 
 function FavoriteToggle({ product }) {
-  const [state, dispatch] = useStore();
-  const [storedValue, setStoredValue] = useLocalStorage('favorites')
+  const { favorites, addFavorite, removeFavorite } = useFavoritesContext()
 
-  const memoizedIndex = useMemo(() => {
-    return state.favorites.findIndex(cur => cur.id === product.id)
-  }, [state.favorites, product.id])
+  const memoizedIndex = React.useMemo(() => {
+    return favorites.findIndex(cur => cur.id === product.id)
+  }, [favorites, product.id])
 
   const handleClick = () => {
     if (memoizedIndex !== -1) {
-      dispatch({type: useStore.types.REMOVE_FAVORITE, payload: memoizedIndex })
+      removeFavorite(product.id)
     } else {
-      dispatch({type: useStore.types.ADD_FAVORITE, payload: product})
-      setStoredValue([...storedValue, 'test'])
+      addFavorite(product)
     }
   };
 
