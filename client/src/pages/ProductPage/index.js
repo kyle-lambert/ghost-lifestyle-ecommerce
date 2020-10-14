@@ -1,7 +1,8 @@
 import React from "react";
-import * as S from "./StyledDetailsPage.js";
+import * as S from "./StyledProductPage.js";
 
 import useProductContext from "../../hooks/useProductContext";
+import useCartContext from "../../hooks/useCartContext";
 
 import ImageSpacer from "../../components/ImageSpacer";
 import BrandLogo from "../../components/BrandLogo";
@@ -10,7 +11,7 @@ import FavoriteToggle from "../../components/FavoriteToggle";
 
 const BASE_URL = "http://localhost:1337";
 
-function DetailsPage({ match }) {
+function ProductPage({ match }) {
   const slug = match.params.slug;
   const {
     dispatch,
@@ -22,6 +23,7 @@ function DetailsPage({ match }) {
     flavour,
     qty,
   } = useProductContext();
+  const { cart, addToCart, removeFromCart, updateCartItem } = useCartContext();
 
   React.useEffect(() => {
     return () => {
@@ -45,7 +47,7 @@ function DetailsPage({ match }) {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    console.log("form submitted");
+    addToCart(product, flavour, qty);
   };
 
   if (product) {
@@ -87,7 +89,9 @@ function DetailsPage({ match }) {
               </S.SelectGroup>
               <S.CTAList>
                 <li className="item">
-                  <S.ATCButton type="submit">Add To Cart</S.ATCButton>
+                  <S.ATCButton onSubmit={handleFormSubmit} type="submit">
+                    Add To Cart
+                  </S.ATCButton>
                 </li>
                 <li className="item">
                   <FavoriteToggle product={product} />
@@ -109,4 +113,4 @@ function DetailsPage({ match }) {
   }
 }
 
-export default DetailsPage;
+export default ProductPage;

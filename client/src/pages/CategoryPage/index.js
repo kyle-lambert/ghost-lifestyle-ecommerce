@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
-import * as S from "./StyledProductsPage.js";
+import * as S from "./StyledCategoryPage.js";
 
 import useProducts from "../../hooks/useProducts";
 import useCategories from "../../hooks/useCategories";
@@ -9,7 +9,7 @@ import Heading from "../../components/Heading";
 import PageContainer from "../../layout/PageContainer";
 import ProductCard from "../../components/ProductCard";
 
-function ProductsPage(props) {
+function CategoryPage(props) {
   const [activeCategory, setActiveCategory] = useState("");
   const [products, loading, error] = useProducts("/categories", activeCategory);
   const [categories] = useCategories();
@@ -36,7 +36,9 @@ function ProductsPage(props) {
           <S.Category>
             <S.CategoryList>
               <Heading h4>
-                Filter<br />Products
+                Filter
+                <br />
+                Products
               </Heading>
               {categories.map((category) => {
                 return (
@@ -64,4 +66,4 @@ function ProductsPage(props) {
   );
 }
 
-export default ProductsPage;
+export default CategoryPage;

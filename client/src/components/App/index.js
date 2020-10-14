@@ -7,8 +7,8 @@ import Navbar from "../Navbar";
 import Footer from "../Footer";
 
 import HomePage from "../../pages/HomePage";
-import ProductsPage from "../../pages/ProductsPage";
-import DetailsPage from "../../pages/DetailsPage";
+import CategoryPage from "../../pages/CategoryPage";
+import ProductPage from "../../pages/ProductPage";
 
 import { StoreProvider } from "../../contexts/StoreContext";
 import { ProductProvider } from "../../contexts/ProductContext";
@@ -27,8 +27,8 @@ function App(props) {
           <Main>
             <Switch>
               <Route exact path="/" component={HomePage} />
-              <Route exact path="/products" component={ProductsPage} />
-              <Route exact path="/products/:slug" component={DetailsPage} />
+              <Route exact path="/products" component={CategoryPage} />
+              <Route exact path="/products/:slug" component={ProductPage} />
               <Route exact path="/404">
                 <div>404 page</div>
               </Route>
