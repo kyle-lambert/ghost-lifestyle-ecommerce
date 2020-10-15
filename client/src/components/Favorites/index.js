@@ -1,21 +1,21 @@
 import React from "react";
 import * as S from "./StyledFavorites.js";
 
-import useFavoritesContext from "../../hooks/useFavoritesContext";
+import { useFavoritesContext } from "../../contexts/FavoritesContext";
 
 import Topbar from "../Topbar";
 import FavoritesItem from "../FavoritesItem";
 import Banner from "../Banner";
 
 function Favorites({ closeMenu }) {
-  const { favorites, removeFavorite } = useFavoritesContext()
+  const { favorites, removeFavorite } = useFavoritesContext();
 
   const handleRemoveFavorite = (id) => {
-    const index = favorites.findIndex(cur => cur.id === id)
-    if (index !== -1) {
-      removeFavorite(id)
+    const productIndex = favorites.findIndex((f) => f.id === id);
+    if (productIndex !== -1) {
+      removeFavorite(id);
     }
-  }
+  };
 
   return (
     <S.Wrapper>
@@ -26,7 +26,10 @@ function Favorites({ closeMenu }) {
         <S.List>
           {favorites.map((favorite) => (
             <li key={favorite.id} className="item">
-              <FavoritesItem product={favorite} handleRemoveFavorite={handleRemoveFavorite} />
+              <FavoritesItem
+                product={favorite}
+                handleRemoveFavorite={handleRemoveFavorite}
+              />
             </li>
           ))}
         </S.List>

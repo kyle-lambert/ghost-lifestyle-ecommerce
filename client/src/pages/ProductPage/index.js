@@ -1,8 +1,8 @@
 import React from "react";
 import * as S from "./StyledProductPage.js";
 
-import useProductContext from "../../hooks/useProductContext";
-import useCartContext from "../../hooks/useCartContext";
+import useProduct from "../../hooks/useProduct";
+import { useShoppingCartContext } from "../../contexts/ShoppingCartContext";
 
 import ImageSpacer from "../../components/ImageSpacer";
 import HeroContent from "../../components/HeroContent";
@@ -13,40 +13,31 @@ const BASE_URL = "http://localhost:1337";
 function ProductPage({ match }) {
   const slug = match.params.slug;
   const {
-    dispatch,
-    updateSlug,
-    updateFlavour,
-    updateQty,
-    resetReducer,
     product,
-    flavour,
-    qty,
-  } = useProductContext();
-  const { cart, addToCart, removeFromCart, updateCartItem } = useCartContext();
+    setSlug,
+    formQty,
+    setFormQty,
+    formFlavour,
+    setFormFlavour,
+  } = useProduct();
+  const { addToCart } = useShoppingCartContext();
 
   React.useEffect(() => {
-    return () => {
-      resetReducer(dispatch);
-    };
-  }, [dispatch, resetReducer]);
-
-  React.useEffect(() => {
-    updateSlug(slug, dispatch);
-  }, [slug, updateSlug, dispatch]);
+    setSlug(slug);
+  }, [slug, setSlug]);
 
   const handleQtyChange = (e) => {
     const qty = Number.parseInt(e.target.value);
-    updateQty(qty, dispatch);
+    setFormQty(qty);
   };
 
   const handleFlavourChange = (e) => {
-    const id = Number.parseInt(e.target.value);
-    updateFlavour(id);
+    setFormFlavour(Number.parseInt(e.target.value));
   };
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    addToCart(product, flavour, qty);
+    addToCart({ product, formFlavour, formQty });
   };
 
   return (
@@ -60,17 +51,17 @@ function ProductPage({ match }) {
                   handleFlavourChange={handleFlavourChange}
                   handleFormSubmit={handleFormSubmit}
                   handleQtyChange={handleQtyChange}
-                  flavour={flavour}
+                  formFlavour={formFlavour}
+                  formQty={formQty}
                   flavours={product.flavours}
-                  qty={qty}
                   product={product}
                 />
               </HeroContent>
             </div>
             <div className="picture">
-              {flavour && (
+              {formFlavour && (
                 <ImageSpacer
-                  src={`${BASE_URL}${flavour.image.url}`}
+                  src={`${BASE_URL}${formFlavour.image.url}`}
                   alt={product.name}
                 />
               )}

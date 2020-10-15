@@ -9,14 +9,14 @@ import HomePage from "../../pages/HomePage";
 import CategoryPage from "../../pages/CategoryPage";
 import ProductPage from "../../pages/ProductPage";
 
-import { StoreProvider } from "../../contexts/StoreContext";
-import { ProductProvider } from "../../contexts/ProductContext";
+import { ShoppingCartProvider } from "../../contexts/ShoppingCartContext";
+import { FavoritesProvider } from "../../contexts/FavoritesContext";
 
 function App(props) {
   return (
     <>
-      <StoreProvider>
-        <ProductProvider>
+      <FavoritesProvider>
+        <ShoppingCartProvider>
           <Banner />
           <Navbar />
           <main>
@@ -31,8 +31,8 @@ function App(props) {
           </main>
           <Footer />
           <Banner copyright />
-        </ProductProvider>
-      </StoreProvider>
+        </ShoppingCartProvider>
+      </FavoritesProvider>
     </>
   );
 }

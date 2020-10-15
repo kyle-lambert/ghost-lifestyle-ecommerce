@@ -1,22 +1,23 @@
 import React from "react";
 import * as S from "./StyledFavoriteToggle.js";
 
-import useFavoritesContext from '../../hooks/useFavoritesContext';
+// import useFavoritesContext from '../../hooks/useFavoritesContext';
+import { useFavoritesContext } from "../../contexts/FavoritesContext";
 
 import Icon from "../Icon";
 
 function FavoriteToggle({ product }) {
-  const { favorites, addFavorite, removeFavorite } = useFavoritesContext()
+  const { favorites, addFavorite, removeFavorite } = useFavoritesContext();
 
   const memoizedIndex = React.useMemo(() => {
-    return favorites.findIndex(cur => cur.id === product.id)
-  }, [favorites, product.id])
+    return favorites.findIndex((f) => f.id === product.id);
+  }, [favorites, product.id]);
 
   const handleClick = () => {
     if (memoizedIndex !== -1) {
-      removeFavorite(product.id)
+      removeFavorite(product.id);
     } else {
-      addFavorite(product)
+      addFavorite(product);
     }
   };
 
@@ -26,6 +27,5 @@ function FavoriteToggle({ product }) {
     </S.Button>
   );
 }
-
 
 export default FavoriteToggle;

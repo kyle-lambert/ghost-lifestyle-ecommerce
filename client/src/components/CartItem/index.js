@@ -5,13 +5,12 @@ import ImageSpacer from "../ImageSpacer";
 
 const BASE_URL = "http://localhost:1337";
 
-const calculateTotal = (price, qty) => {
-  const total = price * qty;
-  return `$${total}`;
-};
-
 function CartItem({ cartItem, handleRemoveFromCart }) {
-  const { cartItemId, product, flavour, qty, price } = cartItem;
+  const {
+    cartItemId,
+    product,
+    options: { flavour, qty },
+  } = cartItem;
 
   const handleClick = () => {
     handleRemoveFromCart(cartItemId);
@@ -20,7 +19,9 @@ function CartItem({ cartItem, handleRemoveFromCart }) {
   return (
     <>
       <S.ImageWrapper>
-        {flavour && <ImageSpacer src={BASE_URL + flavour.image.url} alt={product.name} />}
+        {flavour && (
+          <ImageSpacer src={BASE_URL + flavour.image.url} alt={product.name} />
+        )}
       </S.ImageWrapper>
       <S.ContentWrapper>
         <div className="product">
@@ -32,7 +33,7 @@ function CartItem({ cartItem, handleRemoveFromCart }) {
         </button>
       </S.ContentWrapper>
       <S.InfoWrapper>
-        <S.Price>${price}</S.Price>
+        <S.Price>${product.price}</S.Price>
         <S.Qty>{qty}</S.Qty>
       </S.InfoWrapper>
     </>

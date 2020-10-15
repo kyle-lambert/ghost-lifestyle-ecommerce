@@ -17,12 +17,12 @@ function SelectBar({ children }) {
 }
 
 function ProductForm({
-  handleFormSubmit,
-  flavour,
+  formFlavour,
   handleFlavourChange,
-  flavours,
+  formQty,
   handleQtyChange,
-  qty,
+  handleFormSubmit,
+  flavours,
   product,
 }) {
   return (
@@ -32,7 +32,7 @@ function ProductForm({
           <label className="label">Flavour</label>
           <SelectBar>
             <select
-              value={flavour ? flavour.id : ""}
+              value={formFlavour ? formFlavour.id : ""}
               onChange={handleFlavourChange}
               className="select">
               {flavours.map((f) => (
@@ -46,7 +46,10 @@ function ProductForm({
         <S.QtySelect>
           <label className="label">Quantity</label>
           <SelectBar>
-            <select value={qty} onChange={handleQtyChange} className="select">
+            <select
+              value={formQty}
+              onChange={handleQtyChange}
+              className="select">
               <option value={1}>1</option>
               <option value={2}>2</option>
               <option value={3}>3</option>
