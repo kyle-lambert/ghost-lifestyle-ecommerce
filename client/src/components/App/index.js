@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import { Switch, Route } from "react-router-dom";
 
 import Banner from "../Banner";
@@ -13,10 +12,6 @@ import ProductPage from "../../pages/ProductPage";
 import { StoreProvider } from "../../contexts/StoreContext";
 import { ProductProvider } from "../../contexts/ProductContext";
 
-const Main = styled.main`
-  min-height: 100vh;
-`;
-
 function App(props) {
   return (
     <>
@@ -24,7 +19,7 @@ function App(props) {
         <ProductProvider>
           <Banner />
           <Navbar />
-          <Main>
+          <main>
             <Switch>
               <Route exact path="/" component={HomePage} />
               <Route exact path="/products" component={CategoryPage} />
@@ -33,7 +28,7 @@ function App(props) {
                 <div>404 page</div>
               </Route>
             </Switch>
-          </Main>
+          </main>
           <Footer />
           <Banner copyright />
         </ProductProvider>

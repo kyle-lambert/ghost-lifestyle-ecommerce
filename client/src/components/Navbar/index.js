@@ -15,6 +15,8 @@ function Navbar(props) {
   const { cart } = useCartContext();
   const { favorites } = useFavoritesContext();
 
+  console.log("render");
+
   return (
     <S.Header>
       <S.Nav>shop</S.Nav>

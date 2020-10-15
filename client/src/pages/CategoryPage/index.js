@@ -31,7 +31,38 @@ function CategoryPage(props) {
 
   return (
     <>
-      <PageContainer>
+      <S.CategorySection>
+        <S.CategoryInner>
+          <S.CategoryFilter>
+            <Heading h4>
+              Filter
+              <br />
+              Products
+            </Heading>
+            <ul className="list">
+              {categories.map((category) => {
+                return (
+                  <li key={uuidv4()} className="item">
+                    <S.Button
+                      selected={activeCategory === category.name}
+                      disabled={activeCategory === category.name}
+                      name={category.name}
+                      onClick={handleCategoryChange}>
+                      {category.name}
+                    </S.Button>
+                  </li>
+                );
+              })}
+            </ul>
+          </S.CategoryFilter>
+          <S.CategoryCards>
+            {products.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </S.CategoryCards>
+        </S.CategoryInner>
+      </S.CategorySection>
+      {/* <PageContainer>
         <S.Wrapper>
           <S.Category>
             <S.CategoryList>
@@ -61,7 +92,7 @@ function CategoryPage(props) {
             ))}
           </S.Cards>
         </S.Wrapper>
-      </PageContainer>
+      </PageContainer> */}
     </>
   );
 }

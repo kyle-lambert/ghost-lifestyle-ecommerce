@@ -1,24 +1,33 @@
 import styled from "styled-components";
 import colors from "../../styles/colors";
 
-export const Wrapper = styled.div`
-  display: grid;
-  grid-template-columns: 170px auto;
-  column-gap: 3.8rem;
+export const CategorySection = styled.section`
+  min-height: 90vh;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top: 5.8rem;
+  padding-bottom: 5.8rem;
+  width: 100%;
 `;
 
-export const Category = styled.div`
+export const CategoryInner = styled.div`
+  display: grid;
+  grid-template-columns: 180px auto;
+  column-gap: 2.8rem;
+`;
+
+export const CategoryFilter = styled.div`
   grid-column: 1 / 2;
   flex-basis: 225px;
   flex-shrink: 0;
-`;
 
-export const CategoryList = styled.ul`
-  display: flex;
-  flex-direction: column;
+  .list {
+    display: flex;
+    flex-direction: column;
 
-  .item {
-    margin-bottom: 0.3rem;
+    .item {
+      margin-bottom: 0.3rem;
+    }
   }
 `;
 
@@ -44,7 +53,7 @@ export const Button = styled.button.attrs((props) => ({
   }
 `;
 
-export const Cards = styled.ul`
+export const CategoryCards = styled.ul`
   grid-column: 2 / 3;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
