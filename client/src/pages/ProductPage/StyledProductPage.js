@@ -1,8 +1,13 @@
 import styled from "styled-components";
 import colors from "../../styles/colors";
 
-export const PageWrapper = styled.div`
+// ********** Hero Styles **********
+
+export const HeroSection = styled.section`
   position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
 
   &::after {
     content: "";
@@ -18,18 +23,9 @@ export const PageWrapper = styled.div`
     z-index: -1;
 
     @media (min-width: 1026px) {
-      clip-path: polygon(100% 0, 55% 0, 100% 95%);
+      clip-path: polygon(100% 0, 55% 0, 100% 100%);
     }
   }
-`;
-
-// ********** Hero Styles **********
-
-export const HeroSection = styled.section`
-  position: relative;
-  min-height: 90vh;
-  display: flex;
-  align-items: center;
 `;
 
 export const HeroInner = styled.div`
@@ -71,4 +67,10 @@ export const HeroInner = styled.div`
 
 // ********** Details Styles **********
 
-export const DetailsSection = styled.section``;
+export const DetailsSection = styled.section`
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top: 5.8rem;
+  padding-bottom: 5.8rem;
+  width: 100%;
+`;

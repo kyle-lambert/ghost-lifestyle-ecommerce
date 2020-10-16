@@ -4,9 +4,13 @@ import * as S from "./StyledProductPage.js";
 import useProduct from "../../hooks/useProduct";
 import { useShoppingCartContext } from "../../contexts/ShoppingCartContext";
 
+// Hero imports
 import ImageSpacer from "../../components/ImageSpacer";
 import HeroContent from "../../components/HeroContent";
 import ProductForm from "../../components/ProductForm";
+
+// Details imports
+import ProductDetails from "../../components/ProductDetails";
 
 const BASE_URL = "http://localhost:1337";
 
@@ -41,7 +45,7 @@ function ProductPage({ match }) {
   };
 
   return (
-    <S.PageWrapper>
+    <>
       <S.HeroSection>
         {product && (
           <S.HeroInner>
@@ -69,8 +73,10 @@ function ProductPage({ match }) {
           </S.HeroInner>
         )}
       </S.HeroSection>
-      <S.DetailsSection></S.DetailsSection>
-    </S.PageWrapper>
+      <S.DetailsSection>
+        <ProductDetails product={product} />
+      </S.DetailsSection>
+    </>
   );
 }
 
