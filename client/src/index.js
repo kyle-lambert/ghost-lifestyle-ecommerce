@@ -5,12 +5,20 @@ import App from "./components/App";
 
 import GlobalStyle from "./styles/global";
 
+// Global contexts
+import { ShoppingCartProvider } from "./contexts/ShoppingCartContext";
+import { FavoritesProvider } from "./contexts/FavoritesContext";
+
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <>
         <GlobalStyle />
-        <App />
+        <FavoritesProvider>
+          <ShoppingCartProvider>
+            <App />
+          </ShoppingCartProvider>
+        </FavoritesProvider>
       </>
     </BrowserRouter>
   </React.StrictMode>,

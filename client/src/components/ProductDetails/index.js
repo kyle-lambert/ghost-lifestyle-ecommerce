@@ -24,7 +24,7 @@ function ProductDetails({ product }) {
           </S.TabButton>
         </li>
       </S.TabList>
-      <S.ContentBox>
+      <S.ContentBox left={tabId === 1}>
         {tabId === 1 && (
           <S.ContentList>
             {product &&

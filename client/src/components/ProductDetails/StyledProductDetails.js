@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import colors from "../../styles/colors";
 
 export const DetailsContainer = styled.div`
@@ -18,12 +18,15 @@ export const TabList = styled.ul`
 export const TabButton = styled.button`
   display: inline-block;
   width: 100%;
-  padding: 1.6rem 2.8rem;
+  height: 70px;
+  padding: 1.6rem;
   font-size: inherit;
   font-weight: 300;
-  background-color: ${colors.darkGrey};
-  color: white;
+  background-color: ${colors.lightGrey};
+  color: ${colors.black};
   transition: background-color 250ms ease;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
 
   &:disabled {
     background-color: ${colors.mediumGrey};
@@ -33,10 +36,24 @@ export const TabButton = styled.button`
   }
 `;
 
+const leftStyles = css`
+  border-top-left-radius: none;
+  border-top-right-radius: 3px;
+`;
+
+const rightStyles = css`
+  border-top-left-radius: 3px;
+  border-top-right-radius: none;
+`;
+
 export const ContentBox = styled.div`
   min-height: 80vh;
   background-color: ${colors.mediumGrey};
   padding: 5%;
+
+  ${(props) => {
+    return props.left === true ? leftStyles : rightStyles;
+  }}
 `;
 
 export const ContentList = styled.ul`

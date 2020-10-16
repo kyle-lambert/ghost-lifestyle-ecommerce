@@ -8,6 +8,7 @@ const baseStyle = css`
   margin-bottom: ${(props) => props.noMargin && "0"};
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  text-align: ${(props) => (props.textCenter ? "center" : "left")};
 `;
 
 export const HeadingOne = styled.h1`

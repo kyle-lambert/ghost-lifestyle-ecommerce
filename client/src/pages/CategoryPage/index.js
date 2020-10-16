@@ -6,7 +6,6 @@ import useProducts from "../../hooks/useProducts";
 import useCategories from "../../hooks/useCategories";
 
 import Heading from "../../components/Heading";
-import PageContainer from "../../layout/PageContainer";
 import ProductCard from "../../components/ProductCard";
 
 function CategoryPage(props) {
