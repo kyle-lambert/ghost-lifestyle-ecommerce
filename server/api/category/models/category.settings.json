@@ -17,6 +17,9 @@
     },
     "supplements": {
       "collection": "supplement"
+    },
+    "slug": {
+      "type": "uid"
     }
   }
 }

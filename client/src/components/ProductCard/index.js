@@ -4,7 +4,7 @@ import * as S from "./StyledProductCard.js";
 import ImageSpacer from "../ImageSpacer";
 import Heading from "../Heading";
 import FavoriteToggle from "../FavoriteToggle";
-import { generateURL } from '../../utils'
+import { generateURL } from "../../utils";
 
 function ProductCard({ product }) {
   const imageURL = generateURL(product);
@@ -17,8 +17,7 @@ function ProductCard({ product }) {
         </S.ImageWrapper>
         <S.Content>
           <Heading h4>{product.name}</Heading>
-          <S.Text>{product.description}</S.Text>
-          <S.Price>{`$${product.price}`}</S.Price>
+          <p className="description">{product.description}</p>
         </S.Content>
       </S.Card>
       <span className="toggle">

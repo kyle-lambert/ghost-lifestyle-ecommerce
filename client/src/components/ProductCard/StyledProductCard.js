@@ -4,9 +4,10 @@ import { Link } from "react-router-dom";
 
 export const Wrapper = styled.div`
   position: relative;
-  background-color: ${colors.mediumGrey};
+  background-color: ${colors.white};
   border-radius: 3px;
   transition: transform 250ms ease;
+  box-shadow: 0 2px 10px rgba(40, 40, 40, 0.1);
 
   &:hover {
     transform: scale(1.025);
@@ -39,10 +40,6 @@ export const Content = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
-`;
-
-export const Text = styled.p`
-  margin-bottom: 1.6rem;
 `;
 
 export const Price = styled.span`

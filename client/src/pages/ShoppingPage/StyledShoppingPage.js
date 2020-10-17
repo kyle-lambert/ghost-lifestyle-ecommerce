@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import colors from "../../styles/colors";
 
-export const CategorySection = styled.section`
+export const ShoppingSection = styled.section`
   min-height: 90vh;
   padding-left: 10%;
   padding-right: 10%;
@@ -10,13 +10,13 @@ export const CategorySection = styled.section`
   width: 100%;
 `;
 
-export const CategoryInner = styled.div`
+export const ShoppingInner = styled.div`
   display: grid;
   grid-template-columns: 180px auto;
   column-gap: 2.8rem;
 `;
 
-export const CategoryFilter = styled.div`
+export const ShoppingFilter = styled.div`
   grid-column: 1 / 2;
   flex-basis: 225px;
   flex-shrink: 0;
@@ -40,9 +40,8 @@ export const Button = styled.button.attrs((props) => ({
   border-radius: 5px;
   width: 100%;
   font-size: inherit;
-  font-weight: ${(props) => (props.selected === true ? 400 : "inherit")};
-  background-color: ${(props) =>
-    props.selected === true ? colors.mediumGrey : "transparent"};
+  font-weight: 300;
+  background-color: transparent;
 
   &:hover {
     background-color: ${colors.mediumGrey};
@@ -50,10 +49,12 @@ export const Button = styled.button.attrs((props) => ({
 
   &:disabled {
     cursor: auto;
+    font-weight: 400;
+    background-color: ${colors.mediumGrey};
   }
 `;
 
-export const CategoryCards = styled.ul`
+export const ShoppingCards = styled.ul`
   grid-column: 2 / 3;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
