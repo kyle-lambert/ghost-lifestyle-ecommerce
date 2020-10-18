@@ -2,6 +2,7 @@ import React from "react";
 import * as S from "./StyledCartItem.js";
 
 import ImageSpacer from "../ImageSpacer";
+import Icon from "../Icon";
 
 const BASE_URL = "http://localhost:1337";
 
@@ -17,17 +18,15 @@ function CartItem({ cartItem, handleRemoveFromCart }) {
   };
 
   return (
-    <>
+    <S.Container>
       <S.ImageWrapper>
         {flavour && (
           <ImageSpacer src={BASE_URL + flavour.image.url} alt={product.name} />
         )}
       </S.ImageWrapper>
       <S.ContentWrapper>
-        <div className="product">
-          <S.Name>{product.name}</S.Name>
-          <S.Text>{flavour.name}</S.Text>
-        </div>
+        <S.Name to={`/products/${product.slug}`}>{product.name}</S.Name>
+        <S.Text>{flavour.name}</S.Text>
         <button onClick={handleClick} type="button" className="button">
           Remove
         </button>
@@ -36,7 +35,7 @@ function CartItem({ cartItem, handleRemoveFromCart }) {
         <S.Price>${product.price}</S.Price>
         <S.Qty>{qty}</S.Qty>
       </S.InfoWrapper>
-    </>
+    </S.Container>
   );
 }
 

@@ -30,19 +30,38 @@ export const Favorites = styled.div`
   bottom: 0;
   width: 525px;
   height: 100%;
-  background-color: ${colors.mediumGrey};
+  background-color: ${colors.lightGrey};
   z-index: 999;
   overflow: hidden;
-`;
 
-export const List = styled.ul`
   display: flex;
   flex-direction: column;
 
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: linear-gradient(
+      0deg,
+      rgba(238, 238, 238, 1) 0%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
+`;
+
+export const List = styled.ul`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+
   .item {
-    background-color: ${colors.lightGrey};
+    background-color: ${colors.white};
     border-bottom: 1px solid ${colors.mediumGrey};
-    padding: 1.5rem;
+    padding: 1rem;
     display: flex;
   }
 `;

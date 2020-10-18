@@ -23,14 +23,18 @@ function Cart({ closeMenu }) {
         <Banner cart />
         <S.List>
           {shoppingCart.map((item) => (
-            <li key={item.cartItemId} className="item">
-              <CartItem
-                cartItem={item}
-                handleRemoveFromCart={handleRemoveFromCart}
-              />
-            </li>
+            <CartItem
+              key={item.cartItemId}
+              cartItem={item}
+              handleRemoveFromCart={handleRemoveFromCart}
+            />
           ))}
         </S.List>
+        <S.Checkout>
+          <S.CheckoutButton>
+            <span className="span">Checkout</span>
+          </S.CheckoutButton>
+        </S.Checkout>
       </S.Cart>
     </S.Wrapper>
   );

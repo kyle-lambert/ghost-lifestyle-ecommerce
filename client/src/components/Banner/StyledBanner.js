@@ -14,6 +14,7 @@ export const Banner = styled.div`
 export const Text = styled.p`
   color: ${colors.white};
   font-size: 1.4rem;
+  opacity: 0.6;
 
   span {
     font-weight: 500;

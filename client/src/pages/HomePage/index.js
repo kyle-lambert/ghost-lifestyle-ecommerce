@@ -1,9 +1,10 @@
 import React from "react";
 import * as S from "./StyledHomePage.js";
+import { Link } from "react-router-dom";
 
 import ImageSpacer from "../../components/ImageSpacer";
 import HeroContent from "../../components/HeroContent";
-import LinkButton from "../../components/LinkButton";
+import Button from "../../components/Button";
 
 const BASE_URL = "http://localhost:1337";
 
@@ -14,7 +15,9 @@ function HomePage(props) {
         <S.HeroInner>
           <div className="content">
             <HeroContent product={product}>
-              <LinkButton to={`/products/${product.slug}`}>Shop Now</LinkButton>
+              <Link to={`/products/${product.slug}`}>
+                <Button>Shop Now</Button>
+              </Link>
             </HeroContent>
           </div>
           <div className="picture">

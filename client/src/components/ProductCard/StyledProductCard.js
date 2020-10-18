@@ -7,7 +7,8 @@ export const Wrapper = styled.div`
   background-color: ${colors.white};
   border-radius: 3px;
   transition: transform 250ms ease;
-  box-shadow: 0 2px 10px rgba(40, 40, 40, 0.1);
+  border: 1px solid ${colors.mediumGrey};
+  box-shadow: 0 0 10px rgba(40, 40, 40, 0.05);
 
   &:hover {
     transform: scale(1.025);
