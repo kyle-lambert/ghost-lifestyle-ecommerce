@@ -1,3 +1,50 @@
+// Home category images
+import AminoAcids from "../assets/images/amino_acids_trio.png";
+import Gamer from "../assets/images/gamer_trio.png";
+import Greens from "../assets/images/greens_trio.png";
+import MuscleBuilder from "../assets/images/muscle_builder_trio.png";
+import PreWorkout from "../assets/images/pre-workout_trio.png";
+import Protein from "../assets/images/protein_trio.png";
+
+export const homeCategories = [
+  {
+    id: 1,
+    name: "Amino Acids",
+    slug: "amino-acids",
+    imageSrc: AminoAcids,
+  },
+  {
+    id: 2,
+    name: "Gamer",
+    slug: "gamer",
+    imageSrc: Gamer,
+  },
+  {
+    id: 3,
+    name: "Greens",
+    slug: "greens",
+    imageSrc: Greens,
+  },
+  {
+    id: 4,
+    name: "Muscle Builder",
+    slug: "muscle-builder",
+    imageSrc: MuscleBuilder,
+  },
+  {
+    id: 5,
+    name: "Pre-Workout",
+    slug: "pre-workout",
+    imageSrc: PreWorkout,
+  },
+  {
+    id: 6,
+    name: "Protein",
+    slug: "protein",
+    imageSrc: Protein,
+  },
+];
+
 export const shippingReturnsInfo = [
   {
     id: 1,

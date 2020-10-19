@@ -61,12 +61,12 @@ function shoppingReducer(state, action) {
 }
 
 const initialState = {
-  activeCategory: "all",
+  activeCategory: "",
   categories: [],
-  categoriesLoading: false,
+  categoriesLoading: true,
   categoriesError: false,
   products: [],
-  productsLoading: false,
+  productsLoading: true,
   productsError: false,
 };
 
@@ -127,10 +127,18 @@ function fetchAllProducts({ dispatch }) {
 }
 
 function useShopping() {
-  const [{ categories, products, activeCategory }, dispatch] = React.useReducer(
-    shoppingReducer,
-    initialState
-  );
+  const [
+    {
+      categories,
+      categoriesLoading,
+      categoriesError,
+      products,
+      productsLoading,
+      productsError,
+      activeCategory,
+    },
+    dispatch,
+  ] = React.useReducer(shoppingReducer, initialState);
 
   // Fetch product categories once
   React.useEffect(() => {
@@ -161,21 +169,30 @@ function useShopping() {
 
   // Fetch new products everytime the active category changes
   React.useEffect(() => {
-    if (activeCategory !== "all") {
-      fetchProductsByCategory({ activeCategory, dispatch });
-    } else {
-      fetchAllProducts({ dispatch });
+    if (activeCategory) {
+      if (activeCategory !== "all") {
+        fetchProductsByCategory({ activeCategory, dispatch });
+      } else {
+        fetchAllProducts({ dispatch });
+      }
     }
   }, [activeCategory]);
 
-  const setCategory = (category) => {
-    const newCategory = category.trim();
-    dispatch(creator(types.SET_ACTIVE_CATEGORY, newCategory));
-  };
+  const setCategory = React.useCallback(
+    (category) => {
+      const newCategory = category.trim();
+      dispatch(creator(types.SET_ACTIVE_CATEGORY, newCategory));
+    },
+    [dispatch]
+  );
 
   return {
     categories,
+    categoriesLoading,
+    categoriesError,
     products,
+    productsLoading,
+    productsError,
     activeCategory,
     setCategory,
   };

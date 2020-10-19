@@ -1,25 +1,38 @@
 import React from "react";
-import * as S from "./StyledHomePage.js";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import * as S from "./StyledHomePage.js";
 
 import ImageSpacer from "../../components/ImageSpacer";
 import HeroContent from "../../components/HeroContent";
 import Button from "../../components/Button";
+import CategoryCard from "../../components/CategoryCard";
+
+import { homeCategories } from "../../data";
+import { fadeInUp } from "../../animations/variants";
 
 const BASE_URL = "http://localhost:1337";
 
 function HomePage(props) {
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <S.HeroSection>
         <S.HeroInner>
-          <div className="content">
+          <motion.div
+            initial="initial"
+            animate="animate"
+            variants={fadeInUp}
+            className="content">
             <HeroContent product={product}>
               <Link to={`/products/${product.slug}`}>
                 <Button>Shop Now</Button>
               </Link>
             </HeroContent>
-          </div>
+          </motion.div>
           <div className="picture">
             <ImageSpacer
               src={`${BASE_URL}${product.flavours[0].image.url}`}
@@ -29,7 +42,11 @@ function HomePage(props) {
         </S.HeroInner>
       </S.HeroSection>
       <S.SupplementSection>
-        <S.SupplementInner>supplements</S.SupplementInner>
+        <S.SupplementInner>
+          {homeCategories.map((c) => {
+            return <CategoryCard key={c.id} category={c} />;
+          })}
+        </S.SupplementInner>
       </S.SupplementSection>
     </>
   );

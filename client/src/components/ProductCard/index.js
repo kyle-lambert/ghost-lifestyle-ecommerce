@@ -6,11 +6,13 @@ import Heading from "../Heading";
 import FavoriteToggle from "../FavoriteToggle";
 import { generateURL } from "../../utils";
 
+import { fadeInCard } from "../../animations/variants";
+
 function ProductCard({ product }) {
   const imageURL = generateURL(product);
 
   return (
-    <S.Wrapper>
+    <S.Wrapper initial="initial" animate="animate" variants={fadeInCard}>
       <S.Card to={`/products/${product.slug}`}>
         <S.ImageWrapper>
           <ImageSpacer src={imageURL} alt={product.name} />

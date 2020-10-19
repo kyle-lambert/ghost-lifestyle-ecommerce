@@ -1,14 +1,13 @@
 import styled from "styled-components";
 import colors from "../../styles/colors";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
-export const Wrapper = styled.div`
+export const Wrapper = styled(motion.div)`
   position: relative;
-  background-color: ${colors.white};
+  background-color: ${colors.mediumGrey};
   border-radius: 3px;
   transition: transform 250ms ease;
-  border: 1px solid ${colors.mediumGrey};
-  box-shadow: 0 0 10px rgba(40, 40, 40, 0.05);
 
   &:hover {
     transform: scale(1.025);

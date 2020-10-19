@@ -17,7 +17,7 @@ export const HeroSection = styled.section`
     width: 100%;
     height: 100%;
     clip-path: polygon(0 0, 100% 0, 100% 40%, 0 15%);
-    background-color: ${colors.red};
+    background-color: ${colors.blue};
     z-index: -1;
 
     @media (min-width: 1026px) {
@@ -69,5 +69,15 @@ export const SupplementSection = styled.section`
 
 export const SupplementInner = styled.div`
   width: 100%;
-  padding: 3.6rem 4.6rem;
+  /* padding: 5.8rem 5%; */
+  display: grid;
+  /* column-gap: 2.6rem;
+  row-gap: 2.6rem; */
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+
+  @media (min-width: 1026px) {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
 `;

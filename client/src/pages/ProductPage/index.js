@@ -1,15 +1,15 @@
 import React from "react";
 import * as S from "./StyledProductPage.js";
+import { motion } from "framer-motion";
+
+import { fadeInUp } from "../../animations/variants";
 
 import useProduct from "../../hooks/useProduct";
 import { useShoppingCartContext } from "../../contexts/ShoppingCartContext";
 
-// Hero imports
 import ImageSpacer from "../../components/ImageSpacer";
 import HeroContent from "../../components/HeroContent";
 import ProductForm from "../../components/ProductForm";
-
-// Details imports
 import ProductDetails from "../../components/ProductDetails";
 
 const BASE_URL = "http://localhost:1337";
@@ -30,6 +30,10 @@ function ProductPage({ match }) {
     setSlug(slug);
   }, [slug, setSlug]);
 
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const handleQtyChange = (e) => {
     const qty = Number.parseInt(e.target.value);
     setFormQty(qty);
@@ -49,7 +53,11 @@ function ProductPage({ match }) {
       <S.HeroSection>
         {product && (
           <S.HeroInner>
-            <div className="content">
+            <motion.div
+              initial="initial"
+              animate="animate"
+              variants={fadeInUp}
+              className="content">
               <HeroContent product={product}>
                 <ProductForm
                   handleFlavourChange={handleFlavourChange}
@@ -61,7 +69,7 @@ function ProductPage({ match }) {
                   product={product}
                 />
               </HeroContent>
-            </div>
+            </motion.div>
             <div className="picture">
               {formFlavour && (
                 <ImageSpacer

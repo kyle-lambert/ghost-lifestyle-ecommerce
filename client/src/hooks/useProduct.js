@@ -59,7 +59,7 @@ function productReducer(state, action) {
 
 const initialState = {
   product: null,
-  loading: false,
+  loading: true,
   error: false,
   slug: "",
   formFlavour: null,

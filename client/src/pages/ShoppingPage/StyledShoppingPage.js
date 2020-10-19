@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import colors from "../../styles/colors";
+import { motion } from "framer-motion";
 
 export const ShoppingSection = styled.section`
-  min-height: 90vh;
+  min-height: 100vh;
   padding-left: 10%;
   padding-right: 10%;
   padding-top: 5.8rem;
@@ -16,7 +17,7 @@ export const ShoppingInner = styled.div`
   column-gap: 2.8rem;
 `;
 
-export const ShoppingFilter = styled.div`
+export const ShoppingFilter = styled(motion.div)`
   grid-column: 1 / 2;
   flex-basis: 225px;
   flex-shrink: 0;
