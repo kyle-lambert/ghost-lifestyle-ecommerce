@@ -3,7 +3,7 @@ import colors from "../../styles/colors";
 import { motion } from "framer-motion";
 
 export const ShoppingSection = styled.section`
-  min-height: 100vh;
+  min-height: 150vh;
   padding-left: 10%;
   padding-right: 10%;
   padding-top: 5.8rem;

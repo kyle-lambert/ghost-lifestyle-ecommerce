@@ -11,10 +11,11 @@ export const Container = styled.li`
 
 export const ImageWrapper = styled.div`
   flex-basis: 105px;
+  margin: auto;
 `;
 
 export const ContentWrapper = styled.div`
-  flex: 8;
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: flex-start;

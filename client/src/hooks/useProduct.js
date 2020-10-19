@@ -111,6 +111,7 @@ function useProduct() {
     const source = CancelToken.source();
 
     if (slug) {
+      dispatch(creator(types.RESET_REDUCER, initialState));
       fetchProductBySlug(slug, source, dispatch);
     }
   }, [slug, dispatch]);

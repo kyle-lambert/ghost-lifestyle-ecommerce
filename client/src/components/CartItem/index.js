@@ -6,7 +6,7 @@ import Icon from "../Icon";
 
 const BASE_URL = "http://localhost:1337";
 
-function CartItem({ cartItem, handleRemoveFromCart }) {
+function CartItem({ cartItem, handleRemoveFromCart, closeMenu }) {
   const {
     cartItemId,
     product,
@@ -25,7 +25,9 @@ function CartItem({ cartItem, handleRemoveFromCart }) {
         )}
       </S.ImageWrapper>
       <S.ContentWrapper>
-        <S.Name to={`/products/${product.slug}`}>{product.name}</S.Name>
+        <S.Name to={`/products/${product.slug}`} onClick={() => closeMenu()}>
+          {product.name}
+        </S.Name>
         <S.Text>{flavour.name}</S.Text>
         <button onClick={handleClick} type="button" className="button">
           Remove

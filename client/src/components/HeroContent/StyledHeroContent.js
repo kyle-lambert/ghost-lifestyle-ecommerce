@@ -7,14 +7,21 @@ export const Heading = styled.h1`
   color: ${colors.black};
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  font-size: 6.8rem;
+  font-size: 4.8rem;
   margin-bottom: 2.5rem;
+
+  @media (min-width: 768px) {
+    font-size: 6.8rem;
+  }
 `;
 
 export const Text = styled.p`
-  max-width: 80%;
   line-height: 1.4;
   margin-bottom: 1.5rem;
+
+  @media (min-width: 768px) {
+    max-width: 80%;
+  }
 `;
 
 export const Children = styled.div`

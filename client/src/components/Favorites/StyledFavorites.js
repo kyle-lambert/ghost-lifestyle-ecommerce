@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 import colors from "../../styles/colors";
 
 export const Wrapper = styled.div`
@@ -23,12 +24,13 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const Favorites = styled.div`
+export const Favorites = styled(motion.div)`
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
-  width: 525px;
+  width: 100%;
+  max-width: 525px;
   height: 100%;
   background-color: ${colors.lightGrey};
   z-index: 999;

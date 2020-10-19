@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import * as S from "./StyledFavorites.js";
 
 import { useFavoritesContext } from "../../contexts/FavoritesContext";
@@ -6,6 +7,8 @@ import { useFavoritesContext } from "../../contexts/FavoritesContext";
 import Topbar from "../Topbar";
 import FavoritesItem from "../FavoritesItem";
 import Banner from "../Banner";
+
+import { cartBackdrop, cartSlideInFromRight } from "../../animations/variants";
 
 function Favorites({ closeMenu }) {
   const { favorites, removeFavorite } = useFavoritesContext();
@@ -19,8 +22,17 @@ function Favorites({ closeMenu }) {
 
   return (
     <S.Wrapper>
-      <span className="backdrop"></span>
-      <S.Favorites>
+      <motion.span
+        initial="initial"
+        animate="animate"
+        exit="initial"
+        variants={cartBackdrop}
+        className="backdrop"></motion.span>
+      <S.Favorites
+        initial="initial"
+        animate="animate"
+        exit="initial"
+        variants={cartSlideInFromRight}>
         <Topbar closeMenu={closeMenu} favorites />
         <Banner cart />
         <S.List>
@@ -28,6 +40,7 @@ function Favorites({ closeMenu }) {
             <li key={favorite.id} className="item">
               <FavoritesItem
                 product={favorite}
+                closeMenu={closeMenu}
                 handleRemoveFavorite={handleRemoveFavorite}
               />
             </li>

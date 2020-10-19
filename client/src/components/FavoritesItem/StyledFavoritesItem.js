@@ -3,11 +3,12 @@ import colors from "../../styles/colors";
 import { Link } from "react-router-dom";
 
 export const ImageWrapper = styled.div`
-  flex: 3;
+  flex-basis: 105px;
+  margin: auto;
 `;
 
 export const ContentWrapper = styled.div`
-  flex: 8;
+  flex: 1;
   display: flex;
   padding: 0 1rem;
   flex-direction: column;
@@ -16,11 +17,11 @@ export const ContentWrapper = styled.div`
 `;
 
 export const InfoWrapper = styled.div`
+  flex-basis: 105px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex: 2;
 
   .button {
     padding: 0.5rem;

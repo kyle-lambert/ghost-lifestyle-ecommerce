@@ -1,5 +1,6 @@
 import React from "react";
 import { v4 as uuidv4 } from "uuid";
+import { motion } from "framer-motion";
 import * as S from "./StyledCart.js";
 
 import { useShoppingCartContext } from "../../contexts/ShoppingCartContext";
@@ -7,6 +8,8 @@ import { useShoppingCartContext } from "../../contexts/ShoppingCartContext";
 import Topbar from "../Topbar";
 import Banner from "../Banner";
 import CartItem from "../CartItem";
+
+import { cartBackdrop, cartSlideInFromRight } from "../../animations/variants";
 
 function Cart({ closeMenu }) {
   const { shoppingCart, removeFromCart } = useShoppingCartContext();
@@ -17,8 +20,17 @@ function Cart({ closeMenu }) {
 
   return (
     <S.Wrapper>
-      <span className="backdrop"></span>
-      <S.Cart>
+      <motion.span
+        initial="initial"
+        animate="animate"
+        exit="initial"
+        variants={cartBackdrop}
+        className="backdrop"></motion.span>
+      <S.Cart
+        initial="initial"
+        animate="animate"
+        exit="initial"
+        variants={cartSlideInFromRight}>
         <Topbar closeMenu={closeMenu} cart />
         <Banner cart />
         <S.List>
@@ -26,6 +38,7 @@ function Cart({ closeMenu }) {
             <CartItem
               key={item.cartItemId}
               cartItem={item}
+              closeMenu={closeMenu}
               handleRemoveFromCart={handleRemoveFromCart}
             />
           ))}

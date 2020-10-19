@@ -8,14 +8,21 @@ export const Form = styled.form`
 
 export const SelectGroup = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  /* flex-wrap: wrap; */
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
 `;
 
 export const FlavourSelect = styled.div`
-  min-width: 350px;
   margin-bottom: 1.2rem;
-  margin-right: 2.4rem;
-  flex: 5;
+  flex: 3;
+
+  @media (min-width: 768px) {
+    margin-right: 2.4rem;
+  }
 
   .label {
     font-size: 1.4rem;
@@ -28,8 +35,6 @@ export const FlavourSelect = styled.div`
 
 export const QtySelect = styled.div`
   margin-bottom: 1.2rem;
-  margin-right: 2.4rem;
-  min-width: 125px;
   flex: 1;
 
   .label {
@@ -78,7 +83,6 @@ export const CTAList = styled.ul`
   display: flex;
   align-items: center;
   margin-top: 1.8rem;
-  padding-right: 2.4rem;
 
   .item {
     margin-right: 2.4rem;

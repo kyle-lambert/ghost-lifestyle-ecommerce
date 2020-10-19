@@ -7,7 +7,7 @@ import Icon from "../Icon";
 
 import { generateURL } from "../../utils";
 
-function FavoritesItem({ product, handleRemoveFavorite }) {
+function FavoritesItem({ product, handleRemoveFavorite, closeMenu }) {
   const imageURL = generateURL(product);
 
   const handleClick = () => {
@@ -20,7 +20,9 @@ function FavoritesItem({ product, handleRemoveFavorite }) {
         <ImageSpacer src={imageURL} alt={product.name} />
       </S.ImageWrapper>
       <S.ContentWrapper>
-        <S.Name to={`/products/${product.slug}`}>{product.name}</S.Name>
+        <S.Name to={`/products/${product.slug}`} onClick={() => closeMenu()}>
+          {product.name}
+        </S.Name>
         <S.Text>{product.flavour}</S.Text>
       </S.ContentWrapper>
       <S.InfoWrapper>
