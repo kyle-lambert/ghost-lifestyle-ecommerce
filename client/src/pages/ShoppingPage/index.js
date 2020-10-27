@@ -32,6 +32,7 @@ function ShoppingPage({ location, history }) {
   }, [setCategory, categorySlug]);
 
   React.useEffect(() => {
+    document.title = "Shop Ghost Lifestyle";
     window.scrollTo(0, 0);
   }, []);
 

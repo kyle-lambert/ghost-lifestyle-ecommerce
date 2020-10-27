@@ -15,6 +15,7 @@ const BASE_URL = "http://localhost:1337";
 
 function HomePage(props) {
   React.useEffect(() => {
+    document.title = "Ghost Lifestyle";
     window.scrollTo(0, 0);
   }, []);
 

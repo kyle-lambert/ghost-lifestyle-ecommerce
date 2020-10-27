@@ -27,6 +27,12 @@ function ProductPage({ match }) {
   const { addToCart } = useShoppingCartContext();
 
   React.useEffect(() => {
+    if (product) {
+      document.title = product.name;
+    }
+  }, [product]);
+
+  React.useEffect(() => {
     setSlug(slug);
   }, [slug, setSlug]);
 
