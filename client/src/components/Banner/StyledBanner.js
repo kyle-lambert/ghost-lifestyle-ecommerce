@@ -15,6 +15,8 @@ export const Text = styled.p`
   color: ${colors.white};
   font-size: 1.4rem;
   opacity: 0.6;
+  text-align: center;
+  line-height: 1.3;
 
   span {
     font-weight: 500;

@@ -24,6 +24,12 @@ export const Logo = styled(Link)`
   transform: translate(-50%, -50%);
 `;
 
+export const ShopLink = styled(Link)`
+  &:hover {
+    font-weight: 400;
+  }
+`;
+
 export const List = styled.ul`
   margin-left: 2.6rem;
   display: flex;

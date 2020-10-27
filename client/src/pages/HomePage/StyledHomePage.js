@@ -17,7 +17,7 @@ export const HeroSection = styled.section`
     width: 100%;
     height: 100%;
     clip-path: polygon(0 0, 100% 0, 100% 40%, 0 15%);
-    background-color: ${colors.blue};
+    background-color: ${colors.black};
     z-index: -1;
 
     @media (min-width: 1026px) {

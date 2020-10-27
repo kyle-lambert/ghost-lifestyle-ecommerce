@@ -18,16 +18,18 @@ function Navbar(props) {
 
   return (
     <S.Header>
-      <S.Nav>shop</S.Nav>
+      <S.Nav>
+        <S.ShopLink to="/products">Shop</S.ShopLink>
+      </S.Nav>
       <S.Logo to="/">
         <BrandLogo />
       </S.Logo>
       <S.List>
-        <li className="item">
+        {/* <li className="item">
           <S.Button>
             <Icon person />
           </S.Button>
-        </li>
+        </li> */}
         <li className="item">
           <S.Button onClick={() => setShowFavorites(true)}>
             {favorites.length > 0 ? (

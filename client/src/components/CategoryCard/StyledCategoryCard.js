@@ -5,7 +5,8 @@ import colors from "../../styles/colors";
 export const LinkWrapper = styled(Link)`
   position: relative;
   display: inline-block;
-  background-color: ${colors.yellow};
+  background-color: ${(props) => props.color};
+  /* background-color: ${colors.yellow}; */
 
   &::after {
     content: "";

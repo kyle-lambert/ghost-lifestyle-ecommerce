@@ -19,7 +19,7 @@ export const HeroSection = styled.section`
     width: 100%;
     height: 100%;
     clip-path: polygon(0 0, 100% 0, 100% 30rem, 0 15rem);
-    background-color: ${colors.red};
+    background-color: ${colors.aqua};
     z-index: -1;
 
     @media (min-width: 1026px) {
@@ -35,10 +35,13 @@ export const HeroInner = styled.div`
   padding-bottom: 5.8rem;
   width: 100%;
   display: grid;
+  row-gap: 2.6rem;
   grid-template-rows: auto auto;
 
   @media (min-width: 1026px) {
     grid-template-columns: 5fr 4fr;
+    row-gap: unset;
+    column-gap: 2.6rem;
   }
 
   .content {

@@ -12,7 +12,7 @@ function CategoryCard({ category }) {
   };
 
   return (
-    <S.LinkWrapper to={linkPath}>
+    <S.LinkWrapper to={linkPath} color={category.color}>
       <span className="name">{name}</span>
       <S.ImageWrapper>
         <ImageSpacer src={imageSrc} alt={name} />

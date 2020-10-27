@@ -49,11 +49,15 @@ const rightStyles = css`
 export const ContentBox = styled.div`
   min-height: 80vh;
   background-color: ${colors.mediumGrey};
-  padding: 5%;
+  padding: 10%;
 
   ${(props) => {
     return props.left === true ? leftStyles : rightStyles;
   }}
+
+  @media (min-width: 768px) {
+    padding: 5%;
+  }
 `;
 
 export const ContentList = styled.ul`

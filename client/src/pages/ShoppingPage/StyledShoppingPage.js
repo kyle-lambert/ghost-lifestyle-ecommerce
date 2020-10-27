@@ -13,21 +13,39 @@ export const ShoppingSection = styled.section`
 
 export const ShoppingInner = styled.div`
   display: grid;
-  grid-template-columns: 180px auto;
-  column-gap: 2.8rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: 200px auto;
+    column-gap: 3.8rem;
+  }
 `;
 
 export const ShoppingFilter = styled(motion.div)`
-  grid-column: 1 / 2;
-  flex-basis: 225px;
-  flex-shrink: 0;
+  margin-bottom: 2.6rem;
+
+  @media (min-width: 768px) {
+    grid-column: 1 / 2;
+    flex-basis: 225px;
+    flex-shrink: 0;
+    margin-bottom: unset;
+  }
 
   .list {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    flex-direction: row;
+
+    @media (min-width: 768px) {
+      flex-direction: column;
+      flex-wrap: unset;
+    }
 
     .item {
-      margin-bottom: 0.3rem;
+      margin: 0.3rem;
+
+      @media (min-width: 768px) {
+        margin: 0.3rem 0;
+      }
     }
   }
 `;
@@ -56,9 +74,12 @@ export const Button = styled.button.attrs((props) => ({
 `;
 
 export const ShoppingCards = styled.ul`
-  grid-column: 2 / 3;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  column-gap: 2.4rem;
-  row-gap: 2.4rem;
+  column-gap: 2.8rem;
+  row-gap: 2.8rem;
+
+  @media (min-width: 768px) {
+    grid-column: 2 / 3;
+  }
 `;
