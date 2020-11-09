@@ -9,8 +9,13 @@ export const Container = styled.li`
 `;
 
 export const ImageWrapper = styled.div`
-  flex-basis: 105px;
-  margin: auto;
+  display: none;
+
+  @media (min-width: 768px) {
+    display: initial;
+    flex-basis: 115px;
+    margin: auto;
+  }
 `;
 
 export const ContentWrapper = styled.div`
@@ -23,7 +28,7 @@ export const ContentWrapper = styled.div`
   .button {
     margin-top: auto;
     display: block;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: 300;
     color: ${colors.black};
     background-color: transparent;
@@ -57,7 +62,8 @@ export const Text = styled.span`
   display: block;
   color: ${colors.black};
   line-height: 1.5;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
+  margin-bottom: 15px;
 `;
 
 export const Price = styled.span`
@@ -73,5 +79,5 @@ export const Qty = styled.span`
   display: block;
   color: ${colors.black};
   line-height: 1.5;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
 `;

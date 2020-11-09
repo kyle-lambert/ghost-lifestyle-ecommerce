@@ -63,6 +63,7 @@ export const List = styled.ul`
   .item {
     background-color: ${colors.white};
     border-bottom: 1px solid ${colors.mediumGrey};
+    min-height: 100px;
     padding: 1rem;
     display: flex;
   }

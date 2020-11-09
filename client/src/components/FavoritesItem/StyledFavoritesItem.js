@@ -24,6 +24,7 @@ export const InfoWrapper = styled.div`
 
   .button {
     padding: 0.5rem;
+    font-size: 1.4rem;
     color: ${colors.black};
     background-color: transparent;
     transition: transform 150ms ease;
@@ -43,12 +44,4 @@ export const Name = styled.span`
   display: block;
   color: ${colors.black};
   line-height: 1.6;
-`;
-
-export const Text = styled.span`
-  display: block;
-  color: ${colors.black};
-  line-height: 1.4;
-  font-size: 1.4rem;
-  font-weight: 400;
 `;
