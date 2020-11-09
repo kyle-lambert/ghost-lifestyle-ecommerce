@@ -1,5 +1,4 @@
 import React from "react";
-import { v4 as uuidv4 } from "uuid";
 import { motion } from "framer-motion";
 import * as S from "./StyledCart.js";
 
@@ -44,9 +43,9 @@ function Cart({ closeMenu }) {
           ))}
         </S.List>
         <S.Checkout>
-          <S.CheckoutButton>
+          <S.CheckoutLink to="/checkout" onClick={() => closeMenu()}>
             <span className="span">Checkout</span>
-          </S.CheckoutButton>
+          </S.CheckoutLink>
         </S.Checkout>
       </S.Cart>
     </S.Wrapper>

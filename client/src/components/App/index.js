@@ -5,6 +5,7 @@ import { Switch, Route, useLocation } from "react-router-dom";
 import HomePage from "../../pages/HomePage";
 import ShoppingPage from "../../pages/ShoppingPage";
 import ProductPage from "../../pages/ProductPage";
+import CheckoutPage from "../../pages/CheckoutPage";
 
 import Banner from "../Banner";
 import Navbar from "../Navbar";
@@ -26,6 +27,7 @@ function App(props) {
         <Route exact path="/" component={HomePage} />
         <Route exact path="/products" component={ShoppingPage} />
         <Route exact path="/products/:slug" component={ProductPage} />
+        <Route exact path="/checkout" component={CheckoutPage} />
         <Route exact path="/404">
           <div>404 page</div>
         </Route>
