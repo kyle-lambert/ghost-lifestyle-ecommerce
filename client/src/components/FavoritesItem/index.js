@@ -23,8 +23,9 @@ function FavoritesItem({ product, handleRemoveFavorite, closeMenu }) {
         </Link>
       </S.ImageWrapper>
       <S.ContentWrapper>
-        <S.Name>{product.name}</S.Name>
-        <S.Text>{product.flavour}</S.Text>
+        <Link to={`/products/${product.slug}`} onClick={() => closeMenu()}>
+          <S.Name>{product.name}</S.Name>
+        </Link>
       </S.ContentWrapper>
       <S.InfoWrapper>
         <button onClick={handleClick} type="button" className="button">

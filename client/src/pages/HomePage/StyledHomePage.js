@@ -69,10 +69,7 @@ export const SupplementSection = styled.section`
 
 export const SupplementInner = styled.div`
   width: 100%;
-  /* padding: 5.8rem 5%; */
   display: grid;
-  /* column-gap: 2.6rem;
-  row-gap: 2.6rem; */
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
 

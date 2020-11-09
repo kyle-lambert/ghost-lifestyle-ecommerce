@@ -31,7 +31,9 @@ function CartItem({ cartItem, handleRemoveFromCart, closeMenu }) {
         )}
       </S.ImageWrapper>
       <S.ContentWrapper>
-        <S.Name>{product.name}</S.Name>
+        <Link to={`/products/${product.slug}`} onClick={() => closeMenu()}>
+          <S.Name>{product.name}</S.Name>
+        </Link>
         <S.Text>{flavour.name}</S.Text>
         <button onClick={handleClick} type="button" className="button">
           Remove

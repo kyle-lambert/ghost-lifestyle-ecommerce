@@ -10,6 +10,12 @@ import { useShoppingCartContext } from "../../contexts/ShoppingCartContext";
 
 function CheckoutPage(props) {
   const { shoppingCart, removeFromCart } = useShoppingCartContext();
+
+  React.useEffect(() => {
+    document.title = "Complete Checkout";
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <S.CheckoutSection>

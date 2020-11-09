@@ -1,10 +1,9 @@
 import React from "react";
 import * as S from "./StyledFavoriteToggle.js";
 
-// import useFavoritesContext from '../../hooks/useFavoritesContext';
-import { useFavoritesContext } from "../../contexts/FavoritesContext";
-
 import Icon from "../Icon";
+
+import { useFavoritesContext } from "../../contexts/FavoritesContext";
 
 function FavoriteToggle({ product }) {
   const { favorites, addFavorite, removeFavorite } = useFavoritesContext();

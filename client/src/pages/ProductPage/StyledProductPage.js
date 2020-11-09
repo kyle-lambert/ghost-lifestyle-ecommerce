@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import colors from "../../styles/colors";
 
-// ********** Hero Styles **********
-
 export const HeroSection = styled.section`
   position: relative;
   min-height: 90vh;
@@ -19,7 +17,7 @@ export const HeroSection = styled.section`
     width: 100%;
     height: 100%;
     clip-path: polygon(0 0, 100% 0, 100% 30rem, 0 15rem);
-    background-color: ${colors.aqua};
+    background-color: ${colors.red};
     z-index: -1;
 
     @media (min-width: 1026px) {
@@ -67,8 +65,6 @@ export const HeroInner = styled.div`
     }
   }
 `;
-
-// ********** Details Styles **********
 
 export const DetailsSection = styled.section`
   padding-left: 10%;

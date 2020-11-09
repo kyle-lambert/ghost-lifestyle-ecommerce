@@ -29,7 +29,9 @@ function OrderSummaryProduct({ checkoutItem, removeFromCart }) {
         )}
       </S.ImageWrapper>
       <S.ContentWrapper>
-        <S.Name>{product.name}</S.Name>
+        <Link to={`/products/${product.slug}`}>
+          <S.Name>{product.name}</S.Name>
+        </Link>
         <S.Text>{flavour.name}</S.Text>
         <button onClick={handleClick} type="button" className="button">
           Remove

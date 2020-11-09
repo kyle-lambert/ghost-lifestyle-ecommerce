@@ -26,7 +26,6 @@ function UserModal() {
             </Heading>
           )}
           <UserForm logIn={logIn} />
-          {/* <S.Message></S.Message> */}
           <S.TermsBar>
             <span className="span">
               By Signing Up you are agreeing to the Terms and Conditions
