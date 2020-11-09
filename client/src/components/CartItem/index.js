@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import * as S from "./StyledCartItem.js";
 
 import ImageSpacer from "../ImageSpacer";
@@ -21,13 +22,16 @@ function CartItem({ cartItem, handleRemoveFromCart, closeMenu }) {
     <S.Container>
       <S.ImageWrapper>
         {flavour && (
-          <ImageSpacer src={BASE_URL + flavour.image.url} alt={product.name} />
+          <Link to={`/products/${product.slug}`} onClick={() => closeMenu()}>
+            <ImageSpacer
+              src={BASE_URL + flavour.image.url}
+              alt={product.name}
+            />
+          </Link>
         )}
       </S.ImageWrapper>
       <S.ContentWrapper>
-        <S.Name to={`/products/${product.slug}`} onClick={() => closeMenu()}>
-          {product.name}
-        </S.Name>
+        <S.Name>{product.name}</S.Name>
         <S.Text>{flavour.name}</S.Text>
         <button onClick={handleClick} type="button" className="button">
           Remove

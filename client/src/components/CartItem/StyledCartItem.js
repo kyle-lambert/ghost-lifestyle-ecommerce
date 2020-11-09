@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import colors from "../../styles/colors";
 
 export const Container = styled.li`
@@ -44,8 +43,7 @@ export const InfoWrapper = styled.div`
   padding: 0.5rem 0;
 `;
 
-export const Name = styled(Link)`
-  position: relative;
+export const Name = styled.span`
   font-family: "Montserrat", sans-serif;
   font-weight: 900;
   text-transform: uppercase;
@@ -53,25 +51,6 @@ export const Name = styled(Link)`
   display: block;
   color: ${colors.black};
   line-height: 1.6;
-
-  &::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background-color: ${colors.black};
-    border-radius: 3px;
-    transform-origin: left;
-    transform: scaleX(0);
-    transition: transform 150ms ease;
-  }
-
-  :hover::after {
-    transform: scaleX(1);
-    transition: transform 150ms ease;
-  }
 `;
 
 export const Text = styled.span`
