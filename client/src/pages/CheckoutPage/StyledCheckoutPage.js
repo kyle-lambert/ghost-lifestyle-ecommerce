@@ -13,12 +13,29 @@ export const CheckoutInner = styled.div`
   width: 100%;
 
   display: flex;
+  flex-direction: column;
+
+  @media (min-width: 1026px) {
+    flex-direction: row;
+  }
 `;
 
 export const ContactDetails = styled.div`
   flex: 1;
+  order: 2;
+
+  @media (min-width: 1026px) {
+    order: 1;
+  }
 `;
+
 export const OrderSummary = styled.div`
   flex: 1;
-  margin-left: 30px;
+  order: 1;
+  margin-bottom: 40px;
+
+  @media (min-width: 1026px) {
+    order: 2;
+    margin-left: 60px;
+  }
 `;

@@ -25,11 +25,6 @@ function Navbar(props) {
         <BrandLogo />
       </S.Logo>
       <S.List>
-        {/* <li className="item">
-          <S.Button>
-            <Icon person />
-          </S.Button>
-        </li> */}
         <li className="item">
           <S.Button onClick={() => setShowFavorites(true)}>
             {favorites.length > 0 ? (

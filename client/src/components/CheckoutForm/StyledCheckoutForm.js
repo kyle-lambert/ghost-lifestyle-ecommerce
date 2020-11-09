@@ -14,7 +14,7 @@ export const Form = styled.form`
     "submit submit";
   column-gap: 15px;
   row-gap: 10px;
-  padding: 30px 0;
+  margin: 30px 0;
 
   .fname {
     grid-area: fname;
