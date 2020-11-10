@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 export const CheckoutSection = styled.section`
   min-height: 100vh;
@@ -19,7 +20,7 @@ export const CheckoutInner = styled.div`
   }
 `;
 
-export const ContactDetails = styled.div`
+export const ContactDetails = styled(motion.div)`
   flex: 1;
   order: 2;
 

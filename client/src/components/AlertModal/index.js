@@ -1,5 +1,6 @@
 import React from "react";
 import * as S from "./StyledAlertModal.js";
+import { fadeInCard } from "../../animations/variants";
 
 import BrandLogo from "../BrandLogo";
 import Heading from "../Heading";
@@ -7,7 +8,11 @@ import Heading from "../Heading";
 function AlertModal({ orderSuccess, orderError }) {
   return (
     <>
-      <S.Container>
+      <S.Container
+        initial="initial"
+        animate="animate"
+        variants={fadeInCard}
+        exit="initial">
         <S.Backdrop />
         <S.Modal>
           <div className="logo">

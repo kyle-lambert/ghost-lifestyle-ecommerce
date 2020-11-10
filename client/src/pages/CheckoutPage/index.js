@@ -1,9 +1,12 @@
 import React from "react";
 import axios from "axios";
+import { AnimatePresence } from "framer-motion";
 import { useHistory } from "react-router-dom";
+
 import * as S from "./StyledCheckoutPage.js";
 import { loadStripe } from "@stripe/stripe-js";
 import { BASE_URL } from "../../data/api";
+import { fadeInUp } from "../../animations/variants";
 
 import Heading from "../../components/Heading";
 import CheckoutForm from "../../components/CheckoutForm";
@@ -23,7 +26,7 @@ function CheckoutPage(props) {
     total,
     clearCart,
   } = useShoppingCartContext();
-  const [showSuccesModal, setShowSucessModal] = React.useState(false);
+  const [showSuccessModal, setShowSuccessModal] = React.useState(false);
   const [showErrorModal, setShowErrorModal] = React.useState(false);
   const history = useHistory();
 
@@ -36,9 +39,9 @@ function CheckoutPage(props) {
     const query = new URLSearchParams(window.location.search);
     if (query.get("success")) {
       clearCart();
-      setShowSucessModal(true);
+      setShowSuccessModal(true);
       setTimeout(() => {
-        setShowSucessModal(false);
+        setShowSuccessModal(false);
         history.push("/");
       }, 6000);
     }
@@ -71,7 +74,10 @@ function CheckoutPage(props) {
         // If `redirectToCheckout` fails due to a browser or network
         // error, display the localized error message to your customer
         // using `result.error.message`.
-        console.log("redirect error");
+        setShowErrorModal(true);
+        setTimeout(() => {
+          setShowErrorModal(false);
+        }, 6000);
       }
     } else {
       console.log("You need items in your cart.");
@@ -80,11 +86,18 @@ function CheckoutPage(props) {
 
   return (
     <>
-      {showSuccesModal && <AlertModal orderSuccess />}
-      {showErrorModal && <AlertModal orderError />}
+      <AnimatePresence exitBeforeEnter>
+        {showSuccessModal && <AlertModal orderSuccess />}
+      </AnimatePresence>
+      <AnimatePresence exitBeforeEnter>
+        {showErrorModal && <AlertModal orderError />}
+      </AnimatePresence>
       <S.CheckoutSection>
         <S.CheckoutInner>
-          <S.ContactDetails>
+          <S.ContactDetails
+            initial="initial"
+            animate="animate"
+            variants={fadeInUp}>
             <Heading h3>
               Shipping <br />
               Details
