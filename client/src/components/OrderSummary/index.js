@@ -4,11 +4,17 @@ import * as S from "./StyledOrderSummary.js";
 import OrderSummaryProduct from "../../components/OrderSummaryProduct";
 
 function OrderSummary({ shoppingCart, removeFromCart, total }) {
+  const getTotalItems = () => {
+    return shoppingCart.reduce((acc, cur) => {
+      return acc + cur.options.qty;
+    }, 0);
+  };
+
   return (
     <S.Wrapper>
       <S.ItemCount>
         <span className="span">Your Products</span>
-        <span className="count">{`${shoppingCart.length} Items`}</span>
+        <span className="count">{`${getTotalItems()} Items`}</span>
       </S.ItemCount>
       <S.OrderSummaryList>
         {shoppingCart.map((item) => {

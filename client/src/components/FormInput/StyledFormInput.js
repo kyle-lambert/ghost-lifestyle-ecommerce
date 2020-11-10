@@ -22,6 +22,10 @@ export const Input = styled.input`
   border-radius: 5px;
   border: 2px solid ${colors.mediumGrey};
 
+  &[data-error="true"] {
+    border-color: ${colors.red};
+  }
+
   &:focus {
     border-color: ${colors.blue};
   }

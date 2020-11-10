@@ -2,7 +2,6 @@ import React from "react";
 import * as S from "./StyledCheckoutForm.js";
 
 import FormInput from "../../components/FormInput";
-import Button from "../../components/Button";
 
 function CheckoutForm({ continueToPayment }) {
   const [state, setState] = React.useState({
@@ -24,6 +23,11 @@ function CheckoutForm({ continueToPayment }) {
         [name]: value,
       };
     });
+  };
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    continueToPayment();
   };
 
   return (
@@ -93,7 +97,7 @@ function CheckoutForm({ continueToPayment }) {
         />
       </div>
       <div className="submit">
-        <S.PurchaseButton onClick={continueToPayment}>
+        <S.PurchaseButton onClick={handleClick}>
           <span className="span">Continue to Payment</span>
         </S.PurchaseButton>
       </div>

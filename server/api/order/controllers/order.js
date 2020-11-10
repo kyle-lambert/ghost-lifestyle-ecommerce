@@ -42,15 +42,6 @@ module.exports = {
       success_url: `${YOUR_DOMAIN}?success=true`,
       cancel_url: `${YOUR_DOMAIN}?canceled=true`,
     });
-    // const { address, amount, dishes, token, city, state } = ctx.request.body;
-
-    // const charge = await stripe.charges.create({
-    //   // Transform cents to dollars.
-    //   amount: amount * 100,
-    //   currency: "usd",
-    //   description: `Order ${new Date()} by ${ctx.state.user._id}`,
-    //   source: token,
-    // });
 
     // // Register the order in the database
     // const order = await strapi.services.order.add({

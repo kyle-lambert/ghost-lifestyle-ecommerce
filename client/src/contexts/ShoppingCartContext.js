@@ -7,6 +7,7 @@ const ShoppingCartDispatchContext = React.createContext();
 const types = {
   SET_TOTAL: "SET_TOTAL",
   SET_SHOPPING_CART: "SET_SHOPPING_CART",
+  REMOVE_ALL_ITEMS: "REMOVE_ALL_ITEMS",
 };
 
 const initialState = {
@@ -34,6 +35,9 @@ function ShoppingCartReducer(state, action) {
         ...state,
         total: action.payload,
       };
+    }
+    case types.REMOVE_ALL_ITEMS: {
+      return action.payload;
     }
     default:
       return state;
@@ -124,11 +128,17 @@ function useShoppingCartContext() {
     }
   };
 
+  const clearCart = React.useCallback(() => {
+    window.localStorage.setItem("shoppingCart", JSON.stringify([]));
+    dispatch(creator(types.REMOVE_ALL_ITEMS, initialState));
+  }, [dispatch]);
+
   return {
     shoppingCart: state.shoppingCart,
     total: state.total,
     addToCart,
     removeFromCart,
+    clearCart,
   };
 }
 

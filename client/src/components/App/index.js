@@ -1,6 +1,5 @@
 import React from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Switch, Route, useLocation } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 import HomePage from "../../pages/HomePage";
 import ShoppingPage from "../../pages/ShoppingPage";
@@ -11,14 +10,7 @@ import Banner from "../Banner";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 
-import UserModal from "../../components/UserModal";
-
 function App(props) {
-  // const location = useLocation();
-  // React.useEffect(() => {
-  //   window.scrollTo(0, 0);
-  // }, []);
-
   return (
     <>
       <Banner />

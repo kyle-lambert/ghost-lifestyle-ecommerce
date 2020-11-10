@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import colors from "../../styles/colors";
 
 export const CheckoutSection = styled.section`
   min-height: 100vh;

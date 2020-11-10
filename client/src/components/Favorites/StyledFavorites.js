@@ -38,20 +38,6 @@ export const Favorites = styled(motion.div)`
 
   display: flex;
   flex-direction: column;
-
-  &::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 60px;
-    background: linear-gradient(
-      0deg,
-      rgba(238, 238, 238, 1) 0%,
-      rgba(0, 0, 0, 0) 100%
-    );
-  }
 `;
 
 export const List = styled.ul`
@@ -59,11 +45,11 @@ export const List = styled.ul`
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
+  padding-bottom: 50px;
 
   .item {
     background-color: ${colors.white};
     border-bottom: 1px solid ${colors.mediumGrey};
-    min-height: 100px;
     padding: 1rem;
     display: flex;
   }

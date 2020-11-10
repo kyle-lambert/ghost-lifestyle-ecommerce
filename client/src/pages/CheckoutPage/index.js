@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import * as S from "./StyledCheckoutPage.js";
 import { loadStripe } from "@stripe/stripe-js";
 import { BASE_URL } from "../../data/api";
@@ -8,6 +8,7 @@ import { BASE_URL } from "../../data/api";
 import Heading from "../../components/Heading";
 import CheckoutForm from "../../components/CheckoutForm";
 import OrderSummary from "../../components/OrderSummary";
+import AlertModal from "../../components/AlertModal";
 
 import { useShoppingCartContext } from "../../contexts/ShoppingCartContext";
 
@@ -16,8 +17,15 @@ const stripePromise = loadStripe(
 );
 
 function CheckoutPage(props) {
-  const { shoppingCart, removeFromCart, total } = useShoppingCartContext();
-  const location = useLocation();
+  const {
+    shoppingCart,
+    removeFromCart,
+    total,
+    clearCart,
+  } = useShoppingCartContext();
+  const [showSuccesModal, setShowSucessModal] = React.useState(false);
+  const [showErrorModal, setShowErrorModal] = React.useState(false);
+  const history = useHistory();
 
   React.useEffect(() => {
     document.title = "Complete Checkout";
@@ -27,17 +35,22 @@ function CheckoutPage(props) {
   React.useEffect(() => {
     const query = new URLSearchParams(window.location.search);
     if (query.get("success")) {
-      console.log("Order placed! You will receive an email confirmation.");
+      clearCart();
+      setShowSucessModal(true);
+      setTimeout(() => {
+        setShowSucessModal(false);
+        history.push("/");
+      }, 6000);
     }
     if (query.get("canceled")) {
-      console.log(
-        "Order canceled -- continue to shop around and checkout when you're ready."
-      );
+      setShowErrorModal(true);
+      setTimeout(() => {
+        setShowErrorModal(false);
+      }, 6000);
     }
-  }, []);
+  }, [history, clearCart]);
 
-  const continueToPayment = async (e) => {
-    e.preventDefault();
+  const continueToPayment = async () => {
     if (shoppingCart.length > 0) {
       const stripe = await stripePromise;
       const session = await axios({
@@ -67,6 +80,8 @@ function CheckoutPage(props) {
 
   return (
     <>
+      {showSuccesModal && <AlertModal orderSuccess />}
+      {showErrorModal && <AlertModal orderError />}
       <S.CheckoutSection>
         <S.CheckoutInner>
           <S.ContactDetails>

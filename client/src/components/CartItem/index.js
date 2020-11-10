@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import * as S from "./StyledCartItem.js";
 
 import ImageSpacer from "../ImageSpacer";
-import Icon from "../Icon";
 
 const BASE_URL = "http://localhost:1337";
 

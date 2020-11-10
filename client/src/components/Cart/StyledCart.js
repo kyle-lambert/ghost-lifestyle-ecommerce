@@ -50,25 +50,9 @@ export const List = styled.ul`
 `;
 
 export const Checkout = styled.div`
-  position: relative;
   background-color: ${colors.white};
   border-top: 1px solid ${colors.mediumGrey};
   padding: 2.6rem;
-  margin-top: 10px;
-
-  &::after {
-    content: "";
-    position: absolute;
-    top: -70px;
-    left: 0;
-    right: 0;
-    height: 60px;
-    background: linear-gradient(
-      0deg,
-      rgba(238, 238, 238, 1) 0%,
-      rgba(0, 0, 0, 0) 100%
-    );
-  }
 `;
 
 export const CheckoutLink = styled(Link)`
