@@ -2,8 +2,9 @@ import React from "react";
 import * as S from "./StyledCheckoutForm.js";
 
 import FormInput from "../../components/FormInput";
+import Button from "../../components/Button";
 
-function CheckoutForm(props) {
+function CheckoutForm({ continueToPayment }) {
   const [state, setState] = React.useState({
     firstName: "",
     lastName: "",
@@ -90,6 +91,11 @@ function CheckoutForm(props) {
           value={state.country}
           handleChange={handleChange}
         />
+      </div>
+      <div className="submit">
+        <S.PurchaseButton onClick={continueToPayment}>
+          <span className="span">Continue to Payment</span>
+        </S.PurchaseButton>
       </div>
     </S.Form>
   );
