@@ -3,16 +3,7 @@ import * as S from "./StyledOrderSummary.js";
 
 import OrderSummaryProduct from "../../components/OrderSummaryProduct";
 
-function OrderSummary({ shoppingCart, removeFromCart }) {
-  const getTotal = () => {
-    const total = shoppingCart.reduce((acc, cur) => {
-      const productPrice = cur.product.price * cur.options.qty;
-      return acc + productPrice;
-    }, 0);
-
-    return "$" + total;
-  };
-
+function OrderSummary({ shoppingCart, removeFromCart, total }) {
   return (
     <S.Wrapper>
       <S.ItemCount>
@@ -33,7 +24,7 @@ function OrderSummary({ shoppingCart, removeFromCart }) {
       <S.PricesList>
         <li className="item">
           <S.Label>Subtotal:</S.Label>
-          <S.Amount>{getTotal()}</S.Amount>
+          <S.Amount>{`$${total.toFixed(2)}`}</S.Amount>
         </li>
         <li className="item">
           <S.Label>Shipping:</S.Label>
@@ -41,7 +32,7 @@ function OrderSummary({ shoppingCart, removeFromCart }) {
         </li>
         <li className="item">
           <S.Label>Total:</S.Label>
-          <S.Amount>{getTotal()}</S.Amount>
+          <S.Amount>{`$${total.toFixed(2)}`}</S.Amount>
         </li>
       </S.PricesList>
     </S.Wrapper>

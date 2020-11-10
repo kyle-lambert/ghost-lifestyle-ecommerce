@@ -6,13 +6,11 @@ const ShoppingCartDispatchContext = React.createContext();
 
 const types = {
   SET_TOTAL: "SET_TOTAL",
-  SET_CHECKOUT: "SET_CHECKOUT",
   SET_SHOPPING_CART: "SET_SHOPPING_CART",
 };
 
 const initialState = {
   shoppingCart: [],
-  checkout: null,
   total: 0,
 };
 
@@ -29,6 +27,12 @@ function ShoppingCartReducer(state, action) {
       return {
         ...state,
         shoppingCart: [...action.payload],
+      };
+    }
+    case types.SET_TOTAL: {
+      return {
+        ...state,
+        total: action.payload,
       };
     }
     default:
@@ -52,6 +56,17 @@ function ShoppingCartProvider({ children }) {
 
     initialiseShoppingCartStorage();
   }, []);
+
+  // Update total amount when ShoppingCart changes
+  React.useEffect(() => {
+    const getTotal = () => {
+      return state.shoppingCart.reduce((acc, cur) => {
+        const productPrice = cur.product.price * cur.options.qty;
+        return acc + productPrice;
+      }, 0);
+    };
+    dispatch(creator(types.SET_TOTAL, getTotal()));
+  }, [state.shoppingCart]);
 
   // Sync shopping cart changes with local storage
   React.useEffect(() => {
@@ -111,6 +126,7 @@ function useShoppingCartContext() {
 
   return {
     shoppingCart: state.shoppingCart,
+    total: state.total,
     addToCart,
     removeFromCart,
   };

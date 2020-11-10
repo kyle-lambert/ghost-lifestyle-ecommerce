@@ -3,13 +3,12 @@ import * as S from "./StyledCheckoutPage.js";
 
 import Heading from "../../components/Heading";
 import CheckoutForm from "../../components/CheckoutForm";
-import CartItem from "../../components/CartItem";
 import OrderSummary from "../../components/OrderSummary";
 
 import { useShoppingCartContext } from "../../contexts/ShoppingCartContext";
 
 function CheckoutPage(props) {
-  const { shoppingCart, removeFromCart } = useShoppingCartContext();
+  const { shoppingCart, removeFromCart, total } = useShoppingCartContext();
 
   React.useEffect(() => {
     document.title = "Complete Checkout";
@@ -34,6 +33,7 @@ function CheckoutPage(props) {
             <OrderSummary
               shoppingCart={shoppingCart}
               removeFromCart={removeFromCart}
+              total={total}
             />
           </S.OrderSummary>
         </S.CheckoutInner>
