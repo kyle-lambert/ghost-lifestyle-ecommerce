@@ -1,5 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 
 import HomePage from "../../pages/HomePage";
 import ShoppingPage from "../../pages/ShoppingPage";
@@ -10,9 +11,18 @@ import Banner from "../Banner";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 
+import AlertModal from "../../components/AlertModal";
+
+import { useAlertContext } from "../../contexts/AlertContext";
+
 function App(props) {
+  const { alert } = useAlertContext();
+
   return (
     <>
+      <AnimatePresence>
+        {alert && <AlertModal title={alert.title} msg={alert.msg} />}
+      </AnimatePresence>
       <Banner />
       <Navbar />
       <Switch>

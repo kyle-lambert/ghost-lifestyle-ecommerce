@@ -8,6 +8,7 @@ import GlobalStyle from "./styles/global";
 // Global contexts
 import { ShoppingCartProvider } from "./contexts/ShoppingCartContext";
 import { FavoritesProvider } from "./contexts/FavoritesContext";
+import { AlertProvider } from "./contexts/AlertContext";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -16,7 +17,9 @@ ReactDOM.render(
         <GlobalStyle />
         <FavoritesProvider>
           <ShoppingCartProvider>
-            <App />
+            <AlertProvider>
+              <App />
+            </AlertProvider>
           </ShoppingCartProvider>
         </FavoritesProvider>
       </>
