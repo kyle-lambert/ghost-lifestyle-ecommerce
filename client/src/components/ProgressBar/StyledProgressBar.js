@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
   top: 0;
   left: 0;
   right: 0;
-  height: 7px;
+  height: 5px;
   width: 100%;
 
   .span {

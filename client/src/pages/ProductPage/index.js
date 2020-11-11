@@ -13,11 +13,13 @@ import HeroContent from "../../components/HeroContent";
 import ProductForm from "../../components/ProductForm";
 import ProductDetails from "../../components/ProductDetails";
 import ProgressBar from "../../components/ProgressBar";
+import Error from "../../components/Error";
 
 function ProductPage({ match }) {
   const slug = match.params.slug;
   const {
     loading,
+    error,
     product,
     setSlug,
     formQty,
@@ -55,46 +57,57 @@ function ProductPage({ match }) {
     addToCart({ product, formFlavour, formQty });
   };
 
+  if (error) {
+    return (
+      <Error
+        title="Fetching Error"
+        msg="Sorry, we encountered an error while trying to fetch your data. Please try again in a few minutes."
+      />
+    );
+  }
+
   return (
-    <>
+    <S.Wrapper>
       <AnimatePresence exitBeforeEnter>
         {loading && <ProgressBar />}
       </AnimatePresence>
-      <S.HeroSection>
-        {product && (
-          <S.HeroInner>
-            <motion.div
-              initial="initial"
-              animate="animate"
-              variants={fadeInUp}
-              className="content">
-              <HeroContent product={product}>
-                <ProductForm
-                  handleFlavourChange={handleFlavourChange}
-                  handleFormSubmit={handleFormSubmit}
-                  handleQtyChange={handleQtyChange}
-                  formFlavour={formFlavour}
-                  formQty={formQty}
-                  flavours={product.flavours}
-                  product={product}
-                />
-              </HeroContent>
-            </motion.div>
-            <div className="picture">
-              {formFlavour && (
-                <ImageSpacer
-                  src={`${BASE_URL}${formFlavour.image.url}`}
-                  alt={product.name}
-                />
-              )}
-            </div>
-          </S.HeroInner>
-        )}
-      </S.HeroSection>
-      <S.DetailsSection>
-        <ProductDetails product={product} />
-      </S.DetailsSection>
-    </>
+      {product && (
+        <>
+          <S.HeroSection>
+            <S.HeroInner>
+              <motion.div
+                initial="initial"
+                animate="animate"
+                variants={fadeInUp}
+                className="content">
+                <HeroContent product={product}>
+                  <ProductForm
+                    handleFlavourChange={handleFlavourChange}
+                    handleFormSubmit={handleFormSubmit}
+                    handleQtyChange={handleQtyChange}
+                    formFlavour={formFlavour}
+                    formQty={formQty}
+                    flavours={product.flavours}
+                    product={product}
+                  />
+                </HeroContent>
+              </motion.div>
+              <div className="picture">
+                {formFlavour && (
+                  <ImageSpacer
+                    src={`${BASE_URL}${formFlavour.image.url}`}
+                    alt={product.name}
+                  />
+                )}
+              </div>
+            </S.HeroInner>
+          </S.HeroSection>
+          <S.DetailsSection>
+            <ProductDetails product={product} />
+          </S.DetailsSection>
+        </>
+      )}
+    </S.Wrapper>
   );
 }
 

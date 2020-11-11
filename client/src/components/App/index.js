@@ -13,6 +13,7 @@ import Footer from "../Footer";
 
 import AlertModal from "../../components/AlertModal";
 import { useAlertContext } from "../../contexts/AlertContext";
+import Error from "../Error";
 
 function App(props) {
   const { alert } = useAlertContext();
@@ -29,8 +30,11 @@ function App(props) {
         <Route exact path="/products" component={ShoppingPage} />
         <Route exact path="/products/:slug" component={ProductPage} />
         <Route exact path="/checkout" component={CheckoutPage} />
-        <Route exact path="/404">
-          <div>404 page</div>
+        <Route>
+          <Error
+            title="404 Not Found"
+            msg="Sorry, the page you're looking for doesn't exist."
+          />
         </Route>
       </Switch>
       <Footer />

@@ -1,9 +1,12 @@
 import styled from "styled-components";
 import colors from "../../styles/colors";
 
+export const Wrapper = styled.div`
+  min-height: 90vh;
+`;
+
 export const HeroSection = styled.section`
   position: relative;
-  min-height: 90vh;
   display: flex;
   align-items: center;
 

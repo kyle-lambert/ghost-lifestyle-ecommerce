@@ -46,7 +46,6 @@ export const List = styled.ul`
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
-  padding-bottom: 50px;
 `;
 
 export const Checkout = styled.div`
