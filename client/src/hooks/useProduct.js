@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { BASE_URL } from "../data/api";
 
 const types = {
   GET_PRODUCT_SUCCESS: "GET_PRODUCT_SUCCES",
@@ -73,54 +74,50 @@ function creator(type, payload) {
   };
 }
 
-const fetchProductBySlug = (slug, source, dispatch) => {
-  const config = {
-    method: "get",
-    baseURL: "http://localhost:1337",
-    url: "/supplements",
-    params: { slug: slug },
-    cancelToken: source.token,
-  };
-
-  dispatch(creator(types.GET_PRODUCT_LOADING, true));
-
-  axios(config)
-    .then((data) => {
-      if (Array.isArray(data.data) && data.data.length === 1) {
-        dispatch(creator(types.GET_PRODUCT_SUCCESS, data.data[0]));
-      } else {
-        // handle incorrect data shape
-        console.log("Product does not exist!");
-      }
-      dispatch(creator(types.GET_PRODUCT_LOADING, false));
-    })
-    .catch((error) => {
-      dispatch(creator(types.GET_PRODUCT_FAILURE, true));
-      dispatch(creator(types.GET_PRODUCT_LOADING, false));
-    });
-};
-
 function useProduct() {
   const [
     { error, loading, product, slug, formFlavour, formQty },
     dispatch,
   ] = React.useReducer(productReducer, initialState);
-  const CancelToken = axios.CancelToken;
-  const source = CancelToken.source();
-
-  // Handle cleanup of async actions
-  React.useEffect(() => {
-    return () => {
-      source.cancel();
-    };
-  }, []);
 
   // Fetch new product when slug is updated
   React.useEffect(() => {
+    const CancelToken = axios.CancelToken;
+    const source = CancelToken.source();
+
+    const fetchProductBySlug = () => {
+      dispatch(creator(types.GET_PRODUCT_LOADING, true));
+
+      const config = {
+        method: "get",
+        baseURL: BASE_URL,
+        url: "/supplements",
+        params: { slug: slug },
+        cancelToken: source.token,
+      };
+
+      axios(config)
+        .then((data) => {
+          if (Array.isArray(data.data) && data.data.length === 1) {
+            dispatch(creator(types.GET_PRODUCT_SUCCESS, data.data[0]));
+          } else {
+            console.log("Product does not exist!");
+          }
+          dispatch(creator(types.GET_PRODUCT_LOADING, false));
+        })
+        .catch(() => {
+          dispatch(creator(types.GET_PRODUCT_FAILURE, true));
+          dispatch(creator(types.GET_PRODUCT_LOADING, false));
+        });
+    };
+
     if (slug) {
-      dispatch(creator(types.RESET_REDUCER, initialState));
-      fetchProductBySlug(slug, source, dispatch);
+      fetchProductBySlug();
     }
+
+    return () => {
+      source.cancel();
+    };
   }, [slug, dispatch]);
 
   // Initialise flavour if a product exists
