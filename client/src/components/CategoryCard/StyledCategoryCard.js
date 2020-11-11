@@ -6,7 +6,6 @@ export const LinkWrapper = styled(Link)`
   position: relative;
   display: inline-block;
   background-color: ${(props) => props.color};
-  /* background-color: ${colors.yellow}; */
 
   &::after {
     content: "";

@@ -6,14 +6,13 @@ import { fadeInUp } from "../../animations/variants";
 
 import useProduct from "../../hooks/useProduct";
 import { useShoppingCartContext } from "../../contexts/ShoppingCartContext";
+import { BASE_URL } from "../../data/api";
 
 import ImageSpacer from "../../components/ImageSpacer";
 import HeroContent from "../../components/HeroContent";
 import ProductForm from "../../components/ProductForm";
 import ProductDetails from "../../components/ProductDetails";
 import ProgressBar from "../../components/ProgressBar";
-
-const BASE_URL = "http://localhost:1337";
 
 function ProductPage({ match }) {
   const slug = match.params.slug;

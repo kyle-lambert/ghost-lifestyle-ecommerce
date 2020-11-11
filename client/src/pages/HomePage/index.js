@@ -10,8 +10,7 @@ import CategoryCard from "../../components/CategoryCard";
 
 import { homeCategories, homeHeroProduct as product } from "../../data";
 import { fadeInUp } from "../../animations/variants";
-
-const BASE_URL = "http://localhost:1337";
+import { BASE_URL } from "../../data/api";
 
 function HomePage(props) {
   React.useEffect(() => {

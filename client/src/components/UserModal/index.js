@@ -8,6 +8,7 @@ import UserForm from "../UserForm";
 function UserModal() {
   const [logIn, setLogIn] = React.useState(true);
   const [createAccount, setCreateAccount] = React.useState(false);
+
   return (
     <>
       <S.Container>

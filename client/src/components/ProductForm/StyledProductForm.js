@@ -9,7 +9,6 @@ export const Form = styled.form`
 export const SelectGroup = styled.div`
   display: flex;
   flex-direction: column;
-  /* flex-wrap: wrap; */
 
   @media (min-width: 768px) {
     flex-direction: row;

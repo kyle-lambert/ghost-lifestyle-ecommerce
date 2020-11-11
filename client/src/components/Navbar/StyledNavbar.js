@@ -18,10 +18,15 @@ export const Nav = styled.nav`
 `;
 
 export const Logo = styled(Link)`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  display: none;
+
+  @media (min-width: 768px) {
+    display: initial;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 `;
 
 export const ShopLink = styled(Link)`

@@ -5,7 +5,6 @@ import App from "./components/App";
 
 import GlobalStyle from "./styles/global";
 
-// Global contexts
 import { ShoppingCartProvider } from "./contexts/ShoppingCartContext";
 import { FavoritesProvider } from "./contexts/FavoritesContext";
 import { AlertProvider } from "./contexts/AlertContext";

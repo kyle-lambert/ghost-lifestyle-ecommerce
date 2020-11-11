@@ -12,7 +12,6 @@ import Navbar from "../Navbar";
 import Footer from "../Footer";
 
 import AlertModal from "../../components/AlertModal";
-
 import { useAlertContext } from "../../contexts/AlertContext";
 
 function App(props) {

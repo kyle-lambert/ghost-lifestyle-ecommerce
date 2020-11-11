@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 import * as S from "./StyledCartItem.js";
 
 import ImageSpacer from "../ImageSpacer";
-
-const BASE_URL = "http://localhost:1337";
+import { BASE_URL } from "../../data/api";
 
 function CartItem({ cartItem, handleRemoveFromCart, closeMenu }) {
   const {

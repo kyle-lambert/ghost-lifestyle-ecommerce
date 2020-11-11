@@ -2,7 +2,6 @@ import React from "react";
 import * as S from "./StyledFavoriteToggle.js";
 
 import Icon from "../Icon";
-
 import { useFavoritesContext } from "../../contexts/FavoritesContext";
 
 function FavoriteToggle({ product }) {
