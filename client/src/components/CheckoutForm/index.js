@@ -11,6 +11,7 @@ function CheckoutForm({ continueToPayment }) {
     address: "",
     postalCode: "",
     state: "",
+    city: "",
     country: "",
   });
 
@@ -27,7 +28,11 @@ function CheckoutForm({ continueToPayment }) {
 
   const handleClick = (e) => {
     e.preventDefault();
-    continueToPayment();
+    const stateArray = Object.values(state).map(([value]) => value);
+    if (stateArray.every((cur) => cur)) {
+      continueToPayment();
+    }
+    return;
   };
 
   return (
@@ -39,6 +44,7 @@ function CheckoutForm({ continueToPayment }) {
           value={state.firstName}
           handleChange={handleChange}
           placeholder="Mike"
+          data-error={state.firstNameError}
         />
       </div>
       <div className="lname">

@@ -109,7 +109,6 @@ function useShopping() {
           if (Array.isArray(data.data)) {
             dispatch(creator(types.GET_CATEGORIES_SUCCESS, data.data));
           } else {
-            // Handle no categories error here
             console.log("No categories found.");
           }
           dispatch(creator(types.GET_CATEGORIES_LOADING, false));
