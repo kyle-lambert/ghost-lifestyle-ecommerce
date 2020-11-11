@@ -1,6 +1,6 @@
 import React from "react";
 import * as S from "./StyledProductPage.js";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 import { fadeInUp } from "../../animations/variants";
 
@@ -11,12 +11,14 @@ import ImageSpacer from "../../components/ImageSpacer";
 import HeroContent from "../../components/HeroContent";
 import ProductForm from "../../components/ProductForm";
 import ProductDetails from "../../components/ProductDetails";
+import ProgressBar from "../../components/ProgressBar";
 
 const BASE_URL = "http://localhost:1337";
 
 function ProductPage({ match }) {
   const slug = match.params.slug;
   const {
+    loading,
     product,
     setSlug,
     formQty,
@@ -56,6 +58,9 @@ function ProductPage({ match }) {
 
   return (
     <>
+      <AnimatePresence exitBeforeEnter>
+        {loading && <ProgressBar />}
+      </AnimatePresence>
       <S.HeroSection>
         {product && (
           <S.HeroInner>

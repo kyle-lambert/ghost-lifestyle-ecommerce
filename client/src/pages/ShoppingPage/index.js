@@ -1,4 +1,5 @@
 import React from "react";
+import { AnimatePresence } from "framer-motion";
 import queryString from "query-string";
 import * as S from "./StyledShoppingPage.js";
 
@@ -7,6 +8,7 @@ import useShopping from "../../hooks/useShopping";
 import Heading from "../../components/Heading";
 import ProductCard from "../../components/ProductCard";
 import PageLayout from "../../layout/PageLayout";
+import ProgressBar from "../../components/ProgressBar";
 
 import { fadeInUp } from "../../animations/variants";
 
@@ -46,6 +48,9 @@ function ShoppingPage({ location, history }) {
 
   return (
     <>
+      <AnimatePresence exitBeforeEnter>
+        {(categoriesLoading || productsLoading) && <ProgressBar />}
+      </AnimatePresence>
       <PageLayout>
         <S.ShoppingSection>
           <S.ShoppingInner>
