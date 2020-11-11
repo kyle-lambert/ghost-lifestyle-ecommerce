@@ -29,4 +29,11 @@ export const Input = styled.input`
   &:focus {
     border-color: ${colors.blue};
   }
+
+  &::placeholder {
+    color: inherit;
+    opacity: 0.1;
+    font-style: italic;
+    font-size: inherit;
+  }
 `;

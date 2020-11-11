@@ -38,6 +38,7 @@ function CheckoutForm({ continueToPayment }) {
           name="firstName"
           value={state.firstName}
           handleChange={handleChange}
+          placeholder="Mike"
         />
       </div>
       <div className="lname">
@@ -46,6 +47,7 @@ function CheckoutForm({ continueToPayment }) {
           name="lastName"
           value={state.lastName}
           handleChange={handleChange}
+          placeholder="Smith"
         />
       </div>
       <div className="email">
@@ -54,6 +56,7 @@ function CheckoutForm({ continueToPayment }) {
           name="email"
           value={state.email}
           handleChange={handleChange}
+          placeholder="mikesmith@gmail.com"
         />
       </div>
       <div className="address">
@@ -62,6 +65,7 @@ function CheckoutForm({ continueToPayment }) {
           name="address"
           value={state.address}
           handleChange={handleChange}
+          placeholder="26 Wright St, Woodville"
         />
       </div>
       <div className="postalCode">
@@ -70,6 +74,7 @@ function CheckoutForm({ continueToPayment }) {
           name="postalCode"
           value={state.postalCode}
           handleChange={handleChange}
+          placeholder="5013"
         />
       </div>
       <div className="state">
@@ -78,6 +83,7 @@ function CheckoutForm({ continueToPayment }) {
           name="state"
           value={state.state}
           handleChange={handleChange}
+          placeholder="SA"
         />
       </div>
       <div className="city">
@@ -86,6 +92,7 @@ function CheckoutForm({ continueToPayment }) {
           name="city"
           value={state.city}
           handleChange={handleChange}
+          placeholder="Adelaide"
         />
       </div>
       <div className="country">
@@ -94,6 +101,7 @@ function CheckoutForm({ continueToPayment }) {
           name="country"
           value={state.country}
           handleChange={handleChange}
+          placeholder="Australia"
         />
       </div>
       <div className="submit">
