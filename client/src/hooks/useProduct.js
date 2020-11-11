@@ -4,7 +4,7 @@ import axios from "axios";
 const types = {
   GET_PRODUCT_SUCCESS: "GET_PRODUCT_SUCCES",
   GET_PRODUCT_LOADING: "GET_PRODUCT_LOADING",
-  GET_PRODUCT_FAILURE: "GET_PRODUCT_LOADING",
+  GET_PRODUCT_FAILURE: "GET_PRODUCT_FAILURE",
   SET_FORM_FLAVOUR: "SET_FLAVOUR",
   SET_FORM_QTY: "SET_QTY",
   SET_SLUG: "SET_SLUG",
@@ -83,6 +83,7 @@ const fetchProductBySlug = (slug, source, dispatch) => {
   };
 
   dispatch(creator(types.GET_PRODUCT_LOADING, true));
+
   axios(config)
     .then((data) => {
       if (Array.isArray(data.data) && data.data.length === 1) {
@@ -100,16 +101,22 @@ const fetchProductBySlug = (slug, source, dispatch) => {
 };
 
 function useProduct() {
-  const [{ product, slug, formFlavour, formQty }, dispatch] = React.useReducer(
-    productReducer,
-    initialState
-  );
+  const [
+    { error, loading, product, slug, formFlavour, formQty },
+    dispatch,
+  ] = React.useReducer(productReducer, initialState);
+  const CancelToken = axios.CancelToken;
+  const source = CancelToken.source();
+
+  // Handle cleanup of async actions
+  React.useEffect(() => {
+    return () => {
+      source.cancel();
+    };
+  }, []);
 
   // Fetch new product when slug is updated
   React.useEffect(() => {
-    const CancelToken = axios.CancelToken;
-    const source = CancelToken.source();
-
     if (slug) {
       dispatch(creator(types.RESET_REDUCER, initialState));
       fetchProductBySlug(slug, source, dispatch);
@@ -148,6 +155,8 @@ function useProduct() {
 
   return {
     product,
+    error,
+    loading,
     setSlug,
     setFormFlavour,
     setFormQty,

@@ -142,11 +142,15 @@ function useShopping() {
 
   // Fetch product categories once
   React.useEffect(() => {
+    const CancelToken = axios.CancelToken;
+    const source = CancelToken.source();
+
     const fetchCategories = () => {
       dispatch(creator(types.GET_CATEGORIES_LOADING, true));
 
       axios
         .get("/categories", {
+          cancelToken: source.token,
           baseURL: "http://localhost:1337",
         })
         .then((data) => {
@@ -165,6 +169,10 @@ function useShopping() {
     };
 
     fetchCategories();
+
+    return () => {
+      source.cancel();
+    };
   }, []);
 
   // Fetch new products everytime the active category changes
