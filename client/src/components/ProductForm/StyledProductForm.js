@@ -96,7 +96,7 @@ export const CTAList = styled.ul`
 `;
 
 export const Price = styled.span`
-  font-family: "Montserrat";
+  /* font-family: "Montserrat"; */
   font-weight: 700;
   font-size: 1.8rem;
   color: inherit;
