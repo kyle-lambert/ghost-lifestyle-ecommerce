@@ -24,7 +24,8 @@
       "type": "decimal"
     },
     "slug": {
-      "type": "uid"
+      "type": "uid",
+      "targetField": "name"
     },
     "flavours": {
       "type": "component",
