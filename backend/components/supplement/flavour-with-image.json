@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_supplement_flavour_with_images",
+  "info": {
+    "name": "flavour_with_image",
+    "icon": "ad"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    }
+  }
+}
