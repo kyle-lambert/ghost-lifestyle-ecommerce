@@ -4,13 +4,10 @@ import * as S from "./StyledProductCard.js";
 import ImageSpacer from "../ImageSpacer";
 import Heading from "../Heading";
 import FavoriteToggle from "../FavoriteToggle";
-import { generateURL } from "../../utils";
 
 import { fadeInCard } from "../../animations/variants";
 
 function ProductCard({ product }) {
-  // const imageURL = generateURL(product);
-
   return (
     <S.Wrapper initial="initial" animate="animate" variants={fadeInCard}>
       <S.Card to={`/products/${product.slug}`}>

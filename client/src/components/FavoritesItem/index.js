@@ -6,11 +6,7 @@ import * as S from "./StyledFavoritesItem.js";
 import ImageSpacer from "../ImageSpacer";
 import Icon from "../Icon";
 
-import { generateURL } from "../../utils";
-
 function FavoritesItem({ product, handleRemoveFavorite, closeMenu }) {
-  const imageURL = generateURL(product);
-
   const handleClick = () => {
     handleRemoveFavorite(product.id);
   };

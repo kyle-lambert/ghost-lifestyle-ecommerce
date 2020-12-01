@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import * as S from "./StyledOrderSummaryProduct";
-import { BASE_URL } from "../../data/api";
 
 import ImageSpacer from "../../components/ImageSpacer";
 
