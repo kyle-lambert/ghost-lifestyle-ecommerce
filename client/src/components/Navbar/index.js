@@ -19,7 +19,7 @@ function Navbar(props) {
   return (
     <S.Header>
       <S.Nav>
-        <S.ShopLink to="/products">Shop</S.ShopLink>
+        <S.ShopLink to="/products">Shop Supplements</S.ShopLink>
       </S.Nav>
       <S.Logo to="/">
         <BrandLogo />

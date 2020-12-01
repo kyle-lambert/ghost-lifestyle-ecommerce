@@ -10,7 +10,6 @@ import CategoryCard from "../../components/CategoryCard";
 
 import { homeCategories, homeHeroProduct as product } from "../../data";
 import { fadeInUp } from "../../animations/variants";
-import { BASE_URL } from "../../data/api";
 
 function HomePage(props) {
   React.useEffect(() => {
@@ -35,7 +34,7 @@ function HomePage(props) {
           </motion.div>
           <div className="picture">
             <ImageSpacer
-              src={`${BASE_URL}${product.flavours[0].image.url}`}
+              src={product.flavours[0].image.formats.medium.url}
               alt={product.name}
             />
           </div>

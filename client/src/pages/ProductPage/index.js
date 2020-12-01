@@ -90,7 +90,10 @@ function ProductPage({ match }) {
               </motion.div>
               <div className="picture">
                 {formFlavour && (
-                  <ImageSpacer src={formFlavour.image.url} alt={product.name} />
+                  <ImageSpacer
+                    src={formFlavour.image.formats.medium.url}
+                    alt={product.name}
+                  />
                 )}
               </div>
             </S.HeroInner>

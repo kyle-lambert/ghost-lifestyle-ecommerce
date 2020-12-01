@@ -9,8 +9,7 @@ const fadeInImage = {
   animate: {
     opacity: 1,
     transition: {
-      delay: 0.1,
-      duration: 0.4,
+      duration: 0.2,
       ease: "easeIn",
     },
   },
@@ -21,6 +20,16 @@ function ImageSpacer({ src, alt }) {
 
   return (
     <S.Wrapper>
+      {/* <motion.img
+        key={src}
+        initial="initial"
+        animate={loaded ? "animate" : "initial"}
+        variants={fadeInImage}
+        onLoad={() => setLoaded(true)}
+        src={src}
+        alt={alt}
+        className="image"
+      /> */}
       <AnimatePresence exitBeforeEnter>
         <motion.img
           key={src}
