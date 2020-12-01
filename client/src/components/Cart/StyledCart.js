@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
 import colors from "../../styles/colors";
 
 export const Wrapper = styled.div`
@@ -54,7 +53,7 @@ export const Checkout = styled.div`
   padding: 2.6rem;
 `;
 
-export const CheckoutButton = styled(Link)`
+export const CheckoutButton = styled.button`
   position: relative;
   padding: 1.6rem;
   width: 100%;
