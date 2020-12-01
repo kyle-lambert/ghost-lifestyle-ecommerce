@@ -21,10 +21,7 @@ function CartItem({ cartItem, handleRemoveFromCart, closeMenu }) {
       <S.ImageWrapper>
         {flavour && (
           <Link to={`/products/${product.slug}`} onClick={() => closeMenu()}>
-            <ImageSpacer
-              src={BASE_URL + flavour.image.url}
-              alt={product.name}
-            />
+            <ImageSpacer src={flavour.image.url} alt={product.name} />
           </Link>
         )}
       </S.ImageWrapper>

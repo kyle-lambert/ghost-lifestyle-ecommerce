@@ -15,7 +15,9 @@ function Error({ title, msg }) {
   return (
     <S.Wrapper>
       <S.Inner initial="initial" animate="animate" variants={fadeInUp}>
-        <Heading h1>{title}</Heading>
+        <Heading h1 textCenter>
+          {title}
+        </Heading>
         <S.Text>{msg}</S.Text>
         <Button onClick={handleClick}>Go Home</Button>
       </S.Inner>

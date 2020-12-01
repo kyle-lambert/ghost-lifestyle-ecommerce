@@ -26,7 +26,7 @@ function useAlertContext() {
 
       setTimeout(() => {
         setAlert("");
-      }, 5000);
+      }, 3000);
     },
     [setAlert]
   );

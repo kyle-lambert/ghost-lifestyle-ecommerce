@@ -1,6 +1,7 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
+import * as S from "./StyledApp.js";
 
 import HomePage from "../../pages/HomePage";
 import ShoppingPage from "../../pages/ShoppingPage";
@@ -25,18 +26,20 @@ function App(props) {
       </AnimatePresence>
       <Banner />
       <Navbar />
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route exact path="/products" component={ShoppingPage} />
-        <Route exact path="/products/:slug" component={ProductPage} />
-        <Route exact path="/checkout" component={CheckoutPage} />
-        <Route>
-          <Error
-            title="404 Not Found"
-            msg="Sorry, the page you're looking for doesn't exist."
-          />
-        </Route>
-      </Switch>
+      <S.Main>
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route exact path="/products" component={ShoppingPage} />
+          <Route exact path="/products/:slug" component={ProductPage} />
+          <Route exact path="/checkout" component={CheckoutPage} />
+          <Route>
+            <Error
+              title="404 Not Found"
+              msg="Sorry, the page you're looking for doesn't exist."
+            />
+          </Route>
+        </Switch>
+      </S.Main>
       <Footer />
       <Banner copyright />
     </>

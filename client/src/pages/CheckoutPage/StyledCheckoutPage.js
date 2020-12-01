@@ -2,10 +2,6 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 export const CheckoutSection = styled.section`
-  min-height: 100vh;
-`;
-
-export const CheckoutInner = styled.div`
   padding-left: 10%;
   padding-right: 10%;
   padding-top: 5.8rem;

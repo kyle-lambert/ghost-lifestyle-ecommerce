@@ -1,18 +1,17 @@
 import React from "react";
 import * as S from "./StyledProductPage.js";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 import { fadeInUp } from "../../animations/variants";
 
 import useProduct from "../../hooks/useProduct";
 import { useShoppingCartContext } from "../../contexts/ShoppingCartContext";
-import { BASE_URL } from "../../data/api";
 
 import ImageSpacer from "../../components/ImageSpacer";
 import HeroContent from "../../components/HeroContent";
 import ProductForm from "../../components/ProductForm";
 import ProductDetails from "../../components/ProductDetails";
-import ProgressBar from "../../components/ProgressBar";
+import LoadingSpinner from "../../components/LoadingSpinner";
 import Error from "../../components/Error";
 
 function ProductPage({ match }) {
@@ -57,21 +56,18 @@ function ProductPage({ match }) {
     addToCart({ product, formFlavour, formQty });
   };
 
-  if (error) {
+  if (loading) {
+    return <LoadingSpinner />;
+  } else if (error) {
     return (
       <Error
         title="Fetching Error"
         msg="Sorry, we encountered an error while trying to fetch your data. Please try again in a few minutes."
       />
     );
-  }
-
-  return (
-    <S.Wrapper>
-      <AnimatePresence exitBeforeEnter>
-        {loading && <ProgressBar />}
-      </AnimatePresence>
-      {product && (
+  } else {
+    if (product) {
+      return (
         <>
           <S.HeroSection>
             <S.HeroInner>
@@ -94,10 +90,7 @@ function ProductPage({ match }) {
               </motion.div>
               <div className="picture">
                 {formFlavour && (
-                  <ImageSpacer
-                    src={`${BASE_URL}${formFlavour.image.url}`}
-                    alt={product.name}
-                  />
+                  <ImageSpacer src={formFlavour.image.url} alt={product.name} />
                 )}
               </div>
             </S.HeroInner>
@@ -106,9 +99,16 @@ function ProductPage({ match }) {
             <ProductDetails product={product} />
           </S.DetailsSection>
         </>
-      )}
-    </S.Wrapper>
-  );
+      );
+    } else {
+      return (
+        <Error
+          title="Error"
+          msg="Sorry, the product you're looking for doesn't exist"
+        />
+      );
+    }
+  }
 }
 
 export default ProductPage;

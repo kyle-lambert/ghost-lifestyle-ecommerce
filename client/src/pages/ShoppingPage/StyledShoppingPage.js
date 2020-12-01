@@ -73,6 +73,13 @@ export const Button = styled.button.attrs((props) => ({
   }
 `;
 
+export const ShoppingProductsWrapper = styled.div`
+  position: relative;
+  @media (min-width: 768px) {
+    grid-column: 2 / 3;
+  }
+`;
+
 export const ShoppingCards = styled.ul`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -82,4 +89,9 @@ export const ShoppingCards = styled.ul`
   @media (min-width: 768px) {
     grid-column: 2 / 3;
   }
+`;
+
+export const ShoppingMessage = styled.div`
+  margin: 40px 0;
+  text-align: center;
 `;

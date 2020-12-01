@@ -54,7 +54,7 @@ export const Checkout = styled.div`
   padding: 2.6rem;
 `;
 
-export const CheckoutLink = styled(Link)`
+export const CheckoutButton = styled(Link)`
   position: relative;
   padding: 1.6rem;
   width: 100%;

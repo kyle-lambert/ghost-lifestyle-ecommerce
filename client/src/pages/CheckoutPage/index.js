@@ -87,32 +87,25 @@ function CheckoutPage(props) {
   };
 
   return (
-    <>
-      <S.CheckoutSection>
-        <S.CheckoutInner>
-          <S.ContactDetails
-            initial="initial"
-            animate="animate"
-            variants={fadeInUp}>
-            <Heading h3>
-              Shipping <br />
-              Details
-            </Heading>
-            <CheckoutForm continueToPayment={continueToPayment} />
-          </S.ContactDetails>
-          <S.OrderSummary>
-            <Heading h3>
-              Order <br /> Summary
-            </Heading>
-            <OrderSummary
-              shoppingCart={shoppingCart}
-              removeFromCart={removeFromCart}
-              total={total}
-            />
-          </S.OrderSummary>
-        </S.CheckoutInner>
-      </S.CheckoutSection>
-    </>
+    <S.CheckoutSection>
+      <S.ContactDetails initial="initial" animate="animate" variants={fadeInUp}>
+        <Heading h3>
+          Shipping <br />
+          Details
+        </Heading>
+        <CheckoutForm continueToPayment={continueToPayment} />
+      </S.ContactDetails>
+      <S.OrderSummary>
+        <Heading h3>
+          Order <br /> Summary
+        </Heading>
+        <OrderSummary
+          shoppingCart={shoppingCart}
+          removeFromCart={removeFromCart}
+          total={total}
+        />
+      </S.OrderSummary>
+    </S.CheckoutSection>
   );
 }
 

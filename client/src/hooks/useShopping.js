@@ -3,35 +3,15 @@ import axios from "axios";
 import { BASE_URL } from "../data/api";
 
 const types = {
-  GET_CATEGORIES_SUCCESS: "GET_CATEGORIES_SUCCESS",
-  GET_CATEGORIES_LOADING: "GET_CATEGORIES_LOADING",
-  GET_CATEGORIES_FAILURE: "GET_CATEGORIES_FAILURE",
   GET_PRODUCTS_SUCCESS: "GET_PRODUCTS_SUCCESS",
   GET_PRODUCTS_LOADING: "GET_PRODUCTS_LOADING",
   GET_PRODUCTS_FAILURE: "GET_PRODUCTS_FAILURE",
   SET_ACTIVE_CATEGORY: "SET_ACTIVE_CATEGORY",
+  RESET_PRODUCTS: "RESET_PRODUCTS",
 };
 
 function shoppingReducer(state, action) {
   switch (action.type) {
-    case types.GET_CATEGORIES_SUCCESS: {
-      return {
-        ...state,
-        categories: [...action.payload],
-      };
-    }
-    case types.GET_CATEGORIES_LOADING: {
-      return {
-        ...state,
-        categoriesLoading: action.payload,
-      };
-    }
-    case types.GET_CATEGORIES_FAILURE: {
-      return {
-        ...state,
-        categoriesError: action.payload,
-      };
-    }
     case types.GET_PRODUCTS_SUCCESS: {
       return {
         ...state,
@@ -56,6 +36,14 @@ function shoppingReducer(state, action) {
         activeCategory: action.payload,
       };
     }
+    case types.RESET_PRODUCTS: {
+      return {
+        ...state,
+        products: [],
+        productsLoading: true,
+        productsError: false,
+      };
+    }
     default:
       return state;
   }
@@ -63,9 +51,6 @@ function shoppingReducer(state, action) {
 
 const initialState = {
   activeCategory: "",
-  categories: [],
-  categoriesLoading: true,
-  categoriesError: false,
   products: [],
   productsLoading: true,
   productsError: false,
@@ -80,56 +65,16 @@ function creator(type, payload) {
 
 function useShopping() {
   const [
-    {
-      categories,
-      categoriesLoading,
-      categoriesError,
-      products,
-      productsLoading,
-      productsError,
-      activeCategory,
-    },
+    { products, productsLoading, productsError, activeCategory },
     dispatch,
   ] = React.useReducer(shoppingReducer, initialState);
-
-  // Fetch product categories once
-  React.useEffect(() => {
-    const CancelToken = axios.CancelToken;
-    const source = CancelToken.source();
-
-    const fetchCategories = () => {
-      dispatch(creator(types.GET_CATEGORIES_LOADING, true));
-
-      axios
-        .get("/categories", {
-          cancelToken: source.token,
-          baseURL: BASE_URL,
-        })
-        .then((data) => {
-          if (Array.isArray(data.data)) {
-            dispatch(creator(types.GET_CATEGORIES_SUCCESS, data.data));
-          } else {
-            console.log("No categories found.");
-          }
-          dispatch(creator(types.GET_CATEGORIES_LOADING, false));
-        })
-        .catch(() => {
-          dispatch(creator(types.GET_CATEGORIES_FAILURE, true));
-          dispatch(creator(types.GET_CATEGORIES_LOADING, false));
-        });
-    };
-
-    fetchCategories();
-
-    return () => {
-      source.cancel();
-    };
-  }, []);
 
   // Fetch new products everytime the active category changes
   React.useEffect(() => {
     const CancelToken = axios.CancelToken;
     const source = CancelToken.source();
+
+    dispatch(creator(types.RESET_PRODUCTS));
 
     const fetchAllProducts = () => {
       dispatch(creator(types.GET_PRODUCTS_LOADING, true));
@@ -161,7 +106,7 @@ function useShopping() {
 
       const config = {
         method: "get",
-        baseURL: "http://localhost:1337",
+        baseURL: BASE_URL,
         url: "/categories",
         params: {
           slug: activeCategory,
@@ -208,9 +153,6 @@ function useShopping() {
   );
 
   return {
-    categories,
-    categoriesLoading,
-    categoriesError,
     products,
     productsLoading,
     productsError,

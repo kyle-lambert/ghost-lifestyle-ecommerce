@@ -9,13 +9,13 @@ import { generateURL } from "../../utils";
 import { fadeInCard } from "../../animations/variants";
 
 function ProductCard({ product }) {
-  const imageURL = generateURL(product);
+  // const imageURL = generateURL(product);
 
   return (
     <S.Wrapper initial="initial" animate="animate" variants={fadeInCard}>
       <S.Card to={`/products/${product.slug}`}>
         <S.ImageWrapper>
-          <ImageSpacer src={imageURL} alt={product.name} />
+          <ImageSpacer src={product.flavours[0].image.url} alt={product.name} />
         </S.ImageWrapper>
         <S.Content>
           <Heading h4>{product.name}</Heading>

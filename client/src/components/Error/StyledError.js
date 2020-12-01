@@ -2,7 +2,10 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 export const Wrapper = styled.div`
-  min-height: 90vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   justify-content: center;
   align-items: center;
