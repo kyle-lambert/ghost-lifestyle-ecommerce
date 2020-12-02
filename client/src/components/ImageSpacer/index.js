@@ -1,5 +1,4 @@
 import React from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import * as S from "./StyledImageSpacer.js";
 
 const fadeInImage = {
@@ -15,36 +14,10 @@ const fadeInImage = {
   },
 };
 
-function ImageSpacer({ src, alt }) {
-  const [loaded, setLoaded] = React.useState(false);
+function ImageSpacer({ children }) {
+  // const [loaded, setLoaded] = React.useState(false);
 
-  return (
-    <S.Wrapper>
-      {/* <motion.img
-        key={src}
-        initial="initial"
-        animate={loaded ? "animate" : "initial"}
-        variants={fadeInImage}
-        onLoad={() => setLoaded(true)}
-        src={src}
-        alt={alt}
-        className="image"
-      /> */}
-      <AnimatePresence exitBeforeEnter>
-        <motion.img
-          key={src}
-          initial="initial"
-          animate={loaded ? "animate" : "initial"}
-          exit="initial"
-          variants={fadeInImage}
-          onLoad={() => setLoaded(true)}
-          src={src}
-          alt={alt}
-          className="image"
-        />
-      </AnimatePresence>
-    </S.Wrapper>
-  );
+  return <S.Wrapper>{children}</S.Wrapper>;
 }
 
 export default ImageSpacer;

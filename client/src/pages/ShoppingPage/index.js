@@ -44,37 +44,33 @@ function ShoppingPage({ location, history }) {
   };
 
   const renderProduct = () => {
-    // if (productsLoading) {
-    //   return <LoadingSpinner />;
-    // } else if (productsError) {
-    //   return (
-    //     <Error
-    //       title="Fetching Error"
-    //       msg="Sorry, we encountered an error while trying to fetch your products. Please try again in a few minutes."
-    //     />
-    //   );
-    // } else {
-    //   if (Array.isArray(products) && products.length > 0) {
-    //     return (
-    //       <S.ShoppingCards>
-    //         {products.map((product) => (
-    //           <ProductCard key={product.id} product={product} />
-    //         ))}
-    //       </S.ShoppingCards>
-    //     );
-    //   } else {
-    //     return (
-    //       <Error
-    //         title="No products"
-    //         msg="No products found for this category"
-    //       />
-    //     );
-    //   }
-    // }
-
-    return (
-      <Error title="No products" msg="No products found for this category" />
-    );
+    if (productsLoading) {
+      return <LoadingSpinner />;
+    } else if (productsError) {
+      return (
+        <Error
+          title="Fetching Error"
+          msg="Sorry, we encountered an error while trying to fetch your products. Please try again in a few minutes."
+        />
+      );
+    } else {
+      if (Array.isArray(products) && products.length > 0) {
+        return (
+          <S.ShoppingCards>
+            {products.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </S.ShoppingCards>
+        );
+      } else {
+        return (
+          <Error
+            title="No products"
+            msg="No products found for this category"
+          />
+        );
+      }
+    }
   };
 
   return (

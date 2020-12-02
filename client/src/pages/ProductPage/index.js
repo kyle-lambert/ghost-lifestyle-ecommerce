@@ -8,6 +8,7 @@ import useProduct from "../../hooks/useProduct";
 import { useShoppingCartContext } from "../../contexts/ShoppingCartContext";
 
 import ImageSpacer from "../../components/ImageSpacer";
+import Image from "../../components/Image";
 import HeroContent from "../../components/HeroContent";
 import ProductForm from "../../components/ProductForm";
 import ProductDetails from "../../components/ProductDetails";
@@ -89,12 +90,11 @@ function ProductPage({ match }) {
                 </HeroContent>
               </motion.div>
               <div className="picture">
-                {formFlavour && (
-                  <ImageSpacer
-                    src={formFlavour.image.formats.medium.url}
-                    alt={product.name}
-                  />
-                )}
+                <ImageSpacer>
+                  {formFlavour && formFlavour.image.url && (
+                    <Image src={formFlavour.image.url} alt={product.name} />
+                  )}
+                </ImageSpacer>
               </div>
             </S.HeroInner>
           </S.HeroSection>

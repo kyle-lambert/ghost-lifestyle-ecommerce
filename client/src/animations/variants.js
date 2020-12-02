@@ -15,14 +15,14 @@ export const cartSlideInFromRight = {
   initial: {
     x: "100%",
     transition: {
-      duration: 0.3,
+      duration: 0.2,
       ease: "easeOut",
     },
   },
   animate: {
     x: 0,
     transition: {
-      duration: 0.5,
+      duration: 0.3,
       ease: "easeOut",
     },
   },
@@ -37,8 +37,8 @@ export const fadeInUp = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: 0.4,
-      duration: 0.6,
+      delay: 0.3,
+      duration: 0.3,
       ease: "easeOut",
     },
   },
@@ -51,7 +51,7 @@ export const fadeInCard = {
   animate: {
     opacity: 1,
     transition: {
-      duration: 0.3,
+      duration: 0.2,
     },
   },
 };

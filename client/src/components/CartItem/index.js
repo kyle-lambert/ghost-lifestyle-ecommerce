@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import * as S from "./StyledCartItem.js";
 
 import ImageSpacer from "../ImageSpacer";
+import Image from "../Image";
 
 function CartItem({ cartItem, handleRemoveFromCart, closeMenu }) {
   const {
@@ -18,14 +19,13 @@ function CartItem({ cartItem, handleRemoveFromCart, closeMenu }) {
   return (
     <S.Container>
       <S.ImageWrapper>
-        {flavour && (
-          <Link to={`/products/${product.slug}`} onClick={() => closeMenu()}>
-            <ImageSpacer
-              src={flavour.image.formats.small.url}
-              alt={product.name}
-            />
-          </Link>
-        )}
+        <Link to={`/products/${product.slug}`} onClick={() => closeMenu()}>
+          <ImageSpacer>
+            {flavour && flavour.image.url && (
+              <Image src={flavour.image.url} alt={product.name} />
+            )}
+          </ImageSpacer>
+        </Link>
       </S.ImageWrapper>
       <S.ContentWrapper>
         <Link to={`/products/${product.slug}`} onClick={() => closeMenu()}>

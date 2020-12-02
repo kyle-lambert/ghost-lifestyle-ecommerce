@@ -2,6 +2,7 @@ import React from "react";
 import * as S from "./StyledProductCard.js";
 
 import ImageSpacer from "../ImageSpacer";
+import Image from "../Image";
 import Heading from "../Heading";
 import FavoriteToggle from "../FavoriteToggle";
 
@@ -12,10 +13,11 @@ function ProductCard({ product }) {
     <S.Wrapper initial="initial" animate="animate" variants={fadeInCard}>
       <S.Card to={`/products/${product.slug}`}>
         <S.ImageWrapper>
-          <ImageSpacer
-            src={product.flavours[0].image.formats.small.url}
-            alt={product.name}
-          />
+          <ImageSpacer>
+            {product.flavours[0] && product.flavours[0].image.url && (
+              <Image src={product.flavours[0].image.url} alt={product.name} />
+            )}
+          </ImageSpacer>
         </S.ImageWrapper>
         <S.Content>
           <Heading h4>{product.name}</Heading>
