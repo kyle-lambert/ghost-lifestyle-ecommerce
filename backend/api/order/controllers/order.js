@@ -5,6 +5,7 @@ const stripe = require("stripe")(
 );
 
 const YOUR_DOMAIN = "http://localhost:3000/checkout";
+
 /**
  * Read the documentation (https://strapi.io/documentation/v3.x/concepts/controllers.html#core-controllers)
  * to customize this controller
@@ -17,12 +18,14 @@ module.exports = module.exports = {
       const lineItems = [];
 
       shoppingCart.forEach((item) => {
+        const image = item.options.flavour.image.formats.small.url || null;
         lineItems.push({
           price_data: {
             currency: "aud",
             product_data: {
               name: item.product.name,
               description: `Flavour: ${item.options.flavour.name}`,
+              images: [image],
             },
             unit_amount: item.product.price * 100,
           },
@@ -39,8 +42,8 @@ module.exports = module.exports = {
       line_items: [...lineItems],
       mode: "payment",
 
-      success_url: `${YOUR_DOMAIN}?success=true`,
-      cancel_url: `${YOUR_DOMAIN}?canceled=true`,
+      success_url: `${process.env.CLIENT_BASE_URL}/checkout?success=true`,
+      cancel_url: `${process.env.CLIENT_BASE_URL}/checkout?canceled=true`,
     });
 
     return { id: session.id };
