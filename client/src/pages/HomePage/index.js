@@ -4,12 +4,24 @@ import { Link } from "react-router-dom";
 import * as S from "./StyledHomePage.js";
 
 import ImageSpacer from "../../components/ImageSpacer";
+import Image from "../../components/Image";
 import HeroContent from "../../components/HeroContent";
 import Button from "../../components/Button";
 import CategoryCard from "../../components/CategoryCard";
 
 import { homeCategories, homeHeroProduct as product } from "../../data";
-import { fadeInUp } from "../../animations/variants";
+
+const contentVariant = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+    transition: {
+      duration: 0.2,
+    },
+  },
+};
 
 function HomePage(props) {
   React.useEffect(() => {
@@ -24,7 +36,7 @@ function HomePage(props) {
           <motion.div
             initial="initial"
             animate="animate"
-            variants={fadeInUp}
+            variants={contentVariant}
             className="content">
             <HeroContent product={product}>
               <Link to={`/products/${product.slug}`}>
@@ -33,10 +45,11 @@ function HomePage(props) {
             </HeroContent>
           </motion.div>
           <div className="picture">
-            <ImageSpacer
-              src={product.flavours[0].image.formats.medium.url}
-              alt={product.name}
-            />
+            <ImageSpacer>
+              {product.flavours[0] && product.flavours[0].image.url && (
+                <Image src={product.flavours[0].image.url} alt={product.name} />
+              )}
+            </ImageSpacer>
           </div>
         </S.HeroInner>
       </S.HeroSection>

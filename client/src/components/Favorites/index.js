@@ -8,7 +8,35 @@ import Topbar from "../Topbar";
 import FavoritesItem from "../FavoritesItem";
 import Banner from "../Banner";
 
-import { cartBackdrop, cartSlideInFromRight } from "../../animations/variants";
+const backdropVariant = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 0.8,
+    transition: {
+      duration: 0.2,
+      ease: "easeOut",
+    },
+  },
+};
+
+const menuVariant = {
+  initial: {
+    x: "100%",
+    transition: {
+      duration: 0.2,
+      ease: "easeOut",
+    },
+  },
+  animate: {
+    x: 0,
+    transition: {
+      duration: 0.2,
+      ease: "easeOut",
+    },
+  },
+};
 
 function Favorites({ closeMenu }) {
   const { favorites, removeFavorite } = useFavoritesContext();
@@ -26,13 +54,13 @@ function Favorites({ closeMenu }) {
         initial="initial"
         animate="animate"
         exit="initial"
-        variants={cartBackdrop}
+        variants={backdropVariant}
         className="backdrop"></motion.span>
       <S.Favorites
         initial="initial"
         animate="animate"
         exit="initial"
-        variants={cartSlideInFromRight}>
+        variants={menuVariant}>
         <Topbar closeMenu={closeMenu} favorites />
         <Banner cart />
         <S.List>

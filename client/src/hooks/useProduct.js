@@ -80,7 +80,6 @@ function useProduct() {
     dispatch,
   ] = React.useReducer(productReducer, initialState);
 
-  // Fetch new product when slug is updated
   React.useEffect(() => {
     const CancelToken = axios.CancelToken;
     const source = CancelToken.source();
@@ -120,7 +119,6 @@ function useProduct() {
     };
   }, [slug, dispatch]);
 
-  // Initialise flavour if a product exists
   React.useEffect(() => {
     if (product) {
       const { flavours } = product;

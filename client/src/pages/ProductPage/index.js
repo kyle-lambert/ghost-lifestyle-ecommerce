@@ -2,8 +2,6 @@ import React from "react";
 import * as S from "./StyledProductPage.js";
 import { motion } from "framer-motion";
 
-import { fadeInUp } from "../../animations/variants";
-
 import useProduct from "../../hooks/useProduct";
 import { useShoppingCartContext } from "../../contexts/ShoppingCartContext";
 
@@ -14,6 +12,18 @@ import ProductForm from "../../components/ProductForm";
 import ProductDetails from "../../components/ProductDetails";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import Error from "../../components/Error";
+
+const contentVariant = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+    transition: {
+      duration: 0.2,
+    },
+  },
+};
 
 function ProductPage({ match }) {
   const slug = match.params.slug;
@@ -75,7 +85,7 @@ function ProductPage({ match }) {
               <motion.div
                 initial="initial"
                 animate="animate"
-                variants={fadeInUp}
+                variants={contentVariant}
                 className="content">
                 <HeroContent product={product}>
                   <ProductForm

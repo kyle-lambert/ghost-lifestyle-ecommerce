@@ -6,11 +6,21 @@ import Image from "../Image";
 import Heading from "../Heading";
 import FavoriteToggle from "../FavoriteToggle";
 
-import { fadeInCard } from "../../animations/variants";
+const cardVariant = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+    transition: {
+      duration: 0.2,
+    },
+  },
+};
 
 function ProductCard({ product }) {
   return (
-    <S.Wrapper initial="initial" animate="animate" variants={fadeInCard}>
+    <S.Wrapper initial="initial" animate="animate" variants={cardVariant}>
       <S.Card to={`/products/${product.slug}`}>
         <S.ImageWrapper>
           <ImageSpacer>

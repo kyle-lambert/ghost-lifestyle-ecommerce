@@ -69,7 +69,6 @@ function useShopping() {
     dispatch,
   ] = React.useReducer(shoppingReducer, initialState);
 
-  // Fetch new products everytime the active category changes
   React.useEffect(() => {
     const CancelToken = axios.CancelToken;
     const source = CancelToken.source();

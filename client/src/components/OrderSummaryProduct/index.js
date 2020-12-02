@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import * as S from "./StyledOrderSummaryProduct";
 
 import ImageSpacer from "../../components/ImageSpacer";
+import Image from "../../components/Image";
 
 function OrderSummaryProduct({ checkoutItem, removeFromCart }) {
   const {
@@ -18,14 +19,16 @@ function OrderSummaryProduct({ checkoutItem, removeFromCart }) {
   return (
     <S.Container>
       <S.ImageWrapper>
-        {flavour && (
-          <Link to={`/products/${product.slug}`}>
-            <ImageSpacer
-              src={flavour.image.formats.small.url}
-              alt={product.name}
-            />
-          </Link>
-        )}
+        <Link to={`/products/${product.slug}`}>
+          <ImageSpacer>
+            {flavour && flavour.image.formats.thumbnail.url && (
+              <Image
+                src={flavour.image.formats.thumbnail.url}
+                alt={product.name}
+              />
+            )}
+          </ImageSpacer>
+        </Link>
       </S.ImageWrapper>
       <S.ContentWrapper>
         <Link to={`/products/${product.slug}`}>

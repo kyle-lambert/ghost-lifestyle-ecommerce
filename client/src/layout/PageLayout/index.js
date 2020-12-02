@@ -20,9 +20,9 @@ const pageVariants = {
 
 function PageLayout({ children }) {
   return (
-    <motion.main initial="initial" animate="animate" variants={pageVariants}>
+    <motion.div initial="initial" animate="animate" variants={pageVariants}>
       {children}
-    </motion.main>
+    </motion.div>
   );
 }
 

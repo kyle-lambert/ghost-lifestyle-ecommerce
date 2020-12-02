@@ -10,7 +10,17 @@ import PageLayout from "../../layout/PageLayout";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import Error from "../../components/Error";
 
-import { fadeInUp } from "../../animations/variants";
+const contentVariant = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+    transition: {
+      duration: 0.2,
+    },
+  },
+};
 
 function ShoppingPage({ location, history }) {
   const {
@@ -80,7 +90,7 @@ function ShoppingPage({ location, history }) {
           <S.ShoppingFilter
             initial="initial"
             animate="animate"
-            variants={fadeInUp}>
+            variants={contentVariant}>
             <Heading h4>
               Filter
               <br />

@@ -47,7 +47,6 @@ function ShoppingCartReducer(state, action) {
 function ShoppingCartProvider({ children }) {
   const [state, dispatch] = React.useReducer(ShoppingCartReducer, initialState);
 
-  // Check for items in local storage and initialise state shopping cart
   React.useEffect(() => {
     const initialiseShoppingCartStorage = () => {
       const items = window.localStorage.getItem("shoppingCart");
@@ -61,7 +60,6 @@ function ShoppingCartProvider({ children }) {
     initialiseShoppingCartStorage();
   }, []);
 
-  // Update total amount when ShoppingCart changes
   React.useEffect(() => {
     const getTotal = () => {
       return state.shoppingCart.reduce((acc, cur) => {
@@ -72,7 +70,6 @@ function ShoppingCartProvider({ children }) {
     dispatch(creator(types.SET_TOTAL, getTotal()));
   }, [state.shoppingCart]);
 
-  // Sync shopping cart changes with local storage
   React.useEffect(() => {
     window.localStorage.setItem(
       "shoppingCart",

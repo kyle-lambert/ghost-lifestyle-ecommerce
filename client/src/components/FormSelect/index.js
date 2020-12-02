@@ -3,7 +3,7 @@ import * as S from "./StyledFormSelect.js";
 
 import Icon from "../../components/Icon";
 
-function FormSelect({label, children}) {
+function FormSelect({ label, children }) {
   return (
     <>
       <S.Label>{label}</S.Label>

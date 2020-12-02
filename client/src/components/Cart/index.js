@@ -10,7 +10,35 @@ import Topbar from "../Topbar";
 import Banner from "../Banner";
 import CartItem from "../CartItem";
 
-import { cartBackdrop, cartSlideInFromRight } from "../../animations/variants";
+const backdropVariant = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 0.8,
+    transition: {
+      duration: 0.2,
+      ease: "easeOut",
+    },
+  },
+};
+
+const menuVariant = {
+  initial: {
+    x: "100%",
+    transition: {
+      duration: 0.2,
+      ease: "easeOut",
+    },
+  },
+  animate: {
+    x: 0,
+    transition: {
+      duration: 0.2,
+      ease: "easeOut",
+    },
+  },
+};
 
 function Cart({ closeMenu }) {
   const history = useHistory();
@@ -26,6 +54,7 @@ function Cart({ closeMenu }) {
       history.push("/checkout");
       closeMenu();
     } else {
+      closeMenu();
       addAlert({
         title: "Empty Shopping Cart",
         msg:
@@ -40,13 +69,13 @@ function Cart({ closeMenu }) {
         initial="initial"
         animate="animate"
         exit="initial"
-        variants={cartBackdrop}
+        variants={backdropVariant}
         className="backdrop"></motion.span>
       <S.Cart
         initial="initial"
         animate="animate"
         exit="initial"
-        variants={cartSlideInFromRight}>
+        variants={menuVariant}>
         <Topbar closeMenu={closeMenu} cart />
         <Banner cart />
         <S.List>
