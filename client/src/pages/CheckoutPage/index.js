@@ -5,7 +5,6 @@ import { useHistory } from "react-router-dom";
 import * as S from "./StyledCheckoutPage.js";
 import { loadStripe } from "@stripe/stripe-js";
 import { BASE_URL } from "../../data/api";
-import { fadeInUp } from "../../animations/variants";
 
 import Heading from "../../components/Heading";
 import CheckoutForm from "../../components/CheckoutForm";
@@ -17,6 +16,18 @@ import { useAlertContext } from "../../contexts/AlertContext";
 const stripePromise = loadStripe(
   "pk_test_51Hlmr7JNvmgYa7E8ANymBD1JTNt9dPQpDLlmxOhvBWTNHTk6UhQsP6BoQZDahOMBg7Tj2sjQjhUSuOq1wOPWXPN600hXizb5YJ"
 );
+
+const contentVariant = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+    transition: {
+      duration: 0.2,
+    },
+  },
+};
 
 function CheckoutPage(props) {
   const {
@@ -88,7 +99,10 @@ function CheckoutPage(props) {
 
   return (
     <S.CheckoutSection>
-      <S.ContactDetails initial="initial" animate="animate" variants={fadeInUp}>
+      <S.ContactDetails
+        initial="initial"
+        animate="animate"
+        variants={contentVariant}>
         <Heading h3>
           Shipping <br />
           Details
