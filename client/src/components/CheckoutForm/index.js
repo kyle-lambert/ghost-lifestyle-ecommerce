@@ -112,7 +112,7 @@ function CheckoutForm({ continueToPayment }) {
       </div>
       <div className="submit">
         <S.PurchaseButton onClick={handleClick}>
-          <span className="span">Continue to Payment</span>
+          <span className="span">Continue to Stripe Payments</span>
         </S.PurchaseButton>
       </div>
     </S.Form>

@@ -17,9 +17,13 @@ function FavoritesItem({ product, handleRemoveFavorite, closeMenu }) {
       <S.ImageWrapper>
         <Link to={`/products/${product.slug}`} onClick={() => closeMenu()}>
           <ImageSpacer>
-            {product.flavours[0] && product.flavours[0].image.url && (
-              <Image src={product.flavours[0].image.url} alt={product.name} />
-            )}
+            {product.flavours[0] &&
+              product.flavours[0].image.formats.thumbnail.url && (
+                <Image
+                  src={product.flavours[0].image.formats.thumbnail.url}
+                  alt={product.name}
+                />
+              )}
           </ImageSpacer>
         </Link>
       </S.ImageWrapper>

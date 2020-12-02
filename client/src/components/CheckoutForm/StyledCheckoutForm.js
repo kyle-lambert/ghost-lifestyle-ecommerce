@@ -76,7 +76,7 @@ export const PurchaseButton = styled.button`
     left: 0;
     right: 0;
     bottom: 0;
-    background: ${colors.red};
+    background: ${colors.blue};
     transform: scaleX(0);
     transition: transform 250ms ease-out;
     transform-origin: left;

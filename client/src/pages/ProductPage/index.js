@@ -101,8 +101,11 @@ function ProductPage({ match }) {
               </motion.div>
               <div className="picture">
                 <ImageSpacer>
-                  {formFlavour && formFlavour.image.url && (
-                    <Image src={formFlavour.image.url} alt={product.name} />
+                  {formFlavour && formFlavour.image.formats.small.url && (
+                    <Image
+                      src={formFlavour.image.formats.small.url}
+                      alt={product.name}
+                    />
                   )}
                 </ImageSpacer>
               </div>

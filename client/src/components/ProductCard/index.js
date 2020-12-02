@@ -24,9 +24,13 @@ function ProductCard({ product }) {
       <S.Card to={`/products/${product.slug}`}>
         <S.ImageWrapper>
           <ImageSpacer>
-            {product.flavours[0] && product.flavours[0].image.url && (
-              <Image src={product.flavours[0].image.url} alt={product.name} />
-            )}
+            {product.flavours[0] &&
+              product.flavours[0].image.formats.small.url && (
+                <Image
+                  src={product.flavours[0].image.formats.small.url}
+                  alt={product.name}
+                />
+              )}
           </ImageSpacer>
         </S.ImageWrapper>
         <S.Content>

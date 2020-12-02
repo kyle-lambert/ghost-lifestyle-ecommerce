@@ -66,31 +66,38 @@ function CheckoutPage(props) {
 
   const continueToPayment = async () => {
     if (shoppingCart.length > 0) {
-      const stripe = await stripePromise;
-      const session = await axios({
-        method: "post",
-        url: "/orders",
-        baseURL: BASE_URL,
-        data: {
-          shoppingCart: [...shoppingCart],
-          shippingDetails: {},
-        },
-      });
+      try {
+        const stripe = await stripePromise;
+        const session = await axios({
+          method: "post",
+          url: "/orders",
+          baseURL: BASE_URL,
+          data: {
+            shoppingCart: [...shoppingCart],
+            shippingDetails: {},
+          },
+        });
 
-      const result = await stripe.redirectToCheckout({
-        sessionId: session.data.id,
-      });
+        const result = await stripe.redirectToCheckout({
+          sessionId: session.data.id,
+        });
 
-      if (result.error) {
+        if (result.error) {
+          addAlert({
+            title: "Redirect failed",
+            msg: "We we're unable to redirect you to Stripe payments.",
+          });
+        }
+      } catch (error) {
         addAlert({
-          title: "Order Failed",
+          title: "Order failed",
           msg:
             "Sorry, we encountered an error while trying to process your order, please try again in a few minutes.",
         });
       }
     } else {
       addAlert({
-        title: "Empty Shopping Cart",
+        title: "Empty shopping cart",
         msg:
           "Your shopping cart is empty, add some products before proceeding to checkout.",
       });

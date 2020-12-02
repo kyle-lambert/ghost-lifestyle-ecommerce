@@ -4,8 +4,6 @@ const stripe = require("stripe")(
   "sk_test_51Hlmr7JNvmgYa7E8O5vHj5LIQQO2k9eN4qAEmNZjovwIVNzd0tz3vIxNrzVa4PSb6v3osizgBJ0dypqW57TNEWy200q7lYpelX"
 );
 
-const YOUR_DOMAIN = "http://localhost:3000/checkout";
-
 /**
  * Read the documentation (https://strapi.io/documentation/v3.x/concepts/controllers.html#core-controllers)
  * to customize this controller
