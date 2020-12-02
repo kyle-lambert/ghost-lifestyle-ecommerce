@@ -6,10 +6,11 @@ export const Wrapper = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  min-height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 15px;
+  margin: auto;
 `;
 
 export const Inner = styled(motion.div)`

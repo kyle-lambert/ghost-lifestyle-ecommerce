@@ -7,10 +7,12 @@ export const LoadingSpinner = styled.div`
   left: 50%;
   z-index: 2099;
   transform: translate(-50%, -50%);
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 40px 0;
+  padding: 40px 0;
+  margin: auto;
 
   .span {
     display: block;

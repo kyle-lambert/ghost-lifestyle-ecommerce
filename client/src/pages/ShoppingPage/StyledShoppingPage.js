@@ -75,6 +75,8 @@ export const Button = styled.button.attrs((props) => ({
 
 export const ShoppingProductsWrapper = styled.div`
   position: relative;
+  min-height: 50vh;
+
   @media (min-width: 768px) {
     grid-column: 2 / 3;
   }
