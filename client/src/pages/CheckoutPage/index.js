@@ -13,9 +13,7 @@ import OrderSummary from "../../components/OrderSummary";
 import { useShoppingCartContext } from "../../contexts/ShoppingCartContext";
 import { useAlertContext } from "../../contexts/AlertContext";
 
-const stripePromise = loadStripe(
-  "pk_test_51Hlmr7JNvmgYa7E8ANymBD1JTNt9dPQpDLlmxOhvBWTNHTk6UhQsP6BoQZDahOMBg7Tj2sjQjhUSuOq1wOPWXPN600hXizb5YJ"
-);
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_CLIENT_KEY);
 
 const contentVariant = {
   initial: {
