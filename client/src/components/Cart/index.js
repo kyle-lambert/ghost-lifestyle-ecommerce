@@ -57,8 +57,7 @@ function Cart({ closeMenu }) {
       closeMenu();
       addAlert({
         title: "Empty Shopping Cart",
-        msg:
-          "Your shopping cart is empty, add some products before proceeding to checkout.",
+        msg: "Your shopping cart is empty, add some products before proceeding to checkout.",
       });
     }
   };
@@ -66,16 +65,12 @@ function Cart({ closeMenu }) {
   return (
     <S.Wrapper>
       <motion.span
+        key="span"
         initial="initial"
         animate="animate"
-        exit="initial"
         variants={backdropVariant}
         className="backdrop"></motion.span>
-      <S.Cart
-        initial="initial"
-        animate="animate"
-        exit="initial"
-        variants={menuVariant}>
+      <S.Cart key="cart" initial="initial" animate="animate" variants={menuVariant}>
         <Topbar closeMenu={closeMenu} cart />
         <Banner cart />
         <S.List>

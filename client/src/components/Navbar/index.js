@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { AnimatePresence } from "framer-motion";
 import * as S from "./StyledNavbar.js";
 
 import { useShoppingCartContext } from "../../contexts/ShoppingCartContext";
@@ -27,30 +26,18 @@ function Navbar(props) {
       <S.List>
         <li className="item">
           <S.Button onClick={() => setShowFavorites(true)}>
-            {favorites.length > 0 ? (
-              <Icon favoriteSolid />
-            ) : (
-              <Icon favoriteOutline />
-            )}
+            {favorites.length > 0 ? <Icon favoriteSolid /> : <Icon favoriteOutline />}
           </S.Button>
         </li>
         <li className="item">
           <S.Button onClick={() => setShowCart(true)}>
             <Icon cart />
-            {shoppingCart.length > 0 && (
-              <span className="span">{shoppingCart.length}</span>
-            )}
+            {shoppingCart.length > 0 && <span className="span">{shoppingCart.length}</span>}
           </S.Button>
         </li>
       </S.List>
-      <AnimatePresence exitBeforeEnter>
-        {showCart && <Cart closeMenu={() => setShowCart(false)} />}
-      </AnimatePresence>
-      <AnimatePresence exitBeforeEnter>
-        {showFavorites && (
-          <Favorites closeMenu={() => setShowFavorites(false)} />
-        )}
-      </AnimatePresence>
+      {showCart && <Cart closeMenu={() => setShowCart(false)} />}
+      {showFavorites && <Favorites closeMenu={() => setShowFavorites(false)} />}
     </S.Header>
   );
 }
