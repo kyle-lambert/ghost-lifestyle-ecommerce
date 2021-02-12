@@ -9,8 +9,12 @@ export const Header = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 3.6rem;
+  padding: 0 2rem;
   box-shadow: 0 2px 6px rgba(40, 40, 40, 0.1);
+
+  @media (min-width: 375px) {
+    padding: 0 3rem;
+  }
 `;
 
 export const Nav = styled.nav`

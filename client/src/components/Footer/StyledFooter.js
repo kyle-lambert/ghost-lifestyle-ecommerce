@@ -5,7 +5,11 @@ import { Link } from "react-router-dom";
 export const Footer = styled.footer`
   position: relative;
   background-color: ${colors.black};
-  padding: 4.6rem 3.6rem;
+  padding: 3rem 2rem;
+
+  @media (min-width: 375px) {
+    padding: 4rem 3rem;
+  }
 
   .nav {
     display: flex;
