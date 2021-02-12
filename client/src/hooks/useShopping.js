@@ -16,18 +16,20 @@ function shoppingReducer(state, action) {
       return {
         ...state,
         products: [...action.payload],
+        productsLoading: false,
       };
     }
     case types.GET_PRODUCTS_LOADING: {
       return {
         ...state,
-        productsLoading: action.payload,
+        productsLoading: true,
       };
     }
     case types.GET_PRODUCTS_FAILURE: {
       return {
         ...state,
-        productsError: action.payload,
+        productsLoading: false,
+        productsError: true,
       };
     }
     case types.SET_ACTIVE_CATEGORY: {
@@ -40,7 +42,6 @@ function shoppingReducer(state, action) {
       return {
         ...state,
         products: [],
-        productsLoading: true,
         productsError: false,
       };
     }
@@ -52,7 +53,7 @@ function shoppingReducer(state, action) {
 const initialState = {
   activeCategory: "",
   products: [],
-  productsLoading: true,
+  productsLoading: false,
   productsError: false,
 };
 
@@ -64,10 +65,10 @@ function creator(type, payload) {
 }
 
 function useShopping() {
-  const [
-    { products, productsLoading, productsError, activeCategory },
-    dispatch,
-  ] = React.useReducer(shoppingReducer, initialState);
+  const [{ products, productsLoading, productsError, activeCategory }, dispatch] = React.useReducer(
+    shoppingReducer,
+    initialState
+  );
 
   React.useEffect(() => {
     const CancelToken = axios.CancelToken;
@@ -76,7 +77,7 @@ function useShopping() {
     dispatch(creator(types.RESET_PRODUCTS));
 
     const fetchAllProducts = () => {
-      dispatch(creator(types.GET_PRODUCTS_LOADING, true));
+      dispatch(creator(types.GET_PRODUCTS_LOADING));
 
       const config = {
         method: "get",
@@ -90,18 +91,21 @@ function useShopping() {
           if (Array.isArray(data.data) && data.data.length > 0) {
             dispatch(creator(types.GET_PRODUCTS_SUCCESS, data.data));
           } else {
-            console.log("No products found for this category.");
+            throw new Error("No products found for this category.");
           }
-          dispatch(creator(types.GET_PRODUCTS_LOADING, false));
         })
-        .catch(() => {
-          dispatch(creator(types.GET_PRODUCTS_FAILURE, true));
-          dispatch(creator(types.GET_PRODUCTS_LOADING, false));
+        .catch((err) => {
+          if (axios.isCancel(err)) {
+            console.log("Axios request cancelled");
+            dispatch(creator(types.RESET_PRODUCTS));
+          } else {
+            dispatch(creator(types.GET_PRODUCTS_FAILURE));
+          }
         });
     };
 
     const fetchProductsByCategory = () => {
-      dispatch(creator(types.GET_PRODUCTS_LOADING, true));
+      dispatch(creator(types.GET_PRODUCTS_LOADING));
 
       const config = {
         method: "get",
@@ -116,17 +120,18 @@ function useShopping() {
       axios(config)
         .then((data) => {
           if (Array.isArray(data.data) && data.data.length === 1) {
-            dispatch(
-              creator(types.GET_PRODUCTS_SUCCESS, data.data[0].supplements)
-            );
+            dispatch(creator(types.GET_PRODUCTS_SUCCESS, data.data[0].supplements));
           } else {
-            console.log("No products found for this category.");
+            throw new Error("No products found for this category.");
           }
-          dispatch(creator(types.GET_PRODUCTS_LOADING, false));
         })
-        .catch(() => {
-          dispatch(creator(types.GET_PRODUCTS_FAILURE, true));
-          dispatch(creator(types.GET_PRODUCTS_LOADING, false));
+        .catch((err) => {
+          if (axios.isCancel(err)) {
+            console.log("Axios request cancelled");
+            dispatch(creator(types.RESET_PRODUCTS));
+          } else {
+            dispatch(creator(types.GET_PRODUCTS_FAILURE));
+          }
         });
     };
 

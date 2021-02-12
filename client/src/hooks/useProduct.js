@@ -12,24 +12,35 @@ const types = {
   RESET_REDUCER: "RESET_REDUCER",
 };
 
+const initialState = {
+  product: null,
+  loading: false,
+  error: false,
+  slug: "",
+  formFlavour: null,
+  formQty: 1,
+};
+
 function productReducer(state, action) {
   switch (action.type) {
     case types.GET_PRODUCT_SUCCESS: {
       return {
         ...state,
+        loading: false,
         product: action.payload,
       };
     }
     case types.GET_PRODUCT_FAILURE: {
       return {
         ...state,
-        error: action.payload,
+        loading: false,
+        error: true,
       };
     }
     case types.GET_PRODUCT_LOADING: {
       return {
         ...state,
-        loading: action.payload,
+        loading: true,
       };
     }
     case types.SET_SLUG: {
@@ -51,21 +62,12 @@ function productReducer(state, action) {
       };
     }
     case types.RESET_REDUCER: {
-      return action.payload;
+      return initialState;
     }
     default:
       return state;
   }
 }
-
-const initialState = {
-  product: null,
-  loading: true,
-  error: false,
-  slug: "",
-  formFlavour: null,
-  formQty: 1,
-};
 
 function creator(type, payload) {
   return {
@@ -75,17 +77,18 @@ function creator(type, payload) {
 }
 
 function useProduct() {
-  const [
-    { error, loading, product, slug, formFlavour, formQty },
-    dispatch,
-  ] = React.useReducer(productReducer, initialState);
+  const [{ error, loading, product, slug, formFlavour, formQty }, dispatch] = React.useReducer(
+    productReducer,
+    initialState
+  );
 
   React.useEffect(() => {
     const CancelToken = axios.CancelToken;
     const source = CancelToken.source();
 
     const fetchProductBySlug = () => {
-      dispatch(creator(types.GET_PRODUCT_LOADING, true));
+      // dispatch(creator(types.RESET_REDUCER));
+      dispatch(creator(types.GET_PRODUCT_LOADING));
 
       const config = {
         method: "get",
@@ -100,13 +103,15 @@ function useProduct() {
           if (Array.isArray(data.data) && data.data.length === 1) {
             dispatch(creator(types.GET_PRODUCT_SUCCESS, data.data[0]));
           } else {
-            console.log("Product does not exist!");
+            throw new Error("Product does not exist");
           }
-          dispatch(creator(types.GET_PRODUCT_LOADING, false));
         })
-        .catch(() => {
-          dispatch(creator(types.GET_PRODUCT_FAILURE, true));
-          dispatch(creator(types.GET_PRODUCT_LOADING, false));
+        .catch((err) => {
+          if (axios.isCancel(err)) {
+            console.log("Axios request cancelled");
+          } else {
+            dispatch(creator(types.GET_PRODUCT_FAILURE));
+          }
         });
     };
 
