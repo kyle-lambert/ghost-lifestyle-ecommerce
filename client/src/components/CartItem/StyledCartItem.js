@@ -9,12 +9,11 @@ export const Container = styled.li`
 `;
 
 export const ImageWrapper = styled.div`
-  display: none;
+  flex-basis: 100px;
+  margin: auto;
 
   @media (min-width: 768px) {
-    display: initial;
     flex-basis: 115px;
-    margin: auto;
   }
 `;
 

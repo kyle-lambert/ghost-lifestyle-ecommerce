@@ -2,8 +2,12 @@ import styled from "styled-components";
 import colors from "../../styles/colors";
 
 export const ImageWrapper = styled.div`
-  flex-basis: 105px;
+  flex-basis: 100px;
   margin: auto;
+
+  @media (min-width: 768px) {
+    flex-basis: 115px;
+  }
 `;
 
 export const ContentWrapper = styled.div`
