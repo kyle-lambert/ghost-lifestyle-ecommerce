@@ -4,8 +4,17 @@ import colors from "../../styles/colors";
 
 export const LinkWrapper = styled(Link)`
   position: relative;
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: ${(props) => props.color};
+  margin: 0 auto;
+  width: 100%;
+  min-height: 200px;
+
+  @media (min-width: 768px) {
+    min-height: 300px;
+  }
 
   &::after {
     content: "";
@@ -20,20 +29,16 @@ export const LinkWrapper = styled(Link)`
   }
 
   .name {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: relative;
     font-family: "Montserrat", sans-serif;
     font-weight: 900;
     font-size: 3.6rem;
-    color: ${colors.white};
+    color: ${colors.mediumGrey};
     text-transform: uppercase;
     letter-spacing: 0.5px;
     text-align: center;
-    z-index: 5;
-    opacity: 0;
-    transition: opacity 150ms ease;
+    transition: color 150ms ease, transform 150ms ease;
+    z-index: 10;
   }
 
   &:hover::after {
@@ -42,12 +47,7 @@ export const LinkWrapper = styled(Link)`
   }
 
   &:hover .name {
-    opacity: 1;
-    transition: opacity 150ms ease;
+    color: ${colors.white};
+    transform: scale(1.1);
   }
-`;
-
-export const ImageWrapper = styled.div`
-  margin: 0 auto;
-  max-width: 300px;
 `;
