@@ -3,11 +3,7 @@ import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import * as S from "./StyledFooter.js";
 
-import {
-  footerShopRoutes,
-  footerInformationRoutes,
-  footerSocialLinks,
-} from "../../data/";
+import { footerShopRoutes, footerInformationRoutes, footerSocialLinks } from "../../data/";
 
 import BrandLogo from "../BrandLogo";
 
@@ -35,7 +31,9 @@ function Footer(props) {
           <S.ListTitle>Socials</S.ListTitle>
           {footerSocialLinks.map((link) => (
             <li key={uuidv4()} className="item">
-              <S.Anchor href={link.href}>{link.name}</S.Anchor>
+              <S.Anchor href={link.href} target="_blank">
+                {link.name}
+              </S.Anchor>
             </li>
           ))}
         </S.List>

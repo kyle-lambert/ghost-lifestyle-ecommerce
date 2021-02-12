@@ -1,9 +1,8 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import colors from "../../styles/colors";
 
 export const DetailsContainer = styled.div`
-  border-radius: 3px;
-  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(40, 40, 40, 0.2);
 `;
 
 export const TabList = styled.ul`
@@ -36,25 +35,10 @@ export const TabButton = styled.button`
   }
 `;
 
-const leftStyles = css`
-  border-top-left-radius: none;
-  border-top-right-radius: 3px;
-`;
-
-const rightStyles = css`
-  border-top-left-radius: 3px;
-  border-top-right-radius: none;
-`;
-
 export const ContentBox = styled.div`
   min-height: 80vh;
   background-color: ${colors.mediumGrey};
   padding: 10%;
-
-  ${(props) => {
-    return props.left === true ? leftStyles : rightStyles;
-  }}
-
   @media (min-width: 768px) {
     padding: 5%;
   }

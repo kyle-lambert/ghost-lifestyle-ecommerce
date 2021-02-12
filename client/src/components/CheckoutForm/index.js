@@ -1,9 +1,12 @@
 import React from "react";
 import * as S from "./StyledCheckoutForm.js";
 
+import { useAlertContext } from "../../contexts/AlertContext";
+
 import FormInput from "../../components/FormInput";
 
 function CheckoutForm({ continueToPayment }) {
+  const { addAlert } = useAlertContext();
   const [state, setState] = React.useState({
     firstName: "",
     lastName: "",
@@ -31,6 +34,11 @@ function CheckoutForm({ continueToPayment }) {
     const stateArray = Object.values(state).map(([value]) => value);
     if (stateArray.every((cur) => cur)) {
       continueToPayment();
+    } else {
+      addAlert({
+        title: "Shipping details",
+        msg: "Please fill out your shipping information before proceeding to checkout.",
+      });
     }
     return;
   };
@@ -44,7 +52,6 @@ function CheckoutForm({ continueToPayment }) {
           value={state.firstName}
           handleChange={handleChange}
           placeholder="Mike"
-          data-error={state.firstNameError}
         />
       </div>
       <div className="lname">

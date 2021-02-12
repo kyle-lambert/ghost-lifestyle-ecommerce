@@ -33,10 +33,7 @@ function App(props) {
           <Route exact path="/products/:slug" component={ProductPage} />
           <Route exact path="/checkout" component={CheckoutPage} />
           <Route>
-            <Error
-              title="404 Not Found"
-              msg="Sorry, the page you're looking for doesn't exist."
-            />
+            <Error title="404 Not Found" msg="Sorry, the page you're looking for doesn't exist." />
           </Route>
         </Switch>
       </S.Main>

@@ -15,16 +15,13 @@ export const Input = styled.input`
   color: ${colors.black};
   font-size: inherit;
   background-color: ${colors.mediumGrey};
+  border: 2px solid ${colors.mediumGrey};
+  border-color: ${(props) => (props.error ? colors.red : colors.lightGrey)};
   height: 55px;
   padding: 15px;
   width: 100%;
   outline: none;
   border-radius: 5px;
-  border: 2px solid ${colors.mediumGrey};
-
-  &[data-error="true"] {
-    border-color: ${colors.red};
-  }
 
   &:focus {
     border-color: ${colors.blue};

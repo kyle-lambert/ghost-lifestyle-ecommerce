@@ -12,9 +12,8 @@ export const Form = styled.form`
     "postalCode state"
     "city country"
     "submit submit";
-  column-gap: 15px;
+  column-gap: 10px;
   row-gap: 10px;
-  margin: 30px 0;
 
   .fname {
     grid-area: fname;
@@ -41,7 +40,7 @@ export const Form = styled.form`
     grid-area: country;
   }
   .submit {
-    margin-top: 50px;
+    margin-top: 3rem;
     grid-area: submit;
   }
 `;

@@ -20,7 +20,7 @@ export const Text = styled.p`
   margin-bottom: 1.5rem;
 
   @media (min-width: 768px) {
-    max-width: 80%;
+    max-width: 90%;
   }
 `;
 

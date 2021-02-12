@@ -1,11 +1,3 @@
-// Home category images
-import AminoAcids from "../assets/images/amino_acids_trio.png";
-import Gamer from "../assets/images/gamer_trio.png";
-import Greens from "../assets/images/greens_trio.png";
-import MuscleBuilder from "../assets/images/muscle_builder_trio.png";
-import PreWorkout from "../assets/images/pre-workout_trio.png";
-import Protein from "../assets/images/protein_trio.png";
-
 import colors from "../styles/colors";
 
 export const homeCategories = [
@@ -13,42 +5,36 @@ export const homeCategories = [
     id: 1,
     name: "Amino Acids",
     slug: "amino-acids",
-    imageSrc: AminoAcids,
     color: colors.red,
   },
   {
     id: 2,
     name: "Gamer",
     slug: "gamer",
-    imageSrc: Gamer,
     color: colors.navyblue,
   },
   {
     id: 3,
     name: "Greens",
     slug: "greens",
-    imageSrc: Greens,
     color: colors.aqua,
   },
   {
     id: 4,
     name: "Muscle Builder",
     slug: "muscle-builder",
-    imageSrc: MuscleBuilder,
     color: colors.yellow,
   },
   {
     id: 5,
     name: "Pre-Workout",
     slug: "pre-workout",
-    imageSrc: PreWorkout,
     color: colors.darkGrey,
   },
   {
     id: 6,
     name: "Protein",
     slug: "protein",
-    imageSrc: Protein,
     color: colors.blue,
   },
 ];
@@ -155,8 +141,7 @@ export const homeHeroProduct = {
         ext: ".png",
         mime: "image/png",
         size: 803.14,
-        url:
-          "https://ghost-ecommerce.s3.us-east-2.amazonaws.com/guava_berry_0d24a88a1f.png",
+        url: "https://ghost-ecommerce.s3.us-east-2.amazonaws.com/guava_berry_0d24a88a1f.png",
         previewUrl: null,
         provider: "aws-s3",
         provider_metadata: null,
@@ -214,19 +199,19 @@ export const homeHeroProduct = {
 export const footerShopRoutes = [
   {
     name: "Protein",
-    path: "/",
+    path: "/products?category=protein",
   },
   {
     name: "Pre-Workout",
-    path: "/",
+    path: "/products?category=pre-workout",
   },
   {
     name: "Amino Acids",
-    path: "/",
+    path: "/products?category=amino-acids",
   },
   {
-    name: "Fat Burner",
-    path: "/",
+    name: "Greens",
+    path: "/products?category=greens",
   },
 ];
 
@@ -252,18 +237,18 @@ export const footerInformationRoutes = [
 export const footerSocialLinks = [
   {
     name: "Instagram",
-    href: "#",
+    href: "https://www.instagram.com/ghostlifestyle",
   },
   {
     name: "Facebook",
-    href: "#",
+    href: "https://www.facebook.com/ghostlifestyle",
   },
   {
     name: "Twitter",
-    href: "#",
+    href: "https://twitter.com/GhostLifestyle",
   },
   {
     name: "Pinterest",
-    href: "#",
+    href: "https://www.pinterest.com.au/ghostlifestyle/_shop",
   },
 ];
