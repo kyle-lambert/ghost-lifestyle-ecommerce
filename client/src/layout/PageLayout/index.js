@@ -1,5 +1,6 @@
 import React from "react";
-import { motion } from "framer-motion";
+
+import * as S from "./StyledPageLayout.js";
 
 const pageVariants = {
   initial: {
@@ -20,9 +21,9 @@ const pageVariants = {
 
 function PageLayout({ children }) {
   return (
-    <motion.div initial="initial" animate="animate" variants={pageVariants}>
+    <S.Wrapper initial="initial" animate="animate" variants={pageVariants}>
       {children}
-    </motion.div>
+    </S.Wrapper>
   );
 }
 

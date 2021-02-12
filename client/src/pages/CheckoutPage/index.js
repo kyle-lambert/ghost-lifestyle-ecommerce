@@ -9,6 +9,7 @@ import { BASE_URL } from "../../data/api";
 import Heading from "../../components/Heading";
 import CheckoutForm from "../../components/CheckoutForm";
 import OrderSummary from "../../components/OrderSummary";
+import PageLayout from "../../layout/PageLayout";
 
 import { useShoppingCartContext } from "../../contexts/ShoppingCartContext";
 import { useAlertContext } from "../../contexts/AlertContext";
@@ -28,12 +29,7 @@ const contentVariant = {
 };
 
 function CheckoutPage(props) {
-  const {
-    shoppingCart,
-    removeFromCart,
-    total,
-    clearCart,
-  } = useShoppingCartContext();
+  const { shoppingCart, removeFromCart, total, clearCart } = useShoppingCartContext();
   const { addAlert } = useAlertContext();
   const history = useHistory();
 
@@ -49,15 +45,13 @@ function CheckoutPage(props) {
       clearCart();
       addAlert({
         title: "Order Completed",
-        msg:
-          "Your order has been submitted, we've sent the recipt to your email.",
+        msg: "Your order has been submitted, we've sent the recipt to your email.",
       });
     }
     if (query.get("canceled")) {
       addAlert({
         title: "Order was Canceled",
-        msg:
-          "Your cart is saved and will be available when you're ready to complete your order.",
+        msg: "Your cart is saved and will be available when you're ready to complete your order.",
       });
     }
   }, [history, clearCart, addAlert]);
@@ -96,35 +90,29 @@ function CheckoutPage(props) {
     } else {
       addAlert({
         title: "Empty shopping cart",
-        msg:
-          "Your shopping cart is empty, add some products before proceeding to checkout.",
+        msg: "Your shopping cart is empty, add some products before proceeding to checkout.",
       });
     }
   };
 
   return (
-    <S.CheckoutSection>
-      <S.ContactDetails
-        initial="initial"
-        animate="animate"
-        variants={contentVariant}>
-        <Heading h3>
-          Shipping <br />
-          Details
-        </Heading>
-        <CheckoutForm continueToPayment={continueToPayment} />
-      </S.ContactDetails>
-      <S.OrderSummary>
-        <Heading h3>
-          Order <br /> Summary
-        </Heading>
-        <OrderSummary
-          shoppingCart={shoppingCart}
-          removeFromCart={removeFromCart}
-          total={total}
-        />
-      </S.OrderSummary>
-    </S.CheckoutSection>
+    <PageLayout>
+      <S.CheckoutSection>
+        <S.ContactDetails initial="initial" animate="animate" variants={contentVariant}>
+          <Heading h3>
+            Shipping <br />
+            Details
+          </Heading>
+          <CheckoutForm continueToPayment={continueToPayment} />
+        </S.ContactDetails>
+        <S.OrderSummary>
+          <Heading h3>
+            Order <br /> Summary
+          </Heading>
+          <OrderSummary shoppingCart={shoppingCart} removeFromCart={removeFromCart} total={total} />
+        </S.OrderSummary>
+      </S.CheckoutSection>
+    </PageLayout>
   );
 }
 

@@ -32,33 +32,29 @@ function HomePage(props) {
   return (
     <>
       <S.HeroSection>
-        <S.HeroInner>
-          <motion.div
-            initial="initial"
-            animate="animate"
-            variants={contentVariant}
-            className="content">
-            <HeroContent product={product}>
-              <Link to={`/products/${product.slug}`}>
-                <Button>Shop Now</Button>
-              </Link>
-            </HeroContent>
-          </motion.div>
-          <div className="picture">
-            <ImageSpacer>
-              {product.flavours[0] && product.flavours[0].image.url && (
-                <Image src={product.flavours[0].image.url} alt={product.name} />
-              )}
-            </ImageSpacer>
-          </div>
-        </S.HeroInner>
+        <motion.div
+          initial="initial"
+          animate="animate"
+          variants={contentVariant}
+          className="content">
+          <HeroContent product={product}>
+            <Link to={`/products/${product.slug}`}>
+              <Button>Shop Now</Button>
+            </Link>
+          </HeroContent>
+        </motion.div>
+        <div className="picture">
+          <ImageSpacer>
+            {product.flavours[0] && product.flavours[0].image.url && (
+              <Image src={product.flavours[0].image.url} alt={product.name} />
+            )}
+          </ImageSpacer>
+        </div>
       </S.HeroSection>
       <S.SupplementSection>
-        <S.SupplementInner>
-          {homeCategories.map((c) => {
-            return <CategoryCard key={c.id} category={c} />;
-          })}
-        </S.SupplementInner>
+        {homeCategories.map((c) => {
+          return <CategoryCard key={c.id} category={c} />;
+        })}
       </S.SupplementSection>
     </>
   );

@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import useProduct from "../../hooks/useProduct";
 import { useShoppingCartContext } from "../../contexts/ShoppingCartContext";
 
+import PageLayout from "../../layout/PageLayout";
 import ImageSpacer from "../../components/ImageSpacer";
 import Image from "../../components/Image";
 import HeroContent from "../../components/HeroContent";
@@ -77,53 +78,41 @@ function ProductPage({ match }) {
       />
     );
   } else {
-    if (product) {
-      return (
-        <>
+    return product ? (
+      <PageLayout>
+        <S.Container>
           <S.HeroSection>
-            <S.HeroInner>
-              <motion.div
-                initial="initial"
-                animate="animate"
-                variants={contentVariant}
-                className="content">
-                <HeroContent product={product}>
-                  <ProductForm
-                    handleFlavourChange={handleFlavourChange}
-                    handleFormSubmit={handleFormSubmit}
-                    handleQtyChange={handleQtyChange}
-                    formFlavour={formFlavour}
-                    formQty={formQty}
-                    flavours={product.flavours}
-                    product={product}
-                  />
-                </HeroContent>
-              </motion.div>
-              <div className="picture">
-                <ImageSpacer>
-                  {formFlavour && formFlavour.image.formats.small.url && (
-                    <Image
-                      src={formFlavour.image.formats.small.url}
-                      alt={product.name}
-                    />
-                  )}
-                </ImageSpacer>
-              </div>
-            </S.HeroInner>
+            <motion.div
+              initial="initial"
+              animate="animate"
+              variants={contentVariant}
+              className="content">
+              <HeroContent product={product}>
+                <ProductForm
+                  handleFlavourChange={handleFlavourChange}
+                  handleFormSubmit={handleFormSubmit}
+                  handleQtyChange={handleQtyChange}
+                  formFlavour={formFlavour}
+                  formQty={formQty}
+                  flavours={product.flavours}
+                  product={product}
+                />
+              </HeroContent>
+            </motion.div>
+            <div className="picture">
+              <ImageSpacer>
+                {formFlavour && formFlavour.image.formats.small.url && (
+                  <Image src={formFlavour.image.formats.small.url} alt={product.name} />
+                )}
+              </ImageSpacer>
+            </div>
           </S.HeroSection>
-          <S.DetailsSection>
-            <ProductDetails product={product} />
-          </S.DetailsSection>
-        </>
-      );
-    } else {
-      return (
-        <Error
-          title="Error"
-          msg="Sorry, the product you're looking for doesn't exist"
-        />
-      );
-    }
+          <ProductDetails product={product} />
+        </S.Container>
+      </PageLayout>
+    ) : (
+      <Error title="Error" msg="Sorry, the product you're looking for doesn't exist" />
+    );
   }
 }
 

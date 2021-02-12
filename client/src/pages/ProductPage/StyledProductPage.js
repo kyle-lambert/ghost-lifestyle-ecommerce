@@ -1,11 +1,7 @@
 import styled from "styled-components";
 import colors from "../../styles/colors";
 
-export const HeroSection = styled.section`
-  position: relative;
-  display: flex;
-  align-items: center;
-
+export const Container = styled.div`
   &::after {
     content: "";
     position: absolute;
@@ -15,25 +11,26 @@ export const HeroSection = styled.section`
     left: 0;
     width: 100%;
     height: 100%;
-    clip-path: polygon(0 0, 100% 0, 100% 30rem, 0 15rem);
+    clip-path: polygon(0 0, 100% 0, 100% 250px, 0 150px);
     background-color: ${colors.red};
     z-index: -1;
 
+    @media (min-width: 768px) {
+      clip-path: polygon(0 0, 100% 0, 100% 500px, 0 300px);
+    }
+
     @media (min-width: 1026px) {
-      clip-path: polygon(100% 0, 55% 0, 100% 100%);
+      clip-path: polygon(100% 0, 55% 0, 100% 1200px);
     }
   }
 `;
 
-export const HeroInner = styled.div`
-  padding-left: 10%;
-  padding-right: 10%;
-  padding-top: 5.8rem;
-  padding-bottom: 5.8rem;
+export const HeroSection = styled.section`
   width: 100%;
   display: grid;
   row-gap: 2.6rem;
   grid-template-rows: auto auto;
+  margin-bottom: 10rem;
 
   @media (min-width: 1026px) {
     grid-template-columns: 5fr 4fr;
@@ -63,12 +60,4 @@ export const HeroInner = styled.div`
       align-self: center;
     }
   }
-`;
-
-export const DetailsSection = styled.section`
-  padding-left: 10%;
-  padding-right: 10%;
-  padding-top: 5.8rem;
-  padding-bottom: 5.8rem;
-  width: 100%;
 `;

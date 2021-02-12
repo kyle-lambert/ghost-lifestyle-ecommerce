@@ -3,31 +3,25 @@ import colors from "../../styles/colors";
 import { motion } from "framer-motion";
 
 export const ShoppingSection = styled.section`
-  min-height: 150vh;
-  padding-left: 10%;
-  padding-right: 10%;
-  padding-top: 5.8rem;
-  padding-bottom: 5.8rem;
-  width: 100%;
-`;
-
-export const ShoppingInner = styled.div`
   display: grid;
+  column-gap: 2rem;
+  row-gap: 2rem;
+
+  @media (min-width: 375px) {
+    column-gap: 3rem;
+    row-gap: 3rem;
+  }
 
   @media (min-width: 768px) {
     grid-template-columns: 200px auto;
-    column-gap: 3.8rem;
   }
 `;
 
 export const ShoppingFilter = styled(motion.div)`
-  margin-bottom: 2.6rem;
-
   @media (min-width: 768px) {
     grid-column: 1 / 2;
     flex-basis: 225px;
     flex-shrink: 0;
-    margin-bottom: unset;
   }
 
   .list {
@@ -85,15 +79,20 @@ export const ShoppingProductsWrapper = styled.div`
 export const ShoppingCards = styled.ul`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  column-gap: 2.8rem;
-  row-gap: 2.8rem;
+  column-gap: 2rem;
+  row-gap: 2rem;
+
+  @media (min-width: 375px) {
+    column-gap: 3rem;
+    row-gap: 3rem;
+  }
 
   @media (min-width: 768px) {
     grid-column: 2 / 3;
   }
 `;
 
-export const ShoppingMessage = styled.div`
-  margin: 40px 0;
-  text-align: center;
-`;
+// export const ShoppingMessage = styled.div`
+//   margin: 40px 0;
+//   text-align: center;
+// `;
