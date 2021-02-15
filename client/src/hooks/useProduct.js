@@ -9,7 +9,6 @@ const types = {
   SET_FORM_FLAVOUR: "SET_FLAVOUR",
   SET_FORM_QTY: "SET_QTY",
   SET_SLUG: "SET_SLUG",
-  RESET_REDUCER: "RESET_REDUCER",
 };
 
 const initialState = {
@@ -61,9 +60,6 @@ function productReducer(state, action) {
         formQty: action.payload,
       };
     }
-    case types.RESET_REDUCER: {
-      return initialState;
-    }
     default:
       return state;
   }
@@ -87,7 +83,6 @@ function useProduct() {
     const source = CancelToken.source();
 
     const fetchProductBySlug = () => {
-      // dispatch(creator(types.RESET_REDUCER));
       dispatch(creator(types.GET_PRODUCT_LOADING));
 
       const config = {

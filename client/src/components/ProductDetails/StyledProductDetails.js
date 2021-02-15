@@ -3,6 +3,8 @@ import colors from "../../styles/colors";
 
 export const DetailsContainer = styled.div`
   box-shadow: 0 10px 25px rgba(40, 40, 40, 0.2);
+  border-radius: 3px;
+  overflow: hidden;
 `;
 
 export const TabList = styled.ul`
